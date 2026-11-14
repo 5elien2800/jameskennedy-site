@@ -1,5 +1,9 @@
 <!doctype html><html lang="fr"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>James Kennedy</title><meta name="description" content=""><link rel="alternate" hreflang="fr" href="https://jameskennedy.ca/fr/"><link rel="alternate" hreflang="en" href="https://jameskennedy.ca/en/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-</style></head><body>
+</style><link rel="preload" as="image" href="/content/images/home/hero-artwork-montreal/james-kennedy-artwork-montreal-66x147cm-light-colors.webp" fetchpriority="high">
+<style>/* corrections du 14 novembre (James) */
+.proj .pic,.proj .pic img,.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
+</style>
+</head><body>
 <style>
 /* Version D : base C (fond gris clair, grain, trame, très grands titres en minuscules, Geist + Geist Mono),
    navigation à menus déroulants (A), ouverture en deux blocs Œuvres / Projets avec l'œuvre en grand (B),
@@ -269,7 +273,7 @@ html.lb-open{overflow:hidden}
 .form .err{color:#9B2C2C;font-size:13px;min-height:1em}
 .send{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;justify-self:start;background:var(--ink);color:var(--paper);padding:14px 14px 14px 22px;border-radius:4px;font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.06em;font-size:15px;min-width:min(280px,100%)}
 .send .arr{display:grid;place-items:center;width:30px;height:30px;background:var(--paper);color:var(--ink);border-radius:2px;transition:transform .25s}
-.send:hover .arr{transform:rotate(45deg)}
+.send:hover .arr{transform:rotate(-45deg)}
 .sent{font-size:20px;letter-spacing:-.02em;margin:0}
 .icons{display:inline-flex;gap:8px;margin-bottom:6px}
 .icons a{display:grid;place-items:center;width:26px;height:26px;border:1px solid color-mix(in srgb,var(--mute) 45%,transparent);border-radius:50%;color:var(--mute);transition:color .2s,border-color .2s}
@@ -427,7 +431,7 @@ main,main>section{overflow-x:clip}
 
   <div class="hero-grid">
     <figure class="plate ap up">
-      <img data-i18n="k7" data-i18n-m="a" src="/content/images/home/hero-artwork-montreal/james-kennedy-artwork-montreal-66x147cm-light-colors.webp" width="1568" height="724" alt="Plaque d'acier de la série Territoires découpée selon l'île de Montréal, au soleil : la réaction aux acides laisse apparaître des bleus et des violets, et la découpe révèle le mur derrière.">
+      <img data-i18n="k7" data-i18n-m="a" fetchpriority="high" src="/content/images/home/hero-artwork-montreal/james-kennedy-artwork-montreal-66x147cm-light-colors.webp" width="1568" height="724" alt="Plaque d'acier de la série Territoires découpée selon l'île de Montréal, au soleil : la réaction aux acides laisse apparaître des bleus et des violets, et la découpe révèle le mur derrière.">
       <figcaption class="mono"><span data-i18n="k8">Montréal, 66 × 147 cm, 2023</span></figcaption>
     </figure>
     <div class="hero-foot ap fl slow">
@@ -662,7 +666,7 @@ main,main>section{overflow-x:clip}
     reel.addEventListener('pointermove',e=>{ if(!mdown) return; const d=e.clientX-msx; moved=Math.max(moved,Math.abs(d)); if(moved>4) setSL(mss-d); });
     const mEnd=()=>{ if(!mdown) return; mdown=false; reel.style.cursor='grab'; later(120); };
     reel.addEventListener('pointerup',mEnd); reel.addEventListener('pointercancel',mEnd);
-    reel.addEventListener('click',e=>{ if(moved>4){ moved=0; return; } const fig=e.target.closest('figure'); if(fig) openLb(fig.querySelector('img').dataset.full); });
+    reel.addEventListener('click',e=>{ if(moved>4){ moved=0; return; } const fig=(document.elementFromPoint(e.clientX,e.clientY)||e.target).closest('figure'); if(fig) openLb(fig.querySelector('img').dataset.full); });
     /* image agrandie : le bandeau s'immobilise tant qu'elle est ouverte */
     const lb=document.createElement('div'); lb.className='lb'; lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true'); lb.setAttribute('aria-label',JKT.t(2));
     lb.innerHTML='<button class="x mono" type="button">'+JKT.t(3)+'</button><img alt="">'; document.body.append(lb);
@@ -769,7 +773,7 @@ main,main>section{overflow-x:clip}
     const nom=document.getElementById('f-nom').value.trim(), mail=document.getElementById('f-mail').value.trim();
     if(!nom){err.textContent=JKT.t(1);return}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){err.textContent=JKT.t(0);return}
-    err.textContent=''; const fm=e.target; fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(fm)).toString()}).then(r=>{ if(!r.ok) throw r; sent.hidden=false; }).catch(()=>fm.submit());
+    err.textContent=''; const fm=e.target; fetch(location.pathname,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(fm)).toString()}).then(r=>{ if(!r.ok) throw r; sent.hidden=false; }).catch(()=>fm.submit());
   });
 })();
 </script>
@@ -796,9 +800,9 @@ main,main>section{overflow-x:clip}
     const nav=document.getElementById('nav'); if(nav&&nav.classList.contains('open')) return; if(document.documentElement.classList.contains('lb-open')){ e.preventDefault(); return; }
     if(Math.abs(e.deltaX)>Math.abs(e.deltaY)) return;
     /* pavé tactile (deux doigts) : on garde le défilement naturel de l'appareil, déjà fluide ; la roulette garde son amorti */
-    const pad=e.wheelDeltaY ? Math.abs(e.wheelDeltaY)===Math.abs(e.deltaY)*3 : e.deltaMode===0;
+    const pad=!(e.deltaMode===1||(e.wheelDeltaY&&e.wheelDeltaY%120===0));
     /* pavé tactile : défilement direct, légèrement ralenti (l'inertie de l'appareil est conservée) */
-    if(pad){ if(run) stop(); e.preventDefault(); scrollTo({top:scrollY+e.deltaY*.78,behavior:'instant'}); return; }
+    if(pad){ if(run) stop(); return; }
     e.preventDefault();
     const raw=e.deltaY*(e.deltaMode===1?40:e.deltaMode===2?innerHeight:1);
     /* vitesse de la roulette : lente = petits pas, rapide = grande distance (progressif) */
@@ -998,7 +1002,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
 .soon .sn-a{display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:"Geist Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 .soon .sn-a a{color:inherit;text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:2px}
 .soon .sn-a button{all:unset;cursor:pointer;color:var(--mute,#686864)}
-.soon .sn-a button:focus-visible,.soon .sn-a a:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.soon .sn-a button:focus-visible{outline:1px solid currentColor;outline-offset:3px}.soon .sn-a a:focus{outline:none}
 </style>
 <script>
 /* Œuvres : la page est en préparation. Pour la remettre en ligne, redonner aux liens [data-soon] leur adresse (data-href) et retirer ce bloc. */

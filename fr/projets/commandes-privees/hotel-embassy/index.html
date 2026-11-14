@@ -1,6 +1,13 @@
 <!doctype html><html lang="fr"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Hôtel Embassy · James Kennedy</title><meta name="description" content=""><link rel="alternate" hreflang="fr" href="https://jameskennedy.ca/fr/projets/commandes-privees/hotel-embassy/"><link rel="alternate" hreflang="en" href="https://jameskennedy.ca/en/projects/private-commissions/embassy-hotel/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.fiche-img{display:block;width:100%;height:auto;margin-top:clamp(24px,3vw,40px)}
 @media (max-width:860px){.fiche-img{display:none}}
-</style></head><body>
+</style><link rel="preload" as="image" href="/content/images/projects/private-commissions/embassy-hotel/james-kennedy-artwork-montreal-150x305cm-hilton-embassy-montreal.jpg" fetchpriority="high">
+<style>/* corrections du 14 novembre (James) */
+.proj .pic,.proj .pic img,.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
+.head{position:relative;isolation:isolate}
+.head>.trame,.pj>.trame,#apropos>.trame{bottom:auto;height:clamp(640px,95vw,1370px)}
+.fiche-l img{cursor:zoom-in}
+</style>
+</head><body>
 <style>
 /* Fiche Hôtel Embassy : même système que la fiche Altana. */
 :root{
@@ -110,7 +117,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .six-grid figure{margin:0;display:grid;gap:10px;align-content:start}
 .six-grid .im{aspect-ratio:1;max-width:100%;overflow:hidden;background:#fff}
 .six-grid img{width:100%;height:100%;object-fit:contain;cursor:zoom-in;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
-.six-grid figure:hover img{transform:scale(1.02)}
+
 .six-grid figcaption{color:var(--on)}
 @media (max-width:1024px){.six-grid{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media (max-width:600px){.six-grid{grid-template-columns:minmax(0,1fr)}}
@@ -186,7 +193,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .rvl{opacity:0;transform:translateY(32px);transition:opacity 1.6s ease,transform 2s cubic-bezier(.16,.84,.24,1)}
 .rvl.in{opacity:1;transform:none}
 @media (hover:hover){main img:not(.reel img):not(.pnav img){transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
-main img:not(.reel img):not(.pnav img):hover{transform:scale(.985);border-radius:4px}}
+main .fiche-l img:hover{transform:scale(.985);border-radius:4px}}
 
 /* ===== fiche E : formulaire collaborons ===== */
 :root{--dot:#FAFAF8}
@@ -211,7 +218,7 @@ main img:not(.reel img):not(.pnav img):hover{transform:scale(.985);border-radius
 .form .err{color:#9B2C2C;font-size:13px;min-height:1em}
 .send{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;justify-self:start;background:var(--ink);color:var(--paper);padding:14px 14px 14px 22px;border-radius:4px;font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.06em;font-size:15px;min-width:min(280px,100%)}
 .send .arr{display:grid;place-items:center;width:30px;height:30px;background:var(--paper);color:var(--ink);border-radius:2px;transition:transform .25s}
-.send:hover .arr{transform:rotate(45deg)}
+.send:hover .arr{transform:rotate(-45deg)}
 .sent{font-size:20px;letter-spacing:-.02em;margin:0}
 .intro .mail{border-bottom:1.5px solid currentColor;white-space:nowrap;font-weight:500}
 .form .intro{margin-bottom:clamp(22px,2.6vw,40px)}
@@ -319,13 +326,14 @@ main,main>section{overflow-x:clip}
 <script>/* apparitions : activées avant l'affichage pour éviter un flash */(function(){if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('apjs')})();</script>
 <main>
   <section class="head wrap">
+    <canvas class="trame" aria-hidden="true"></canvas>
     <div class="crumb mono"><a data-i18n="k4" href="/fr/projets/">Projets</a><span>/</span><span data-i18n="k5">commande privée</span></div>
     <h1 data-i18n="k6" class="h1">hôtel <em>embassy</em></h1>
     <div class="lead">
       <p data-i18n="k7">Un grand tableau d'acier de l'île de Montréal, créé pour l'accueil de l'hôtel Embassy Suites par Hilton Montréal.</p>
     </div>
     <figure class="hero-img">
-      <img data-i18n="k8" data-i18n-m="a" src="/content/images/projects/private-commissions/embassy-hotel/james-kennedy-artwork-montreal-150x305cm-hilton-embassy-montreal.jpg" alt="Le tableau d'acier Montréal installé derrière le comptoir d'accueil de l'hôtel Embassy Suites par Hilton Montréal">
+      <img data-i18n="k8" data-i18n-m="a" fetchpriority="high" src="/content/images/projects/private-commissions/embassy-hotel/james-kennedy-artwork-montreal-150x305cm-hilton-embassy-montreal.jpg" alt="Le tableau d'acier Montréal installé derrière le comptoir d'accueil de l'hôtel Embassy Suites par Hilton Montréal">
       <figcaption data-i18n="k9" class="mono mute"><span>Montréal • Embassy Suites par Hilton</span><span>2025</span></figcaption>
     </figure>
   </section>
@@ -423,7 +431,7 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
   const lb=document.getElementById('lb'), li=document.getElementById('lbImg');
   const open=(src,alt)=>{li.src=src;li.alt=alt||'';lb.hidden=false};
   const close=()=>{lb.hidden=true;li.src=''};
-  document.querySelectorAll('.hero-img img,.det-grid img,.full img').forEach(im=>im.addEventListener('click',()=>open(im.src,im.alt)));
+  document.querySelectorAll('.hero-img img,.det-grid img,.full img,.fiche-l img').forEach(im=>im.addEventListener('click',()=>open(im.src,im.alt)));
   document.getElementById('lbClose').addEventListener('click',close);
   lb.addEventListener('click',close);
   addEventListener('keydown',e=>{if(e.key==='Escape')close()});
@@ -461,10 +469,10 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
     ['.head .hero-img','up plate'],['.dark .full,.det-grid figure,.fiche-img,.pnav2','up'],
     ['.head .crumb,.head .lead,.info .lab,.info .txt p:not(.big),.dark .lab,.cont-txt,.fiche .lab,.spec,.form','fl'],
     ['.info .txt p.big','fl'],
-    ['.contact .trame','tr']
+    ['.head .trame','tr'],['.contact .trame','tr']
   ];
   /* ouverture : fil d'Ariane, titre, texte d'intro, puis l'image */
-  const HERO=[['.head .crumb',.2],['.head .h1',.45],['.head .lead',.9],['.head .hero-img',1.25]];
+  const HERO=[['.head .trame',0],['.head .crumb',.2],['.head .h1',.45],['.head .lead',.9],['.head .hero-img',1.25]];
   let WAIT=null;
   const PRELOAD=[];
   /* ---- fin des réglages ---- */
@@ -645,9 +653,9 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
     const nav=document.getElementById('nav'); if(nav&&nav.classList.contains('open')) return;
     if(Math.abs(e.deltaX)>Math.abs(e.deltaY)) return;
     /* pavé tactile (deux doigts) : on garde le défilement naturel de l'appareil, déjà fluide ; la roulette garde son amorti */
-    const pad=e.wheelDeltaY ? Math.abs(e.wheelDeltaY)===Math.abs(e.deltaY)*3 : e.deltaMode===0;
+    const pad=!(e.deltaMode===1||(e.wheelDeltaY&&e.wheelDeltaY%120===0));
     /* pavé tactile : défilement direct, légèrement ralenti (l'inertie de l'appareil est conservée) */
-    if(pad){ if(run) stop(); e.preventDefault(); scrollTo({top:scrollY+e.deltaY*.78,behavior:'instant'}); return; }
+    if(pad){ if(run) stop(); return; }
     e.preventDefault();
     const raw=e.deltaY*(e.deltaMode===1?40:e.deltaMode===2?innerHeight:1);
     /* vitesse de la roulette : lente = petits pas, rapide = grande distance (progressif) */
@@ -715,7 +723,7 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
     const nom=document.getElementById('f-nom').value.trim(), mail=document.getElementById('f-mail').value.trim();
     if(!nom){err.textContent=JKT.t(2);return}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){err.textContent=JKT.t(1);return}
-    err.textContent=''; const fm=e.target; fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(fm)).toString()}).then(r=>{ if(!r.ok) throw r; sent.hidden=false; }).catch(()=>fm.submit());
+    err.textContent=''; const fm=e.target; fetch(location.pathname,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(fm)).toString()}).then(r=>{ if(!r.ok) throw r; sent.hidden=false; }).catch(()=>fm.submit());
   });
 })();
 </script>
@@ -737,7 +745,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
 .soon .sn-a{display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:"Geist Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 .soon .sn-a a{color:inherit;text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:2px}
 .soon .sn-a button{all:unset;cursor:pointer;color:var(--mute,#686864)}
-.soon .sn-a button:focus-visible,.soon .sn-a a:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.soon .sn-a button:focus-visible{outline:1px solid currentColor;outline-offset:3px}.soon .sn-a a:focus{outline:none}
 </style>
 <script>
 /* Œuvres : la page est en préparation. Pour la remettre en ligne, redonner aux liens [data-soon] leur adresse (data-href) et retirer ce bloc. */

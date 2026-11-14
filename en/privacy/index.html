@@ -1,5 +1,10 @@
 <!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Legal notice and privacy policy · James Kennedy</title><meta name="description" content=""><link rel="alternate" hreflang="en" href="https://jameskennedy.ca/en/privacy/"><link rel="alternate" hreflang="fr" href="https://jameskennedy.ca/fr/confidentialite/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-</style></head><body>
+</style><style>/* corrections du 14 novembre (James) */
+.proj .pic,.proj .pic img,.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
+.pj{position:relative;isolation:isolate}
+.head>.trame,.pj>.trame,#apropos>.trame{bottom:auto;height:clamp(640px,95vw,1370px)}
+</style>
+</head><body>
 <style>
 /* Version D : base C (fond gris clair, grain, trame, très grands titres en minuscules, Geist + Geist Mono),
    navigation à menus déroulants (A), ouverture en deux blocs Œuvres / Projets avec l'œuvre en grand (B),
@@ -270,7 +275,7 @@ html.lb-open{overflow:hidden}
 .form .err{color:#9B2C2C;font-size:13px;min-height:1em}
 .send{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;justify-self:start;background:var(--ink);color:var(--paper);padding:14px 14px 14px 22px;border-radius:4px;font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.06em;font-size:15px;min-width:min(280px,100%)}
 .send .arr{display:grid;place-items:center;width:30px;height:30px;background:var(--paper);color:var(--ink);border-radius:2px;transition:transform .25s}
-.send:hover .arr{transform:rotate(45deg)}
+.send:hover .arr{transform:rotate(-45deg)}
 .sent{font-size:20px;letter-spacing:-.02em;margin:0}
 .icons{display:inline-flex;gap:8px;margin-bottom:6px}
 .icons a{display:grid;place-items:center;width:26px;height:26px;border:1px solid color-mix(in srgb,var(--mute) 45%,transparent);border-radius:50%;color:var(--mute);transition:color .2s,border-color .2s}
@@ -526,6 +531,7 @@ main,main>section{overflow-x:clip}
 <main>
 
 <section class="pj wrap cf" id="confidentialite">
+    <canvas class="trame" aria-hidden="true"></canvas>
   <header class="pj-head">
     <h1 data-i18n="k4" class="pj-h1">legal notice and privacy policy</h1>
   </header>
@@ -842,7 +848,7 @@ main,main>section{overflow-x:clip}
     const nom=document.getElementById('f-nom').value.trim(), mail=document.getElementById('f-mail').value.trim();
     if(!nom){err.textContent=JKT.t(1);return}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){err.textContent=JKT.t(0);return}
-    err.textContent=''; const fm=e.target; fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(fm)).toString()}).then(r=>{ if(!r.ok) throw r; sent.hidden=false; }).catch(()=>fm.submit());
+    err.textContent=''; const fm=e.target; fetch(location.pathname,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(fm)).toString()}).then(r=>{ if(!r.ok) throw r; sent.hidden=false; }).catch(()=>fm.submit());
   });
 })();
 </script>
@@ -869,9 +875,9 @@ main,main>section{overflow-x:clip}
     const nav=document.getElementById('nav'); if(nav&&nav.classList.contains('open')) return; if(document.documentElement.classList.contains('lb-open')){ e.preventDefault(); return; }
     if(Math.abs(e.deltaX)>Math.abs(e.deltaY)) return;
     /* pavé tactile (deux doigts) : on garde le défilement naturel de l'appareil, déjà fluide ; la roulette garde son amorti */
-    const pad=e.wheelDeltaY ? Math.abs(e.wheelDeltaY)===Math.abs(e.deltaY)*3 : e.deltaMode===0;
+    const pad=!(e.deltaMode===1||(e.wheelDeltaY&&e.wheelDeltaY%120===0));
     /* pavé tactile : défilement direct, légèrement ralenti (l'inertie de l'appareil est conservée) */
-    if(pad){ if(run) stop(); e.preventDefault(); scrollTo({top:scrollY+e.deltaY*.78,behavior:'instant'}); return; }
+    if(pad){ if(run) stop(); return; }
     e.preventDefault();
     const raw=e.deltaY*(e.deltaMode===1?40:e.deltaMode===2?innerHeight:1);
     /* vitesse de la roulette : lente = petits pas, rapide = grande distance (progressif) */
@@ -931,10 +937,10 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
     ['.pj-h1','mk'],['.contact .h2','l'],
     ['.cf-date,.pj-lede,.nf-links,.cf-h,.cf-t','fl'],
     ['.form','fl'],
-    ['.contact .trame','tr']
+    ['.pj .trame','tr'],['.contact .trame','tr']
   ];
   /* ouverture : surtitre, titre, texte d'intro, filtres, puis l'image vedette si elle est à l'écran */
-  const HERO=[['.pj-h1',.45],['.cf-date',.9],['.pj-lede',.9],['.nf-links',1.25]];
+  const HERO=[['.pj .trame',0],['.pj-h1',.45],['.cf-date',.9],['.pj-lede',.9],['.nf-links',1.25]];
   const feat=document.querySelector('.pj-feat .pic'); if(feat&&feat.getBoundingClientRect().top<innerHeight*.92) HERO.push(['.pj-feat .pic',1.5]);
   let WAIT=null;
   const PRELOAD=[];
@@ -1088,7 +1094,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
 .soon .sn-a{display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:"Geist Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 .soon .sn-a a{color:inherit;text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:2px}
 .soon .sn-a button{all:unset;cursor:pointer;color:var(--mute,#686864)}
-.soon .sn-a button:focus-visible,.soon .sn-a a:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.soon .sn-a button:focus-visible{outline:1px solid currentColor;outline-offset:3px}.soon .sn-a a:focus{outline:none}
 </style>
 <script>
 /* Œuvres : la page est en préparation. Pour la remettre en ligne, redonner aux liens [data-soon] leur adresse (data-href) et retirer ce bloc. */

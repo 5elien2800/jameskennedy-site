@@ -1,4 +1,11 @@
-<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Mémoire · James Kennedy</title><meta name="description" content=""><link rel="alternate" hreflang="en" href="https://jameskennedy.ca/en/projects/public-art/memoire/"><link rel="alternate" hreflang="fr" href="https://jameskennedy.ca/fr/projets/art-public/memoire/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Mémoire · James Kennedy</title><meta name="description" content=""><link rel="alternate" hreflang="en" href="https://jameskennedy.ca/en/projects/public-art/memoire/"><link rel="alternate" hreflang="fr" href="https://jameskennedy.ca/fr/projets/art-public/memoire/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="preload" as="image" href="/content/images/projects/public-art/memoire/james-kennedy-photographie-du-pont-champlain-d-origine.jpg" fetchpriority="high">
+<style>/* corrections du 14 novembre (James) */
+.proj .pic,.proj .pic img,.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
+.head{position:relative;isolation:isolate}
+.head>.trame,.pj>.trame,#apropos>.trame{bottom:auto;height:clamp(640px,95vw,1370px)}
+.lb .lb-cr{position:absolute;left:0;right:0;bottom:clamp(14px,2.4vw,28px);margin:0;text-align:center;color:#E9ECEE;font-size:11px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
+</style>
+</head><body>
 <style>
 /* Fiche de projet, même système que la version D : fond gris clair, grain, Geist + Geist Mono,
    grande image, fiche technique, parcours en cinq vignettes sur Deep Steel, appel à l'action. */
@@ -280,7 +287,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .rvl{opacity:0;transform:translateY(32px);transition:opacity 1.6s ease,transform 2s cubic-bezier(.16,.84,.24,1)}
 .rvl.in{opacity:1;transform:none}
 @media (hover:hover){main img:not(.reel img):not(.pnav img){transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
-main img:not(.reel img):not(.pnav img):hover{transform:scale(.985);border-radius:4px}}
+main .fiche-l img:hover{transform:scale(.985);border-radius:4px}}
 .reel figure{overflow:hidden;transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
 @media (hover:hover){.reel figure:hover{transform:scale(.97);border-radius:4px}}
 .lbr{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px);background:rgba(15,15,15,.9);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s;cursor:zoom-out}
@@ -313,7 +320,7 @@ html.lb-open{overflow:hidden}
 .form .err{color:#9B2C2C;font-size:13px;min-height:1em}
 .send{display:inline-flex;align-items:center;justify-content:space-between;gap:24px;justify-self:start;background:var(--ink);color:var(--paper);padding:14px 14px 14px 22px;border-radius:4px;font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.06em;font-size:15px;min-width:min(280px,100%)}
 .send .arr{display:grid;place-items:center;width:30px;height:30px;background:var(--paper);color:var(--ink);border-radius:2px;transition:transform .25s}
-.send:hover .arr{transform:rotate(45deg)}
+.send:hover .arr{transform:rotate(-45deg)}
 .sent{font-size:20px;letter-spacing:-.02em;margin:0}
 .intro .mail{border-bottom:1.5px solid currentColor;white-space:nowrap;font-weight:500}
 .form .intro{margin-bottom:clamp(22px,2.6vw,40px)}
@@ -675,13 +682,14 @@ html body .trav .trav-row .trav-thanks{text-wrap:balance}
 <script>/* apparitions : activées avant l'affichage pour éviter un flash */(function(){if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('apjs')})();</script>
 <main>
   <section class="head wrap">
+    <canvas class="trame" aria-hidden="true"></canvas>
     <div class="crumb mono"><a data-i18n="k4" href="/en/projects/">Projects</a><span>/</span><span data-i18n="k5">public art</span></div>
     <h1 class="h1">mémoire <em>sculpture</em></h1>
     <div class="lead">
       <p data-i18n="k6">Twelve steel panels reclaimed from the original Champlain Bridge come together to form its silhouette. Between disappearance and permanence, the bridge finds a new presence in the landscape.</p>
     </div>
     <figure class="hero-img full">
-      <img data-i18n="k7" data-i18n-m="a" src="/content/images/projects/public-art/memoire/james-kennedy-photographie-du-pont-champlain-d-origine.jpg" width="2000" height="820" data-credit="Photo: James Kennedy" alt="The original Champlain Bridge, its steel spans stretching across the river">
+      <img data-i18n="k7" data-i18n-m="a" fetchpriority="high" src="/content/images/projects/public-art/memoire/james-kennedy-photographie-du-pont-champlain-d-origine.jpg" width="2000" height="820" data-credit="Photo: James Kennedy" alt="The original Champlain Bridge, its steel spans stretching across the river">
       <figcaption data-i18n="k8" class="mono mute">The original Champlain Bridge</figcaption>
     </figure>
   </section>
@@ -848,7 +856,7 @@ html body .trav .trav-row .trav-thanks{text-wrap:balance}
   </section>
 </main>
 
-<div class="lb" id="lb" hidden><img id="lbImg" alt=""><button data-i18n="k88" type="button" class="mono" id="lbClose">Close ✕</button></div>
+<div class="lb" id="lb" hidden><img id="lbImg" alt=""><p class="lb-cr mono" hidden></p><button data-i18n="k88" type="button" class="mono" id="lbClose">Close ✕</button></div>
 
 <script>
 /* la fiche s'ouvre toujours en haut de la page */
@@ -857,9 +865,9 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
 (function(){
   /* visionneuse */
   const lb=document.getElementById('lb'), li=document.getElementById('lbImg');
-  const open=(src,alt)=>{li.src=src;li.alt=alt||'';lb.hidden=false};
+  const open=(src,alt,cr)=>{li.src=src;li.alt=alt||'';const c=lb.querySelector('.lb-cr'); if(c){ const fr=document.documentElement.lang!=='en'; c.textContent=cr?(/^photo/i.test(cr)?cr:(fr?'Photo : ':'Photo: ')+cr):''; c.hidden=!cr; } lb.hidden=false};
   const close=()=>{lb.hidden=true;li.src=''};
-  document.querySelectorAll('.duo-img img,.hero-img img,.trav-imgs img:not(.cac-logo),.m-big img,.m-one img').forEach(im=>{im.style.cursor='zoom-in';im.addEventListener('click',()=>open(im.src,im.alt))});
+  document.querySelectorAll('.duo-img img,.hero-img img,.trav-imgs img:not(.cac-logo),.m-big img,.m-one img').forEach(im=>{im.style.cursor='zoom-in';im.addEventListener('click',()=>open(im.src,im.alt,im.dataset.credit))});
   document.querySelectorAll('.row2 button').forEach(x=>x.addEventListener('click',()=>open(x.dataset.src,x.getAttribute('aria-label'))));
   const reel=['01-james-kennedy-memoire-champlain-bridge-transport.webp','02-james-kennedy-memoire-champlain-bridge-truss-3.jpg','03-james-kennedy-memoire-dismantling-bridge-1.webp','04-james-kennedy-memoire-dismantling-bridge-3.webp','05-james-kennedy-memoire-dismantling-bridge-2.webp','james-kennedy-memoire-dismantling-bridge-4.webp','james-kennedy-memoire-truss-storage.jpg'];
   let rh=''; for(let r=0;r<4;r++) reel.forEach(n=>rh+=`<figure${r?' aria-hidden="true"':''}><img src="/content/images/projects/public-art/memoire/bandeau/${n}" data-full="/content/images/projects/public-art/memoire/bandeau/${n}" alt="" decoding="sync"></figure>`);
@@ -902,7 +910,7 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
     reel.addEventListener('pointermove',e=>{ if(!mdown) return; const d=e.clientX-msx; moved=Math.max(moved,Math.abs(d)); if(moved>4) setSL(mss-d); });
     const mEnd=()=>{ if(!mdown) return; mdown=false; reel.style.cursor='grab'; later(120); };
     reel.addEventListener('pointerup',mEnd); reel.addEventListener('pointercancel',mEnd);
-    reel.addEventListener('click',e=>{ if(moved>4){ moved=0; return; } const fig=e.target.closest('figure'); if(fig) openLb(fig.querySelector('img').dataset.full); });
+    reel.addEventListener('click',e=>{ if(moved>4){ moved=0; return; } const fig=(document.elementFromPoint(e.clientX,e.clientY)||e.target).closest('figure'); if(fig) openLb(fig.querySelector('img').dataset.full); });
     /* image agrandie : le bandeau s'immobilise tant qu'elle est ouverte */
     const lb=document.createElement('div'); lb.className='lbr'; lb.setAttribute('role','dialog'); lb.setAttribute('aria-modal','true'); lb.setAttribute('aria-label',JKT.t(0));
     lb.innerHTML='<button class="x mono" type="button">'+JKT.t(1)+'</button><img alt="">'; document.body.append(lb);
@@ -962,9 +970,9 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
     const nav=document.getElementById('nav'); if(nav&&nav.classList.contains('open')) return; if(document.documentElement.classList.contains('lb-open')){ e.preventDefault(); return; }
     if(Math.abs(e.deltaX)>Math.abs(e.deltaY)) return;
     /* pavé tactile (deux doigts) : on garde le défilement naturel de l'appareil, déjà fluide ; la roulette garde son amorti */
-    const pad=e.wheelDeltaY ? Math.abs(e.wheelDeltaY)===Math.abs(e.deltaY)*3 : e.deltaMode===0;
+    const pad=!(e.deltaMode===1||(e.wheelDeltaY&&e.wheelDeltaY%120===0));
     /* pavé tactile : défilement direct, légèrement ralenti (l'inertie de l'appareil est conservée) */
-    if(pad){ if(run) stop(); e.preventDefault(); scrollTo({top:scrollY+e.deltaY*.78,behavior:'instant'}); return; }
+    if(pad){ if(run) stop(); return; }
     e.preventDefault();
     const raw=e.deltaY*(e.deltaMode===1?40:e.deltaMode===2?innerHeight:1);
     /* vitesse de la roulette : lente = petits pas, rapide = grande distance (progressif) */
@@ -1032,7 +1040,7 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
     const nom=document.getElementById('f-nom').value.trim(), mail=document.getElementById('f-mail').value.trim();
     if(!nom){err.textContent=JKT.t(4);return}
     if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){err.textContent=JKT.t(3);return}
-    err.textContent=''; const fm=e.target; fetch('/',{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(fm)).toString()}).then(r=>{ if(!r.ok) throw r; sent.hidden=false; }).catch(()=>fm.submit());
+    err.textContent=''; const fm=e.target; fetch(location.pathname,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(fm)).toString()}).then(r=>{ if(!r.ok) throw r; sent.hidden=false; }).catch(()=>fm.submit());
   });
 })();
 </script>
@@ -1071,10 +1079,10 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
     ['.head .hero-img','up plate'],['.m-one,.trav-imgs figure,.trav-imgs .cac-logo,.m-big,.m-duo figure,.pnav2','up'],
     ['.head .crumb,.head .lead,.split .tg-h,.trav .tg-h,.mtx .mr-in>p,.story .lab,.story>div,.dark .lab,.etat-t,.etat-txt,.etat-n,.fiche-h,.spec,.ray-txt,.form','fl'],
     ['.info .intent-top','fl'],['.ch-lab,.trav-cap,.trav-thanks,.m-cap','fl'],['.ray-imgs figcaption','fl'],
-    ['.contact .trame','tr']
+    ['.head .trame','tr'],['.contact .trame','tr']
   ];
   /* ouverture : fil d'Ariane, titre, texte d'intro, puis l'image */
-  const HERO=[['.head .crumb',.2],['.head .h1',.45],['.head .lead',.9],['.head .hero-img',1.25]];
+  const HERO=[['.head .trame',0],['.head .crumb',.2],['.head .h1',.45],['.head .lead',.9],['.head .hero-img',1.25]];
   let WAIT=null;
   const PRELOAD=[];
   /* ---- fin des réglages ---- */
@@ -1252,7 +1260,7 @@ document.querySelectorAll('.tg').forEach(b=>{ const x=document.getElementById(b.
 .soon .sn-a{display:flex;justify-content:space-between;align-items:center;gap:16px;font-family:"Geist Mono",ui-monospace,monospace;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
 .soon .sn-a a{color:inherit;text-decoration:none;border-bottom:1.5px solid currentColor;padding-bottom:2px}
 .soon .sn-a button{all:unset;cursor:pointer;color:var(--mute,#686864)}
-.soon .sn-a button:focus-visible,.soon .sn-a a:focus-visible{outline:1px solid currentColor;outline-offset:3px}
+.soon .sn-a button:focus-visible{outline:1px solid currentColor;outline-offset:3px}.soon .sn-a a:focus{outline:none}
 </style>
 <script>
 /* Œuvres : la page est en préparation. Pour la remettre en ligne, redonner aux liens [data-soon] leur adresse (data-href) et retirer ce bloc. */

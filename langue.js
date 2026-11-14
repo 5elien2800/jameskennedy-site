@@ -145,6 +145,9 @@
     /* apparitions : si l'élément n'est pas encore apparu, ses unités seront recalculées au bon moment */
     const ap = el.closest(".ap"); if (ap && !ap.classList.contains("on")) delete ap._u;
     if (rv) envelopperMots(el);
+    /* mot défilant de l'Accueil : un seul mot visible dans un cadre d'une ligne ; il change d'un bloc, avec un fondu
+       de l'ensemble, sans découpage en lignes (sinon une partie du mot seulement s'affiche pendant le fondu) */
+    if (el.closest("#roller")) { if (vu && !reduce) el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 2600, easing: "cubic-bezier(.2,.7,.3,1)" }); return; }
     if (vu) aFondre.push(el);
   }
   function textesDirects(el, src, aFondre) {
