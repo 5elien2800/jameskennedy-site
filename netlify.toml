@@ -1,0 +1,22 @@
+# Le dépôt contient le site complet, déjà construit (par jk-website-builder/construire.mjs).
+[build]
+  publish = "."
+  command = "echo Site deja construit"
+
+# Racine : anglais pour les navigateurs en anglais, français pour tous les autres
+[[redirects]]
+  from = "/"
+  to = "/en/"
+  status = 302
+  conditions = { Language = ["en"] }
+
+[[redirects]]
+  from = "/"
+  to = "/fr/"
+  status = 302
+
+# Page introuvable en anglais (en français : /404.html, servi d'office par Netlify)
+[[redirects]]
+  from = "/en/*"
+  to = "/en/404.html"
+  status = 404
