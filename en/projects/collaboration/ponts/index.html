@@ -1,8 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Ponts · James Kennedy</title><meta name="description" content=""><link rel="alternate" hreflang="en" href="https://jameskennedy.ca/en/projects/collaboration/ponts/"><link rel="alternate" hreflang="fr" href="https://jameskennedy.ca/fr/projets/collaboration/ponts/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="preload" as="image" href="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-2019.jpg" fetchpriority="high">
 <style>/* corrections du 14 novembre (James) */
 .proj .pic,.proj .pic img,.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
-.head{position:relative;isolation:isolate}
-.head>.trame,.pj>.trame,#apropos>.trame{bottom:auto;height:clamp(640px,95vw,1370px)}
 </style>
 </head><body>
 <style>
@@ -383,7 +381,6 @@ main,main>section{overflow-x:clip}
 <script>/* apparitions : activées avant l'affichage pour éviter un flash */(function(){if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('apjs')})();</script>
 <main>
   <section class="head wrap">
-    <canvas class="trame" aria-hidden="true"></canvas>
     <div class="crumb mono"><a data-i18n="k4" href="/en/projects/">Projects</a><span>/</span><span>collaboration</span></div>
     <h1 class="h1">ponts</h1>
     <div class="lead">
@@ -654,10 +651,10 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
     ['.head .hero-img','up plate'],['.nvs figure,.expo figure,.buy-cover,.pnav2','up'],
     ['.head .crumb,.head .lead,.info .lab,.info .txt p:not(.big),.ec-head,.nv-t,.expo .cap,.fiche .lab,.spec,.buy-t,.form','fl'],
     ['.info .txt p.big','fl'],
-    ['.head .trame','tr'],['.contact .trame','tr']
+    ['.contact .trame','tr']
   ];
   /* ouverture : fil d'Ariane, titre, texte d'intro, puis l'image */
-  const HERO=[['.head .trame',0],['.head .crumb',.2],['.head .h1',.45],['.head .lead',.9],['.head .hero-img',1.25]];
+  const HERO=[['.head .crumb',.2],['.head .h1',.45],['.head .lead',.9],['.head .hero-img',1.25]];
   let WAIT=null;
   const PRELOAD=[];
   /* ---- fin des réglages ---- */
@@ -832,7 +829,7 @@ document.querySelectorAll('[data-buy]').forEach(a=>a.addEventListener('click',()
   const step=t=>{
     if(!run) return;
     const dt=prev?Math.min((t-prev)/1000,.05):1/60; prev=t;
-    cur+=(tgt-cur)*(1-Math.pow(1-LERP,dt*60));
+    { const d=tgt-cur; let m=d*(1-Math.pow(1-LERP,dt*60)); const v=dt*60; if(Math.abs(m)<v) m=Math.sign(d)*Math.min(Math.abs(d),v); cur+=m; }
     if(Math.abs(tgt-cur)<.5){ cur=tgt; run=false; }
     scrollTo({top:cur,behavior:'instant'});
     if(run) requestAnimationFrame(step);
@@ -842,9 +839,9 @@ document.querySelectorAll('[data-buy]').forEach(a=>a.addEventListener('click',()
     const nav=document.getElementById('nav'); if(nav&&nav.classList.contains('open')) return;
     if(Math.abs(e.deltaX)>Math.abs(e.deltaY)) return;
     /* pavé tactile (deux doigts) : on garde le défilement naturel de l'appareil, déjà fluide ; la roulette garde son amorti */
-    const pad=!(e.deltaMode===1||(e.wheelDeltaY&&e.wheelDeltaY%120===0));
+    const pad=e.wheelDeltaY ? Math.abs(e.wheelDeltaY)===Math.abs(e.deltaY)*3 : e.deltaMode===0;
     /* pavé tactile : défilement direct, légèrement ralenti (l'inertie de l'appareil est conservée) */
-    if(pad){ if(run) stop(); return; }
+    if(pad){ if(run) stop(); e.preventDefault(); scrollTo({top:scrollY+e.deltaY*.78,behavior:'instant'}); return; }
     e.preventDefault();
     const raw=e.deltaY*(e.deltaMode===1?40:e.deltaMode===2?innerHeight:1);
     /* vitesse de la roulette : lente = petits pas, rapide = grande distance (progressif) */
