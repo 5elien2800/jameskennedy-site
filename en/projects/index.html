@@ -1,10 +1,30 @@
 <!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Projects · James Kennedy</title><meta name="description" content=""><link rel="alternate" hreflang="en" href="https://jameskennedy.ca/en/projects/"><link rel="alternate" hreflang="fr" href="https://jameskennedy.ca/fr/projets/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
-</style><link rel="preload" as="image" href="/content/images/home/projects/promenade/james-kennedy-community-boardwalk-kawawachikamach-sculpture-mural.jpg" fetchpriority="high">
+</style><link rel="preload" as="image" href="/content/images/projects/james-kennedy-community-boardwalk-kawawachikamach-sculpture-mural-32-15.jpg" media="not all and (max-width:860px)" fetchpriority="high">
+<link rel="preload" as="image" href="/content/images/projects/james-kennedy-community-boardwalk-kawawachikamach-sculpture-mural-4-3.jpg" media="(max-width:860px)" fetchpriority="high">
 <style>/* corrections du 14 novembre (James) */
-.proj .pic,.proj .pic img,.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
+.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
 .pj{position:relative;isolation:isolate}
 .pj>.trame,#apropos>.trame{bottom:auto;height:clamp(640px,95vw,1370px)}
+/* effet de rétrécissement au survol (outils/retrecissement.mjs) */
+:is(.pj-card .pic, .pj-mem .pic, .pj-book .pic){border-radius:2px;background-clip:content-box;transform-origin:50% 50% 0}
+:is(.pj-card .pic, .pj-mem .pic, .pj-book .pic){overflow:clip}
+:is(.pj-card .pic, .pj-mem .pic, .pj-book .pic) img{border-radius:var(--retr-r,0)}
+@media (hover:hover) and (pointer:fine){:is(.pj-card .pic, .pj-mem .pic, .pj-book .pic){will-change:transform}}
 </style>
+<script>/* copies réduites : srcset des images écrites par les scripts (JKR.s), et « sizes » réglé sur la largeur affichée */
+window.JKR={m:{"home/on-the-workbench/james-kennedy-acid-painting-colors-2.jpg":[2000,1125,[400,800,1200]],"home/on-the-workbench/james-kennedy-acid-painting-colors.webp":[819,1456,[400]],"home/on-the-workbench/james-kennedy-artwork-pont-jacques-cartier-steel-detail.jpg":[2000,1333,[400,800,1200]],"home/on-the-workbench/james-kennedy-exposition-fonderie-darling-2020.webp":[1269,952,[400]],"home/on-the-workbench/james-kennedy-exposition-galerie-du-viaduc-2020.jpg":[1337,882,[400,800]],"home/on-the-workbench/james-kennedy-exposition-gallerie-du-viaduc-continents.jpg":[2000,1333,[400,800,1200]],"home/on-the-workbench/james-kennedy-memoire-sculpture-bridge-steel-1.jpg":[1200,1200,[400,800]],"home/on-the-workbench/james-kennedy-picture-tokyo-bridge-dragon-bridge.jpg":[1990,1292,[400,800,1200]],"home/on-the-workbench/james-kennedy-steel-plate.jpg":[1512,1846,[400,800]],"home/on-the-workbench/james-kennedy-studio-1.jpg":[1500,844,[400,800]],"home/on-the-workbench/james-kennedy-studio-2.jpg":[844,1500,[400]],"home/on-the-workbench/james-kennedy-studio-4.jpg":[2000,1125,[400,800,1200]],"home/on-the-workbench/james-kennedy-studio-work-3.jpg":[1120,1120,[400,800]],"home/on-the-workbench/james-kennedy-studio-work-4.jpg":[970,1727,[400]],"home/on-the-workbench/james-kennedy-studio-work-6.jpg":[1200,1200,[400,800]],"home/on-the-workbench/james-kennedy-studio-work-7.jpg":[1125,632,[400,800]],"home/on-the-workbench/james-kennedy-visitor-looking-at-artwork.jpg":[2000,2000,[400,800,1200,1600]]},
+  s:function(u){ var r=decodeURI(u).replace(/^\/content\/images\//,''), x=this.m[r]; if(!x) return '';
+    var p=r.lastIndexOf('.'), b=r.slice(0,p), e=/\.webp$/i.test(r)?'.jpg':r.slice(p);
+    return x[2].map(function(l){ return encodeURI('/content/images-reduites/'+b+'-'+l+'w'+e)+' '+l+'w'; }).concat(encodeURI('/content/images/'+r)+' '+x[0]+'w').join(', '); },
+  /* bandeau : hauteur clamp(192px,20vw,280px), largeur = hauteur × format de l'image */
+  bandeau:function(u){ var r=decodeURI(u).replace(/^\/content\/images\//,''), x=this.m[r], s=this.s(u); if(!s) return ''; var f=x[0]/x[1];
+    return ' srcset="'+s+'" sizes="(max-width:960px) '+Math.ceil(192*f)+'px, (max-width:1400px) '+(20*f).toFixed(2)+'vw, '+Math.ceil(280*f)+'px" style="aspect-ratio:'+x[0]+' / '+x[1]+'"'; },
+  /* format de l'original (la hauteur d'une copie est arrondie au pixel) : seulement si la page ne fixe pas déjà le format */
+  taille:function(){ document.querySelectorAll('img[srcset]').forEach(function(im){ if(im.closest('.reel')) return;
+    if(im.dataset.r && !im.style.aspectRatio && /^auto/.test(getComputedStyle(im).aspectRatio)) im.style.aspectRatio=im.dataset.r;
+    var w=im.offsetWidth; if(w>0) im.sizes=Math.ceil(w)+'px'; }); }
+};
+</script>
 </head><body>
 <style>
 /* Version D : base C (fond gris clair, grain, trame, très grands titres en minuscules, Geist + Geist Mono),
@@ -128,26 +148,10 @@ section{scroll-margin-top:70px}
 
 /* ---------- œuvres ---------- */
 .works{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(28px,3vw,48px) clamp(16px,2vw,28px)}
-.work{display:grid;gap:12px;min-width:0}
-.work .pic{position:relative;aspect-ratio:5/4;background:var(--paper-2);overflow:hidden;display:block}
-.work .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:contain;padding:clamp(18px,4%,48px);transition:opacity .6s,transform 1.2s cubic-bezier(.2,.8,.2,1)}
-.work .pic img.b{opacity:0}
-.work .pic img.b.detail{object-fit:cover;padding:0}
-@media (hover:hover){.work .pic.flip img.a{transform:scale(1.03)}}
-.dots{display:none;justify-content:center;gap:7px;margin-top:-2px}
-.dots i{width:5px;height:5px;border-radius:50%;background:var(--mute);opacity:.3;transition:opacity .3s}
-.dots i.on{opacity:.85}
-@media (hover:none){.dots{display:flex}.work .pic{touch-action:pan-y;cursor:pointer}}
-html.touch .dots{display:flex}
-html.touch .work .pic,html.touch .proj .pic{touch-action:pan-y;cursor:pointer}
-.proj .pbox{display:grid;gap:12px;min-width:0;align-content:start}
-html.touch .proj .pbox{position:relative;z-index:2}
-.work .cap{transition:opacity .22s}
-.work .pic.flip img.a{opacity:0}.work .pic.flip img.b{opacity:1}
+
 .see{grid-column:1/-1;justify-self:start;font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.06em;font-size:12px;border-bottom:1px solid currentColor;padding-bottom:1px;margin-top:2px}
 .see:hover{color:var(--mute)}
-.work .meta{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:4px 16px;align-items:baseline}
-.work h3{margin:0;font-weight:500;font-size:clamp(22px,2vw,24px);letter-spacing:-.035em}
+
 .buy{font-family:var(--f-mono);text-transform:uppercase;letter-spacing:.06em;font-size:13px;border-bottom:1.5px solid var(--ink);padding-bottom:2px;justify-self:end}
 .buy:hover{color:var(--mute);border-color:var(--mute)}
 @media (max-width:640px){.works{grid-template-columns:minmax(0,1fr)}}
@@ -156,11 +160,8 @@ html.touch .proj .pbox{position:relative;z-index:2}
 .projects{display:grid;gap:clamp(20px,2.4vw,36px)}
 .proj{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:clamp(16px,2.5vw,40px);border-top:1.5px solid var(--ink);padding-top:clamp(16px,2vw,24px)}
 .proj .pic{position:relative;aspect-ratio:16/10;overflow:hidden;background:var(--paper-2)}
-.proj .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:opacity .7s,transform 1.4s cubic-bezier(.2,.8,.2,1)}
-.proj .pic img.b{opacity:0}
-@media (hover:hover){.proj .pic.flip img.b{transform:scale(1.02)}}
-.proj .pic.flip img.a{opacity:0}
-.proj .pic img.whole{object-fit:contain;padding:clamp(14px,3%,36px)}.proj .pic.flip img.b{opacity:1}
+.proj .pic img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover}
+
 .proj .pic.blank{display:grid;place-items:end start;padding:clamp(16px,2vw,28px);aspect-ratio:16/5}
 .proj .pic.blank span{font-weight:300;font-size:clamp(28px,3.6vw,43px);letter-spacing:-.05em;line-height:.95;color:var(--mute)}
 .proj .txt{display:flex;flex-direction:column;gap:18px;min-width:0}
@@ -176,9 +177,8 @@ html.touch .proj .pbox{position:relative;z-index:2}
 .proj details[open] .pl{transform:rotate(45deg)}
 .proj details p{font-weight:300;font-size:20px;line-height:1.35;letter-spacing:-.015em;margin:14px 0 0;max-width:26em}
 .cap{font-size:12px;color:var(--mute)}
-.proj.has-page{position:relative}
-@media (hover:hover){.proj.has-page .go::after{content:"";position:absolute;inset:0;z-index:1}}
-.proj.has-page:hover .go .a{transform:translate(2px,-2px)}
+/* cartes : l'image est un lien vers le projet (outils/cartes-accueil.mjs) */
+.proj a.pic{display:block}
 @media (max-width:760px){.proj{grid-template-columns:minmax(0,1fr)}}
 
 /* ---------- pratique ---------- */
@@ -312,8 +312,7 @@ html.lb-open{overflow:hidden}
 @media (hover:hover){.works-link:hover::after{transform:scaleX(1)}.works-link:hover .ar{transform:translateX(.18em)}}
 .works-link:focus-visible::after{transform:scaleX(1)}
 #projets{padding-top:clamp(120px,15vw,240px)}
-.proj .pic{transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
-@media (hover:hover){.proj:hover .pic{transform:scale(.985);border-radius:4px}}
+
 .reel figure{overflow:hidden;transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
 @media (hover:hover){.reel figure:hover{transform:scale(.97);border-radius:4px}}
 .all{border-top:1.5px solid var(--ink);margin-top:clamp(20px,2.4vw,36px);padding-top:clamp(16px,2vw,24px);display:flex;justify-content:flex-end}
@@ -352,7 +351,6 @@ main,main>section{overflow-x:clip}
 /* téléphone : image du héros plus lente et de moins loin */
 @media (max-width:760px){.apjs .ap.up.plate{--ap-y:80px;--ap-t:3.2s;--ap-o:2.2s}}
 @media (prefers-reduced-motion:reduce){.apjs .ap,.apjs .ap .ln{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}}
-
 
 /* lignes des projets : plus pâles, elles se tracent avec l'apparition du texte
    (la ligne appartient au texte, pour partir au même moment ; elle couvre toute la largeur du projet) */
@@ -527,8 +525,8 @@ main,main>section{overflow-x:clip}
   </nav>
 
   <!-- Promenade : projet vedette -->
-  <article class="proj has-page pj-feat" data-cat="public">
-    <div class="pic ap up"><img data-i18n="k12" data-i18n-m="a" fetchpriority="high" class="a" src="/content/images/home/projects/promenade/james-kennedy-community-boardwalk-kawawachikamach-sculpture-mural.jpg" alt="Curved corten steel mural at the Naskapi Community Boardwalk, under snow" loading="eager"></div>
+  <article class="proj pj-feat" data-cat="public">
+    <a class="pic ap up" href="/en/projects/public-art/kawawachikamach-boardwalk/"><picture><source media="not all and (max-width:860px)" srcset="/content/images/projects/james-kennedy-community-boardwalk-kawawachikamach-sculpture-mural-32-15.jpg"><img data-i18n="k12" data-i18n-m="a" fetchpriority="high" src="/content/images/projects/james-kennedy-community-boardwalk-kawawachikamach-sculpture-mural-4-3.jpg" alt="Curved corten steel mural at the Naskapi Community Boardwalk, under snow" loading="eager"></picture></a>
     <div class="txt pj-feat-txt">
       <span data-i18n="k13" class="mono mute pj-fk ap fl">public art · 2025 CSLA award</span>
       <h2 data-i18n="k14" class="pj-h2 pj-ft ap fl">Naskapi Community Boardwalk</h2>
@@ -542,8 +540,8 @@ main,main>section{overflow-x:clip}
 
   <!-- commandes privées -->
   <div class="pj-duo">
-    <article class="proj has-page pj-card" data-cat="prive">
-      <div class="pic ap up"><img data-i18n="k24" data-i18n-m="a" class="a" src="/content/images/projects/private-commissions/altana-technologies/james-kennedy-altana-artwork-continents-2.jpg" alt="Six steel artworks from the Continents series installed at Altana Technologies' Brooklyn offices" loading="lazy"></div>
+    <article class="proj pj-card" data-cat="prive">
+      <a class="pic ap up" href="/en/projects/private-commissions/altana-technologies/"><img data-i18n="k24" data-i18n-m="a" srcset="/content/images-reduites/projects/james-kennedy-altana-artwork-continents-front-view-4-3-400w.jpg 400w, /content/images-reduites/projects/james-kennedy-altana-artwork-continents-front-view-4-3-800w.jpg 800w, /content/images-reduites/projects/james-kennedy-altana-artwork-continents-front-view-4-3-1200w.jpg 1200w, /content/images/projects/james-kennedy-altana-artwork-continents-front-view-4-3.jpg 1800w" sizes="100vw" data-r="1800 / 1350" src="/content/images/projects/james-kennedy-altana-artwork-continents-front-view-4-3.jpg" alt="Six steel artworks from the Continents series installed at Altana Technologies' Brooklyn offices" loading="lazy"></a>
       <div class="txt ap fl">
         <span data-i18n="k25" class="mono mute">private commission</span>
         <h3>Altana Technologies</h3>
@@ -551,8 +549,8 @@ main,main>section{overflow-x:clip}
         <a data-i18n="k32" class="go mono" href="/en/projects/private-commissions/altana-technologies/">View project <span class="a">↗</span></a>
       </div>
     </article>
-    <article class="proj has-page pj-card" data-cat="prive">
-      <div class="pic ap up"><img data-i18n="k33" data-i18n-m="a" class="a" src="/content/images/projects/private-commissions/embassy-hotel/james-kennedy-artwork-montreal-150x305cm-hilton-embassy-montreal-projet.jpg" alt="Montréal, a steel artwork by James Kennedy in the lobby of Embassy Suites by Hilton Montréal" loading="lazy"></div>
+    <article class="proj pj-card" data-cat="prive">
+      <a class="pic ap up" href="/en/projects/private-commissions/embassy-hotel/"><img data-i18n="k33" data-i18n-m="a" srcset="/content/images-reduites/projects/james-kennedy-embassy-artwork-montreal-150x305cm-at-hilton-embassy-4-3-400w.jpg 400w, /content/images-reduites/projects/james-kennedy-embassy-artwork-montreal-150x305cm-at-hilton-embassy-4-3-800w.jpg 800w, /content/images-reduites/projects/james-kennedy-embassy-artwork-montreal-150x305cm-at-hilton-embassy-4-3-1200w.jpg 1200w, /content/images/projects/james-kennedy-embassy-artwork-montreal-150x305cm-at-hilton-embassy-4-3.jpg 1411w" sizes="100vw" data-r="1411 / 1058" src="/content/images/projects/james-kennedy-embassy-artwork-montreal-150x305cm-at-hilton-embassy-4-3.jpg" alt="Montréal, a steel artwork by James Kennedy in the lobby of Embassy Suites by Hilton Montréal" loading="lazy"></a>
       <div class="txt ap fl">
         <span data-i18n="k34" class="mono mute">private commission</span>
         <h3 data-i18n="k35">Embassy Suites Montréal</h3>
@@ -565,7 +563,7 @@ main,main>section{overflow-x:clip}
 
 <!-- Mémoire : en développement, bande bleu acier -->
 <section data-i18n="k40" data-i18n-m="a" class="pj-dark wrap" data-cat="public dev" aria-label="Mémoire, project in development">
-  <article class="proj has-page pj-mem">
+  <article class="proj pj-mem">
     <div class="txt">
       <span data-i18n="k41" class="mono pj-kick-d ap fl">in development · public art</span>
       <h2 class="pj-h2 pj-mem-h ap mk">Mémoire</h2>
@@ -575,14 +573,14 @@ main,main>section{overflow-x:clip}
         <a data-i18n="k47" class="go mono" href="/en/projects/public-art/memoire/">Explore the project <span class="a">↗</span></a>
       </div>
     </div>
-    <div class="pic ap up"><img data-i18n="k48" data-i18n-m="a" class="a" src="/content/images/projects/public-art/memoire/james-kennedy-memoire-champlain-bridge-truss-1.jpg" alt="Salvaged steel beams from the original Champlain Bridge" loading="lazy"></div>
+    <a class="pic ap up" href="/en/projects/public-art/memoire/"><img data-i18n="k48" data-i18n-m="a" srcset="/content/images-reduites/projects/james-kennedy-memoire-champlain-bridge-truss-16-10-400w.jpg 400w, /content/images-reduites/projects/james-kennedy-memoire-champlain-bridge-truss-16-10-800w.jpg 800w, /content/images-reduites/projects/james-kennedy-memoire-champlain-bridge-truss-16-10-1200w.jpg 1200w, /content/images/projects/james-kennedy-memoire-champlain-bridge-truss-16-10.jpg 2200w" sizes="100vw" data-r="2200 / 1375" src="/content/images/projects/james-kennedy-memoire-champlain-bridge-truss-16-10.jpg" alt="Salvaged steel beams from the original Champlain Bridge" loading="lazy"></a>
   </article>
 </section>
 
 <!-- création en collectif -->
 <section data-i18n="k49" data-i18n-m="a" class="pj-col wrap" data-cat="collectif" aria-label="Collective creation">
   <h2 data-i18n="k50" class="pj-h1 pj-col-h ap mk">collective creation</h2>
-  <article class="proj has-page pj-book">
+  <article class="proj pj-book">
     <div class="txt">
 
       <div class="ap fl">
@@ -592,7 +590,7 @@ main,main>section{overflow-x:clip}
         <a data-i18n="k55" class="go mono" href="/en/projects/collaboration/ponts/">View project <span class="a">↗</span></a>
       </div>
     </div>
-    <div class="pic ap up"><img data-i18n="k56" data-i18n-m="a" class="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-1.webp" alt="At the launch of Ponts, a reader browses the book in front of James Kennedy's artworks" loading="lazy"></div>
+    <a class="pic ap up" href="/en/projects/collaboration/ponts/"><img data-i18n="k56" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-1-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-1-800w.jpg 800w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-1.webp 1400w" sizes="100vw" data-r="1400 / 840" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-1.webp" alt="At the launch of Ponts, a reader browses the book in front of James Kennedy's artworks" loading="lazy"></a>
   </article>
 </section>
 
@@ -675,12 +673,16 @@ main,main>section{overflow-x:clip}
     oc.drawImage(src,0,0,cols,rows); let d; try{d=oc.getImageData(0,0,cols,rows).data}catch(e){return}
     let mn=255,mx=0; for(let i=0;i<d.length;i+=4){const l=.3*d[i]+.59*d[i+1]+.11*d[i+2]; if(l<mn)mn=l; if(l>mx)mx=l;}
     ctx.clearRect(0,0,r.width,r.height); ctx.fillStyle=getComputedStyle(document.documentElement).getPropertyValue('--dot');
-    for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){
+    const lim=cv.jkLim?cv.jkLim():1e9; for(let y=0;y<rows&&(y+1)*step<=lim;y++)for(let x=0;x<cols;x++){
       const i=(y*cols+x)*4; let l=(.3*d[i]+.59*d[i+1]+.11*d[i+2]-mn)/(mx-mn||1);
       l=Math.pow(Math.max(0,(l-.3)/.7),1.3); if(l<.04) continue;
       ctx.beginPath(); ctx.arc(x*step+step/2,y*step+step/2,l*step*.62,0,6.283); ctx.fill();
     }
   }
+  { const sec=document.querySelector('.pj'), cv=sec&&sec.querySelector(':scope>canvas.trame');
+  if(cv){ const top=e=>{let y=0;while(e){y+=e.offsetTop;e=e.offsetParent}return y};
+  cv.jkLim=()=>{ return top(sec.querySelector('.pj-filters'))-top(sec); };
+  if('ResizeObserver' in window){ let rz; new ResizeObserver(()=>{cancelAnimationFrame(rz);rz=requestAnimationFrame(draw)}).observe(sec); } } }
   src.onload=draw; let rt; addEventListener('resize',()=>{clearTimeout(rt);rt=setTimeout(draw,150)});
 
   /* navigation : menus déroulants */
@@ -728,7 +730,7 @@ main,main>section{overflow-x:clip}
 
   /* établi */
   const reel=['james-kennedy-acid-painting-colors-2.jpg','james-kennedy-picture-tokyo-bridge-dragon-bridge.jpg','james-kennedy-studio-1.jpg','james-kennedy-studio-4.jpg','james-kennedy-acid-painting-colors.webp','james-kennedy-studio-work-3.jpg','james-kennedy-steel-plate.jpg','james-kennedy-memoire-sculpture-bridge-steel-1.jpg','james-kennedy-studio-work-4.jpg','james-kennedy-studio-work-7.jpg','james-kennedy-studio-2.jpg','james-kennedy-studio-work-6.jpg','james-kennedy-exposition-fonderie-darling-2020.webp'];
-  let rh=''; for(let r=0;r<2;r++) reel.forEach(n=>rh+=`<figure${r?' aria-hidden="true"':''}><img src="${encodeURI('/content/images/home/on-the-workbench/'+n)}" alt="" decoding="async"></figure>`);
+  let rh=''; for(let r=0;r<2;r++) reel.forEach(n=>rh+=`<figure${r?' aria-hidden="true"':''}><img src="${encodeURI('/content/images/home/on-the-workbench/'+n)}"${JKR.bandeau('/content/images/home/on-the-workbench/'+n)} alt="" decoding="async"></figure>`);
   const rl=document.getElementById('reel'); if(rl) rl.innerHTML=rh;
   /* bandeau : défile seul vers la gauche ; on peut le faire glisser au doigt (ou à la souris) dans les deux sens,
      puis il reprend doucement son rythme vers la gauche */
@@ -779,82 +781,7 @@ main,main>section{overflow-x:clip}
     reel.addEventListener('pointerup',end); reel.addEventListener('pointercancel',end); reel.addEventListener('lostpointercapture',end);
   })(rl);
 
-  /* téléphone et tablette : glisser à gauche ou à droite change l'image, qui suit le sens du doigt ; un toucher ouvre la page */
-  const touch=navigator.maxTouchPoints>0 || matchMedia('(any-pointer: coarse)').matches;
-  if(touch) document.documentElement.classList.add('touch');
-  let lastTouch=0; addEventListener('touchstart',()=>{lastTouch=Date.now()},{passive:true,capture:true});
-  const fromTouch=()=>Date.now()-lastTouch<1200;
-  /* glissement : l'image sortante part dans le sens du geste, la nouvelle arrive de l'autre côté */
-  const slide=(pic,toB,dir)=>{
-    const a=pic.querySelector('img.a'), b=pic.querySelector('img.b'), inc=toB?b:a, out=toB?a:b;
-    [inc,out].forEach(im=>{ clearTimeout(im._t); });
-    inc.style.transition='none'; inc.style.opacity='0'; inc.style.transform=`translateX(${dir*14}%)`;
-    void inc.offsetWidth;
-    const tr='opacity .45s ease,transform .6s cubic-bezier(.2,.8,.2,1)';
-    inc.style.transition=tr; out.style.transition=tr;
-    inc.style.opacity='1'; inc.style.transform='translateX(0)';
-    out.style.opacity='0'; out.style.transform=`translateX(${-dir*14}%)`;
-    pic.classList.toggle('flip',toB);
-    [inc,out].forEach(im=>{ im._t=setTimeout(()=>{ im.style.transition='none'; im.style.opacity=''; im.style.transform=''; void im.offsetWidth; im.style.transition=''; },650); });
-  };
-  const swipe=(pic,onSwipe,onTap)=>{
-    let x0=0,y0=0,t0=0;
-    pic.addEventListener('touchstart',e=>{const t=e.touches[0];x0=t.clientX;y0=t.clientY;t0=Date.now()},{passive:true});
-    pic.addEventListener('touchend',e=>{
-      const t=e.changedTouches[0], dx=t.clientX-x0, dy=t.clientY-y0;
-      if(Math.abs(dx)>40 && Math.abs(dx)>Math.abs(dy)){ onSwipe(dx<0?1:-1); }
-      else if(Math.abs(dx)<10 && Math.abs(dy)<10 && Date.now()-t0<500 && onTap){ e.preventDefault(); onTap(); }
-    });
-  };
-  /* œuvres : deux images, avec le titre et les points qui suivent */
-  document.querySelectorAll('.work').forEach(w=>{
-    const pic=w.querySelector('.pic'), cap=w.querySelector('.cap'), dots=[...w.querySelectorAll('.dots i')], see=w.querySelector('.see');
-    if(!pic||!pic.querySelector('img.b')) return;
-    let ct;
-    const label=on=>{
-      if(cap){ clearTimeout(ct); cap.style.opacity=0; ct=setTimeout(()=>{ cap.textContent=on?cap.dataset.b:cap.dataset.a; cap.style.opacity=1; },220); }
-      dots.forEach((d,i)=>d.classList.toggle('on',i===(on?1:0))); };
-    const set=on=>{ pic.classList.toggle('flip',on); label(on); };
-    if(matchMedia('(hover: hover)').matches){
-      pic.addEventListener('mouseenter',()=>{ if(!fromTouch()) set(true); });
-      pic.addEventListener('mouseleave',()=>{ if(!fromTouch()) set(false); });
-    }
-    swipe(pic,dir=>{ const on=!pic.classList.contains('flip'); slide(pic,on,dir); label(on); }, see?()=>{ see.click(); }:null);
-  });
-  /* projets : mêmes gestes et mêmes points ; un toucher ouvre la fiche du projet */
-  document.querySelectorAll('.proj').forEach(card=>{
-    const pic=card.querySelector('.pic'), go0=card.querySelector('.go');
-    /* une seule image : un toucher ouvre directement la fiche */
-    if(pic&&go0&&!pic.querySelector('img.b')){ pic.style.cursor='pointer'; pic.addEventListener('click',()=>go0.click()); return; }
-    if(!pic||!pic.querySelector('img.b')) return;
-    const box=document.createElement('div'); box.className='pbox'; pic.before(box); box.append(pic);
-    const dw=document.createElement('div'); dw.className='dots'; dw.setAttribute('aria-hidden','true'); dw.innerHTML='<i class="on"></i><i></i>'; box.append(dw);
-    const dots=[...dw.children], go=card.querySelector('.go');
-    if(go) pic.addEventListener('click',()=>{ if(!fromTouch()) go.click(); });
-    pic._dots=on=>dots.forEach((d,i)=>d.classList.toggle('on',i===(on?1:0)));
-    swipe(pic,dir=>{ const on=!pic.classList.contains('flip'); slide(pic,on,dir); pic._dots(on); }, go?()=>{ go.click(); }:null);
-  });
 
-  /* ordinateur : aperçu de 2 s à la première entrée dans un projet, puis survol du cadre de l'image */
-  if(matchMedia('(hover: hover)').matches) document.querySelectorAll('.proj').forEach(card=>{
-    const pic=card.querySelector('.pic'); if(!pic||!pic.querySelector('img.b')) return;
-    let seen=false, preview=false, mustExit=false, over=false;
-    const inPic=e=>{const r=pic.getBoundingClientRect();return e.clientX>=r.left&&e.clientX<=r.right&&e.clientY>=r.top&&e.clientY<=r.bottom};
-    const update=e=>{
-      const now=inPic(e);
-      if(now!==over){ over=now; if(!over) mustExit=false; }
-      if(preview) return;
-      pic.classList.toggle('flip', over && !mustExit);
-    };
-    card.addEventListener('mouseenter',e=>{
-      if(fromTouch()) return;
-      if(!seen){ seen=true; preview=true; pic.classList.add('flip');
-        setTimeout(()=>{ preview=false; mustExit=over; pic.classList.remove('flip'); },2000); }
-      update(e);
-    });
-    card.addEventListener('mousemove',e=>{ if(!fromTouch()) update(e); });
-    card.addEventListener('mouseleave',()=>{ if(fromTouch()) return; over=false; mustExit=false; if(!preview) pic.classList.remove('flip'); });
-  });
 
 
   /* horloge de Montréal */
@@ -1013,7 +940,13 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   const go1=(el,d)=>{ if(el.classList.contains('on')) return; const n=el.matches('.fl')?lines(el):0;
     el.style.setProperty('--ap-d',d.toFixed(2)+'s'); el.classList.add('on');
     requestAnimationFrame(()=>{ const r=Math.max(pace,accel&&HEROS().includes(el)?rate:1); if(r>1) anims(el).forEach(a=>{ if(a.playbackRate<r) a.playbackRate=r; }); });
-    el._t=setTimeout(()=>el.classList.add('done'),(END+1000+(d+n*gap(el))*1000)/Math.max(1,pace)); };
+    /* fin de l'apparition : à la fin réelle des mouvements de l'élément (outils/apparition.mjs) */
+    const k=el._k=(el._k||0)+1;
+    const fin=()=>{ if(el._k!==k||!el.classList.contains('on')) return;
+      const a=anims(el).filter(x=>x.playState!=='finished'&&x.effect&&x.effect.getComputedTiming().endTime!==Infinity);
+      if(!a.length){ el.classList.add('done'); return; }
+      Promise.allSettled(a.map(x=>x.finished)).then(()=>requestAnimationFrame(fin)); };
+    requestAnimationFrame(fin); };
   /* défilement avant la fin du héros : ce qui reste du héros accélère peu à peu (jusqu'à ACC fois), puis la suite enchaîne */
   const speedUp=()=>{ if(accel||gateOpen()) return; accel=true; const t0=performance.now();
     const step=t=>{ if(!accel) return; const k=Math.min(1,(t-t0)/900), e=k*k*(3-2*k); rate=1+(ACC-1)*e;
@@ -1045,7 +978,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
     els.forEach(el=>{ if(el.dataset.d!==undefined) go(el,+el.dataset.d); });
     if(wEl&&wTop) wT=setTimeout(()=>{ if(maxS()<aim()||wEl.getBoundingClientRect().bottom<=innerHeight) go(wEl,0); },WAIT.delay*1000);
     arm(); })); };
-  const reset=()=>{ scrollTo(0,0); pend=[]; accel=false; rate=1; forced=false; pace=1; vel=0; els.forEach(el=>{ clearTimeout(el._t); io.unobserve(el); el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); }); void H.offsetWidth; start(); };
+  const reset=()=>{ scrollTo(0,0); pend=[]; accel=false; rate=1; forced=false; pace=1; vel=0; els.forEach(el=>{ clearTimeout(el._t); el._k=(el._k||0)+1; io.unobserve(el); el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); }); void H.offsetWidth; start(); };
   /* rythme : plus on défile vite, plus les apparitions en cours et à venir accélèrent (jusqu'à PMAX fois), en douceur ;
      défiler pendant l'ouverture lance tout de suite la suite de la page ; ce qu'on a dépassé sans le voir est déjà en place */
   const PMAX=3.2;
@@ -1164,4 +1097,225 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   document.addEventListener('click',e=>{ const a=e.target.closest&&e.target.closest('a[href="#contact"]'); if(!a||e.defaultPrevented) return; const c=document.getElementById('contact'); if(c) setTimeout(()=>suivre(c),0); });
 })();
 </script>
+<script>
+/* Effet de rétrécissement au survol (modèle : jk-website-builder/modeles/retrecissement-image.html ; adaptation : outils/retrecissement.mjs) */
+(function () {
+  var CIBLES = [{"bloc":".pj-card .pic, .pj-mem .pic, .pj-book .pic"}];
+  var DUREE = 200;                    /* durée du mouvement, en ms (comme le modèle ; 0,3 s essayé, James garde 0,2 s, 17 nov.) */
+  var MARGE = 4;                      /* marge sur les côtés au survol, en px */
+  var R_REPOS = 2, R_SURVOL = 8;      /* coins du bloc image, en px */
+
+  /* Courbe de Bézier (même calcul que Framer Motion : recherche par subdivision) */
+  function bezier(x1, y1, x2, y2) {
+    function c(u, a, b) { return ((1 - 3 * b + 3 * a) * u + (3 * b - 6 * a)) * u * u + 3 * a * u; }
+    return function (t) {
+      if (t <= 0) return 0; if (t >= 1) return 1;
+      var lo = 0, hi = 1, u = t, x, i = 0;
+      do { u = lo + (hi - lo) / 2; x = c(u, x1, x2) - t; if (x > 0) hi = u; else lo = u; }
+      while (Math.abs(x) > 1e-7 && ++i < 12);
+      return c(u, y1, y2);
+    };
+  }
+  var EASE = bezier(.33, 0, .12, 1);   /* version D (James, 17 nov.) */
+  function mix(a, b, p) { return a + (b - a) * p; }
+
+  /* Seuils de Framer Motion : échelle à moins de 0,0001 de 1 → 1 ; décalage de moins de 0,01 px → 0 */
+  function seuilS(s) { return (s >= 1 - 1e-4 && s <= 1 + 1e-4) || isNaN(s) ? 1 : s; }
+  function seuilT(t) { return (t >= -0.01 && t <= 0.01) || isNaN(t) ? 0 : t; }
+
+  function mesurer(el) {
+    var r = el.getBoundingClientRect();
+    return { l: r.left, t: r.top, cx: r.left + r.width / 2, cy: r.top + r.height / 2, w: r.width, h: r.height };
+  }
+  /* bloc : on mesure l'image, c'est-à-dire la boîte sans la marge intérieure (centre inchangé) */
+  function mesurerImage(el) {
+    var m = mesurer(el), s = getComputedStyle(el), W = parseFloat(s.width), H = parseFloat(s.height);
+    var kx = W ? m.w / W : 1, ky = H ? m.h / H : 1;
+    var w = m.w - (parseFloat(s.paddingLeft) + parseFloat(s.paddingRight)) * kx;
+    var h = m.h - (parseFloat(s.paddingTop) + parseFloat(s.paddingBottom)) * ky;
+    return { l: m.cx - w / 2, t: m.cy - h / 2, cx: m.cx, cy: m.cy, w: w, h: h };
+  }
+
+  /* propriétés posées pendant le survol, rendues à la fin */
+  var PROPS = ['width', 'height', 'flex', 'padding', 'position', 'left', 'top', 'right', 'bottom', 'backgroundClip', 'boxShadow'];
+  function garder(el) { var g = {}; PROPS.forEach(function (p) { g[p] = el.style[p]; }); return g; }
+  function rendre(el, g) { PROPS.forEach(function (p) { el.style[p] = g[p]; }); }
+  /* transitions propres à l'élément, sans « transform » (elles ralentiraient le mouvement) */
+  function sansTransform(el) {
+    var s = getComputedStyle(el), p = s.transitionProperty.split(','), d = s.transitionDuration.split(','),
+        f = s.transitionTimingFunction.split(/,(?![^(]*\))/), r = s.transitionDelay.split(','), out = [];
+    p.forEach(function (x, i) { x = x.trim(); if (x === 'opacity') out.push('opacity ' + d[i % d.length].trim() + ' ' + f[i % f.length].trim() + ' ' + r[i % r.length].trim()); });
+    return out.length ? out.join(', ') : 'none';
+  }
+
+  function effet(bloc, legende) {
+    var els = legende ? [bloc, legende] : [bloc];
+    var deltas = [];
+    var r = R_REPOS, r0 = R_REPOS, r1 = R_REPOS;   /* coins : valeur actuelle, départ, arrivée */
+    var k = 1, k0 = 1, k1 = 1;                     /* réduction de la légende : actuelle, départ, arrivée */
+    var debut = null, raf = 0, survolActuel = false, gB = null, gL = null, gI = [], bx = 0, by = 0;   /* marge intérieure */
+
+    function dessiner(p) {
+      var e = EASE(p);
+      r = mix(r0, r1, e);
+      els.forEach(function (el, i) {
+        var d = deltas[i];
+        var sx = p >= 1 ? 1 : mix(d.sx, 1, e), sy = p >= 1 ? 1 : mix(d.sy, 1, e);
+        var tx = p >= 1 ? 0 : mix(d.tx, 0, e), ty = p >= 1 ? 0 : mix(d.ty, 0, e);
+        /* propriétés « translate » et « scale » plutôt que « transform » : l'apparition des blocs au défilement
+           impose « transform:none !important » jusqu'à sa fin (environ 3 s) ; translate et scale s'y ajoutent sans conflit */
+        el.style.translate = (tx || ty) ? tx + 'px ' + ty + 'px' : 'none';
+        if (el === bloc) {
+          el.style.scale = (sx !== 1 || sy !== 1) ? sx + ' ' + sy : 'none';
+        } else {
+          /* légende : réduction identique en largeur et en hauteur (le texte n'est jamais déformé) */
+          k = p >= 1 ? k1 : mix(k0, k1, e);
+          el.style.scale = k !== 1 ? String(k) : 'none';
+        }
+        if (el === bloc) {
+          /* coins : r px à l'écran sur l'image, quelle que soit la réduction en cours (même calcul que le modèle,
+             en px du bloc : r ÷ échelle) ; le bloc les porte autour de sa marge intérieure, l'image à l'intérieur */
+          el.style.borderRadius = (r / sx + bx) + 'px / ' + (r / sy + by) + 'px';
+          el.style.setProperty('--retr-r', (r / sx) + 'px / ' + (r / sy) + 'px');
+        }
+      });
+    }
+
+    /* fin du retour : plus rien d'inscrit sur les éléments, la page redevient celle de la référence */
+    function finir() {
+      els.forEach(function (el) { el.style.translate = el.style.scale = ''; });
+      bloc.style.borderRadius = ''; bloc.style.removeProperty('--retr-r');
+      void bloc.offsetWidth;   /* valeurs finales appliquées avant de rendre les transitions de la page (sinon elles rejoueraient) */
+      els.forEach(function (el) { el.style.transition = ''; });
+    }
+
+    function pas(t) {
+      if (debut === null) debut = t;
+      var p = Math.min(1, Math.max(0, (t - debut) / DUREE));
+      dessiner(p);
+      raf = p < 1 ? requestAnimationFrame(pas) : 0;
+      if (p >= 1 && !survolActuel) finir();
+    }
+
+    /* vrai changement de mise en page : taille du bloc fixée, marge intérieure autour de l'image */
+    function poser(survol, mv) {
+      if (survol) {
+        /* taille exacte au repos (transformation déjà remise à zéro ; la valeur calculée du navigateur est arrondie) */
+        var rb = bloc.getBoundingClientRect();
+        gB = garder(bloc); bx = MARGE; by = mv;
+        bloc.style.flex = 'none'; bloc.style.width = rb.width + 'px'; bloc.style.height = rb.height + 'px';
+        /* éléments placés en absolu dans le bloc (images des cartes de projets et des caribous, bouton « + » des crédits) :
+           mesurés avant la marge intérieure, puis replacés dans l'image réduite. Un élément qui couvre tout le bloc
+           est réduit de la marge ; les autres gardent leur taille et restent à la même place relative (coin, bord). */
+        gI = [];
+        /* mesures exactes (au centième de pixel ; clientWidth et offsetLeft sont arrondis au pixel) */
+        var Wp = rb.width, Hp = rb.height, abs = [];
+        Array.prototype.forEach.call(bloc.children, function (c) {
+          var s = getComputedStyle(c);
+          if (s.position !== 'absolute') return;
+          var w = parseFloat(s.width) + parseFloat(s.paddingLeft) + parseFloat(s.paddingRight) + parseFloat(s.borderLeftWidth) + parseFloat(s.borderRightWidth),
+              h = parseFloat(s.height) + parseFloat(s.paddingTop) + parseFloat(s.paddingBottom) + parseFloat(s.borderTopWidth) + parseFloat(s.borderBottomWidth);
+          abs.push([c, parseFloat(s.left) || 0, parseFloat(s.top) || 0, w, h]);
+        });
+        bloc.style.padding = by + 'px ' + bx + 'px';
+        bloc.style.backgroundClip = 'content-box';   /* fond du bloc seulement derrière l'image (la page peut le redéfinir) */
+        var ombre = getComputedStyle(bloc).boxShadow;  /* ombre portée : elle suit l'image (étalement réduit de la marge) */
+        if (ombre && ombre !== 'none') bloc.style.boxShadow = ombre.replace(/(-?[\d.]+px) (-?[\d.]+px) (-?[\d.]+px)( (-?[\d.]+)px)?/g,
+          function (x, a, b, c, d, e) { return a + ' ' + b + ' ' + c + ' ' + ((parseFloat(e) || 0) - MARGE) + 'px'; });
+        abs.forEach(function (x) {
+          var c = x[0], L = x[1], T = x[2], w = x[3], h = x[4], s = getComputedStyle(c);
+          gI.push([c, garder(c)]);
+          var pleinX = w >= Wp - 1, pleinY = h >= Hp - 1;
+          var nw = pleinX ? Wp - 2 * bx : w, nh = pleinY ? Hp - 2 * by : h;
+          var nl = pleinX ? bx : bx + (Wp - w > 0 ? L * (Wp - 2 * bx - w) / (Wp - w) : 0);
+          var nt = pleinY ? by : by + (Hp - h > 0 ? T * (Hp - 2 * by - h) / (Hp - h) : 0);
+          /* largeur et hauteur en px de la boîte de contenu (ou de bordure, selon box-sizing) */
+          var dw = s.boxSizing === 'border-box' ? 0 : w - parseFloat(s.width), dh = s.boxSizing === 'border-box' ? 0 : h - parseFloat(s.height);
+          /* un élément qui couvre le bloc est réduit de la marge ; un petit élément (bouton « + » des crédits) garde sa
+             taille libre (il doit pouvoir s'ouvrir) et reste accroché au bord le plus proche, à la même place relative */
+          if (pleinX) { c.style.left = nl + 'px'; c.style.right = 'auto'; c.style.width = (nw - dw) + 'px'; }
+          else if (L <= Wp - L - w) { c.style.left = nl + 'px'; c.style.right = 'auto'; }
+          else { c.style.right = (Wp - nl - w) + 'px'; c.style.left = 'auto'; }
+          if (pleinY) { c.style.top = nt + 'px'; c.style.bottom = 'auto'; c.style.height = (nh - dh) + 'px'; }
+          else if (T <= Hp - T - h) { c.style.top = nt + 'px'; c.style.bottom = 'auto'; }
+          else { c.style.bottom = (Hp - nt - h) + 'px'; c.style.top = 'auto'; }
+        });
+        if (legende) {
+          var sl = getComputedStyle(legende);
+          gL = garder(legende);
+          if (sl.position === 'static') legende.style.position = 'relative';
+          legende.style.left = ((parseFloat(sl.left) || 0) + MARGE) + 'px';
+          legende.style.top = ((parseFloat(sl.top) || 0) - mv) + 'px';
+        }
+      } else {
+        if (gB) rendre(bloc, gB); if (legende && gL) rendre(legende, gL);
+        gI.forEach(function (x) { rendre(x[0], x[1]); });
+        gB = gL = null; gI = []; bx = by = 0;
+      }
+    }
+
+    return function changer(survol) {
+      if (survolActuel === survol) return;
+      survolActuel = survol;
+      /* marge du haut et du bas proportionnelle au format du bloc image (taille au repos) */
+      var sb = getComputedStyle(bloc);
+      var mv = survol ? MARGE * parseFloat(sb.height) / parseFloat(sb.width) : 0;
+      /* transitions de la page coupées pendant le mouvement (sauf les fondus) */
+      bloc.style.transition = sansTransform(bloc);
+      if (legende) legende.style.transition = sansTransform(legende);
+      /* 1. mesure « avant » */
+      var avant = els.map(function (el) { return el === bloc ? mesurerImage(el) : mesurer(el); });
+      /* 2. remise à zéro, puis vrai changement de mise en page */
+      els.forEach(function (el) { el.style.translate = el.style.scale = 'none'; });
+      poser(survol, mv);
+      /* 3. mesure « après » et écart */
+      var apres = els.map(function (el) { return el === bloc ? mesurerImage(el) : mesurer(el); });
+      deltas = els.map(function (el, i) {
+        var a = avant[i], b = apres[i];
+        if (el !== bloc) {
+          /* légende : déplacement de son coin haut gauche ; sa réduction (k) est animée à part */
+          return { sx: 1, sy: 1, tx: seuilT(a.l - b.l), ty: seuilT(a.t - b.t), w: b.w, h: b.h };
+        }
+        return { sx: seuilS(a.w / b.w), sy: seuilS(a.h / b.h),
+                 tx: seuilT(a.cx - b.cx), ty: seuilT(a.cy - b.cy), w: b.w, h: b.h };
+      });
+      /* coins et légende : de la valeur actuelle vers la cible */
+      r0 = r; r1 = survol ? R_SURVOL : R_REPOS;
+      k0 = k; k1 = survol ? apres[0].w / (apres[0].w + 2 * MARGE) : 1;
+      /* 4. première image dessinée tout de suite, avant l'affichage : aucun saut visible */
+      dessiner(0);
+      debut = null;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(pas);
+    };
+  }
+
+  /* survol : délégué au document (les images des bandeaux et de la Démarche sont écrites par des scripts) */
+  var effets = new WeakMap();
+  function trouver(t) {
+    for (var i = 0; i < CIBLES.length; i++) {
+      var c = CIBLES[i], z = t.closest && t.closest(c.carte || c.bloc);
+      if (!z) continue;
+      var bloc = z.matches(c.bloc) ? z : z.querySelector(c.bloc);
+      if (!bloc) continue;
+      var carte = c.carte ? bloc.closest(c.carte) : bloc;
+      var legende = c.legende && carte ? carte.querySelector(c.legende) : null;
+      if (!effets.has(bloc)) effets.set(bloc, effet(bloc, legende));
+      return { zone: z, changer: effets.get(bloc) };
+    }
+    return null;
+  }
+  document.addEventListener('pointerover', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var x = trouver(e.target);
+    if (x && !(e.relatedTarget && x.zone.contains(e.relatedTarget))) x.changer(true);
+  });
+  document.addEventListener('pointerout', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var x = trouver(e.target);
+    if (x && !(e.relatedTarget && x.zone.contains(e.relatedTarget))) x.changer(false);
+  });
+})();
+</script>
+<script>JKR.taille(); addEventListener('load',function(){ JKR.taille(); }); (function(){ var t; addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(function(){ JKR.taille(); },200); }); })();</script>
 </body></html>

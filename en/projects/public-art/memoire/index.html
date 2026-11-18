@@ -1,8 +1,30 @@
 <!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Mémoire · James Kennedy</title><meta name="description" content=""><link rel="alternate" hreflang="en" href="https://jameskennedy.ca/en/projects/public-art/memoire/"><link rel="alternate" hreflang="fr" href="https://jameskennedy.ca/fr/projets/art-public/memoire/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="preload" as="image" href="/content/images/projects/public-art/memoire/james-kennedy-photographie-du-pont-champlain-d-origine.jpg" fetchpriority="high">
 <style>/* corrections du 14 novembre (James) */
-.proj .pic,.proj .pic img,.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
+.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
 .lb .lb-cr{position:absolute;left:0;right:0;bottom:clamp(14px,2.4vw,28px);margin:0;text-align:center;color:#E9ECEE;font-size:11px;letter-spacing:.08em;text-transform:uppercase;pointer-events:none}
+/* images pleine largeur : pas de loupe (point 15) */
+:is(.hero-img img,.m-one img,.trav-imgs figure:first-child img){cursor:auto!important}
+/* effet de rétrécissement au survol (outils/retrecissement.mjs) */
+:is(.trav-imgs figure:not(:first-child),.m-big img,.m-duo figure,.reel figure){border-radius:2px;background-clip:content-box;transform-origin:50% 50% 0}
+:is(.trav-imgs figure:not(:first-child),.m-big img,.m-duo figure,.reel figure){overflow:clip}
+:is(.trav-imgs figure:not(:first-child),.m-big img,.m-duo figure,.reel figure) img{border-radius:var(--retr-r,0)}
+@media (hover:hover) and (pointer:fine){:is(.trav-imgs figure:not(:first-child),.m-big img,.m-duo figure,.reel figure){will-change:transform}}
+:is(.m-big .m-cap){transform-origin:0 0}
 </style>
+<script>/* copies réduites : srcset des images écrites par les scripts (JKR.s), et « sizes » réglé sur la largeur affichée */
+window.JKR={m:{"projects/public-art/memoire/bandeau/01-james-kennedy-memoire-champlain-bridge-transport.webp":[1269,952,[400,800]],"projects/public-art/memoire/bandeau/02-james-kennedy-memoire-champlain-bridge-truss-3.jpg":[2000,1500,[400,800,1200]],"projects/public-art/memoire/bandeau/03-james-kennedy-memoire-dismantling-bridge-1.webp":[1456,822,[400,800]],"projects/public-art/memoire/bandeau/04-james-kennedy-memoire-dismantling-bridge-3.webp":[1179,658,[400,800]],"projects/public-art/memoire/bandeau/05-james-kennedy-memoire-dismantling-bridge-2.webp":[1179,661,[400]],"projects/public-art/memoire/bandeau/06-james-kennedy-memoire-dismantling-bridge-4.webp":[1456,819,[400]],"projects/public-art/memoire/bandeau/07-james-kennedy-memoire-truss-storage.jpg":[1500,1125,[400,800,1200]]},
+  s:function(u){ var r=decodeURI(u).replace(/^\/content\/images\//,''), x=this.m[r]; if(!x) return '';
+    var p=r.lastIndexOf('.'), b=r.slice(0,p), e=/\.webp$/i.test(r)?'.jpg':r.slice(p);
+    return x[2].map(function(l){ return encodeURI('/content/images-reduites/'+b+'-'+l+'w'+e)+' '+l+'w'; }).concat(encodeURI('/content/images/'+r)+' '+x[0]+'w').join(', '); },
+  /* bandeau : hauteur clamp(192px,20vw,280px), largeur = hauteur × format de l'image */
+  bandeau:function(u){ var r=decodeURI(u).replace(/^\/content\/images\//,''), x=this.m[r], s=this.s(u); if(!s) return ''; var f=x[0]/x[1];
+    return ' srcset="'+s+'" sizes="(max-width:960px) '+Math.ceil(192*f)+'px, (max-width:1400px) '+(20*f).toFixed(2)+'vw, '+Math.ceil(280*f)+'px" style="aspect-ratio:'+x[0]+' / '+x[1]+'"'; },
+  /* format de l'original (la hauteur d'une copie est arrondie au pixel) : seulement si la page ne fixe pas déjà le format */
+  taille:function(){ document.querySelectorAll('img[srcset]').forEach(function(im){ if(im.closest('.reel')) return;
+    if(im.dataset.r && !im.style.aspectRatio && /^auto/.test(getComputedStyle(im).aspectRatio)) im.style.aspectRatio=im.dataset.r;
+    var w=im.offsetWidth; if(w>0) im.sizes=Math.ceil(w)+'px'; }); }
+};
+</script>
 </head><body>
 <style>
 /* Fiche de projet, même système que la version D : fond gris clair, grain, Geist + Geist Mono,
@@ -130,7 +152,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .quote cite{display:block;margin-top:20px;font-style:normal}
 @media (max-width:760px){.quote{grid-template-columns:minmax(0,1fr)}}
 
-/* appel à l'action + projet suivant */
+/* appel à l'action */
 .ask{padding-block:clamp(80px,11vw,170px) clamp(40px,5vw,72px);display:grid;gap:clamp(24px,3vw,40px)}
 .ask .h2{font-size:clamp(25.6px,3.25vw,39px);margin:0}
 .ask .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
@@ -256,17 +278,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
 /* ---------- navigation entre projets (commune aux fiches) ---------- */
-.pnav{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(12px,3vw,40px);border-top:1.5px solid var(--ink);border-bottom:1px solid color-mix(in srgb,var(--mute) 30%,transparent);padding-block:clamp(18px,2.4vw,28px);margin-bottom:clamp(28px,4vw,48px);touch-action:pan-y}
-.pnav a{display:flex;align-items:center;gap:clamp(8px,1.4vw,18px);min-width:0}
-.pnav .nx{justify-content:flex-end;text-align:right}
-.pnav img{width:clamp(52px,8vw,112px);aspect-ratio:4/3;object-fit:cover;flex:none;display:block}
-.pnav .tx{display:grid;gap:5px;min-width:0}
-.pnav .tx .mono{font-size:11px;white-space:nowrap}
-.pnav .t{font-weight:500;font-size:clamp(16px,2.4vw,29px);letter-spacing:-.04em;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pnav .ar{font-size:clamp(18px,2vw,24px);flex:none;transition:transform .3s}
-.pnav .pv:hover .ar{transform:translateX(-5px)}
-.pnav .nx:hover .ar{transform:translateX(5px)}
-@media (max-width:420px){.pnav .tx .mono{font-size:10px;letter-spacing:.04em}.pnav a{gap:7px}}
 
 /* texte d'intention : les mots s'allument au défilement, comme sur l'accueil */
 .rv .w{opacity:.22;transition:opacity .35s}
@@ -284,10 +295,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .icons a:hover,.icons a:focus-visible{color:var(--paper);background-color:var(--ink);border-color:var(--ink);transform:scale(1.12)}
 .rvl{opacity:0;transform:translateY(32px);transition:opacity 1.6s ease,transform 2s cubic-bezier(.16,.84,.24,1)}
 .rvl.in{opacity:1;transform:none}
-@media (hover:hover){main img:not(.reel img):not(.pnav img){transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
-main .fiche-l img:hover{transform:scale(.985);border-radius:4px}}
 .reel figure{overflow:hidden;transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
-@media (hover:hover){.reel figure:hover{transform:scale(.97);border-radius:4px}}
+
 .lbr{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px);background:rgba(15,15,15,.9);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s;cursor:zoom-out}
 .lbr.on{opacity:1;visibility:visible;transition:opacity .3s ease}
 .lbr img{max-width:100%;max-height:100%;width:auto;height:auto;transform:scale(.96);transition:transform .35s cubic-bezier(.2,.8,.2,1)}
@@ -331,11 +340,7 @@ html.lb-open{overflow:hidden}
 .info.solo .txt p.big{max-width:30em}
 .fiche{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,6vw,110px);padding-block:clamp(60px,8vw,120px) 0;align-items:start}
 @media (max-width:860px){.fiche{grid-template-columns:minmax(0,1fr);gap:18px}}
-.pnav{border:0;margin-top:clamp(48px,6vw,96px);padding-block:0;gap:clamp(10px,1.6vw,20px)}
-.pnav a{background:var(--paper-2);padding:clamp(14px,1.8vw,26px);transition:background .3s}
-.pnav a:hover{background:#FAFAF8}
-.pnav img{width:clamp(72px,11vw,168px);transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
-@media (hover:hover){.pnav a:hover img{transform:scale(.97);border-radius:4px}}
+
 .contact{margin-top:clamp(80px,10vw,150px)}
 </style>
 <header class="nav wrap" id="nav">
@@ -705,7 +710,7 @@ html body .trav .trav-row .trav-thanks{text-wrap:balance}
       <p data-i18n="k14">By preserving the rivets and structural connections and restoring the bridge's original colour, the sculpture brings together industrial heritage, material reuse and sustainable art.</p>
       </div></div>
     </div>
-    <figure class="m-one"><img data-i18n="k15" data-i18n-m="a" src="/content/images/projects/public-art/memoire/james-kennedy-memoire-champlain-bridge-truss-1.webp" alt="A long green-painted, riveted steel member from the Champlain Bridge resting on gravel" loading="lazy"></figure>
+    <figure class="m-one"><img data-i18n="k15" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-membrure-pont-champlain-400w.jpg 400w, /content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-membrure-pont-champlain-800w.jpg 800w, /content/images/projects/public-art/memoire/james-kennedy-memoire-membrure-pont-champlain.jpg 1179w" sizes="100vw" data-r="1179 / 660" src="/content/images/projects/public-art/memoire/james-kennedy-memoire-membrure-pont-champlain.jpg" alt="A long green-painted, riveted steel member from the Champlain Bridge resting on gravel" loading="lazy"></figure>
   </section>
 
   <section data-i18n="k16" data-i18n-m="a" class="trav wrap" aria-label="Moving through the sculpture">
@@ -717,9 +722,9 @@ html body .trav .trav-row .trav-thanks{text-wrap:balance}
       </div></div>
     </div>
     <div class="trav-imgs">
-      <figure><img data-i18n="k20" data-i18n-m="a" src="/content/images/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-1a.jpg" width="2000" height="1169" alt="Preliminary rendering of Mémoire: twelve staggered, perforated steel panels by the water, forming the silhouette of the Champlain Bridge" loading="lazy"></figure>
-      <figure><img data-i18n="k21" data-i18n-m="a" src="/content/images/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-2b.jpg" width="2000" height="1161" alt="Rendering showing the cutouts in a riveted steel panel, with the water and shoreline beyond" loading="lazy"></figure>
-      <figure><img data-i18n="k22" data-i18n-m="a" src="/content/images/projects/public-art/memoire/james-kennedy-memoire-maquette-3D.jpg" width="2000" height="1137" alt="3D-printed scale model of Mémoire: twelve perforated panels displayed on a studio table" loading="lazy"></figure>
+      <figure><img data-i18n="k20" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-1a-400w.jpg 400w, /content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-1a-800w.jpg 800w, /content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-1a-1200w.jpg 1200w, /content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-1a-1600w.jpg 1600w, /content/images/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-1a.jpg 2000w" sizes="100vw" data-r="2000 / 1169" src="/content/images/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-1a.jpg" width="2000" height="1169" alt="Preliminary rendering of Mémoire: twelve staggered, perforated steel panels by the water, forming the silhouette of the Champlain Bridge" loading="lazy"></figure>
+      <figure><img data-i18n="k21" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-2b-400w.jpg 400w, /content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-2b-800w.jpg 800w, /content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-2b-1200w.jpg 1200w, /content/images/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-2b.jpg 1800w" sizes="100vw" data-r="1800 / 1013" src="/content/images/projects/public-art/memoire/james-kennedy-memoire-sculpture-render-2b.jpg" width="2000" height="1161" alt="Rendering showing the cutouts in a riveted steel panel, with the water and shoreline beyond" loading="lazy"></figure>
+      <figure><img data-i18n="k22" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-maquette-3D-400w.jpg 400w, /content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-maquette-3D-800w.jpg 800w, /content/images-reduites/projects/public-art/memoire/james-kennedy-memoire-maquette-3D-1200w.jpg 1200w, /content/images/projects/public-art/memoire/james-kennedy-memoire-maquette-3D.jpg 2000w" sizes="100vw" data-r="2000 / 1137" src="/content/images/projects/public-art/memoire/james-kennedy-memoire-maquette-3D.jpg" width="2000" height="1137" alt="3D-printed scale model of Mémoire: twelve perforated panels displayed on a studio table" loading="lazy"></figure>
       <div class="trav-row"><p data-i18n="k23" class="mono mute trav-cap">Renderings and scale model</p>
       <p data-i18n="k24" class="trav-thanks">We acknowledge the support of the Canada Council for the Arts in the creation of the 3D-printed scale model.</p></div>
       <img data-i18n="k25" data-i18n-m="a" class="cac-logo" src="/content/images/projects/public-art/memoire/canada-council-for-the-arts-en-fr-logo-black.png" width="1201" height="220" alt="Canada Council for the Arts" loading="lazy">
@@ -745,10 +750,10 @@ html body .trav .trav-row .trav-thanks{text-wrap:balance}
         </ul>
         </div>
         <div class="m-imgs ray-imgs">
-          <figure class="m-big"><img data-i18n="k36" data-i18n-m="a" src="/content/images/projects/public-art/memoire/memoire-james-kennedy-accueil-ses-poutres-reportege-d-emilie-dubrueil-credit-photo-radio-canada-ivanoh-demers.jpg" width="1538" height="863" data-credit="Radio-Canada · Ivanoh Demers" alt="The artist at the storage yard, standing in front of the original bridge members during a Radio-Canada news report" loading="lazy"><figcaption data-i18n="k37" class="mono mute m-cap"><span>Report by Émilie Dubreuil</span> <span>Photo: Radio-Canada / Ivanoh Demers</span></figcaption></figure>
+          <figure class="m-big"><img data-i18n="k36" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/memoire/memoire-james-kennedy-accueil-ses-poutres-reportage-d-emilie-dubreuil-credit-photo-radio-canada-ivanoh-demers-400w.jpg 400w, /content/images-reduites/projects/public-art/memoire/memoire-james-kennedy-accueil-ses-poutres-reportage-d-emilie-dubreuil-credit-photo-radio-canada-ivanoh-demers-800w.jpg 800w, /content/images-reduites/projects/public-art/memoire/memoire-james-kennedy-accueil-ses-poutres-reportage-d-emilie-dubreuil-credit-photo-radio-canada-ivanoh-demers-1200w.jpg 1200w, /content/images/projects/public-art/memoire/memoire-james-kennedy-accueil-ses-poutres-reportage-d-emilie-dubreuil-credit-photo-radio-canada-ivanoh-demers.jpg 1538w" sizes="100vw" data-r="1538 / 863" src="/content/images/projects/public-art/memoire/memoire-james-kennedy-accueil-ses-poutres-reportage-d-emilie-dubreuil-credit-photo-radio-canada-ivanoh-demers.jpg" width="1538" height="863" data-credit="Radio-Canada · Ivanoh Demers" alt="The artist at the storage yard, standing in front of the original bridge members during a Radio-Canada news report" loading="lazy"><figcaption data-i18n="k37" class="mono mute m-cap"><span>Report by Émilie Dubreuil</span> <span>Photo: Radio-Canada / Ivanoh Demers</span></figcaption></figure>
           <div class="duo-img m-duo">
-            <figure><img data-i18n="k38" data-i18n-m="a" src="/content/images/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-atelier.jpg" width="2000" height="1125" data-credit="Radio-Canada · 2023" alt="The artist interviewed in his studio for Le Téléjournal" loading="lazy"></figure>
-            <figure><img data-i18n="k39" data-i18n-m="a" src="/content/images/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-reception-des-pieces.jpg" width="2000" height="1127" data-credit="Radio-Canada · 2023" alt="Bridge steel members in the storage yard, as seen in the report" loading="lazy"></figure>
+            <figure><img data-i18n="k38" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-atelier-400w.jpg 400w, /content/images-reduites/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-atelier-800w.jpg 800w, /content/images-reduites/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-atelier-1200w.jpg 1200w, /content/images-reduites/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-atelier-1600w.jpg 1600w, /content/images/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-atelier.jpg 2000w" sizes="100vw" data-r="2000 / 1125" src="/content/images/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-atelier.jpg" width="2000" height="1125" data-credit="Radio-Canada · 2023" alt="The artist interviewed in his studio for Le Téléjournal" loading="lazy"></figure>
+            <figure><img data-i18n="k39" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-reception-des-pieces-400w.jpg 400w, /content/images-reduites/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-reception-des-pieces-800w.jpg 800w, /content/images-reduites/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-reception-des-pieces-1200w.jpg 1200w, /content/images-reduites/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-reception-des-pieces-1600w.jpg 1600w, /content/images/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-reception-des-pieces.jpg 2000w" sizes="100vw" data-r="2000 / 1127" src="/content/images/projects/public-art/memoire/james-kennedy-entrevue-radio-canada-emilie-dubreuil-reception-des-pieces.jpg" width="2000" height="1127" data-credit="Radio-Canada · 2023" alt="Bridge steel members in the storage yard, as seen in the report" loading="lazy"></figure>
           </div>
         </div>
       </div>
@@ -864,10 +869,10 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
   const lb=document.getElementById('lb'), li=document.getElementById('lbImg');
   const open=(src,alt,cr)=>{li.src=src;li.alt=alt||'';const c=lb.querySelector('.lb-cr'); if(c){ const fr=document.documentElement.lang!=='en'; c.textContent=cr?(/^photo/i.test(cr)?cr:(fr?'Photo : ':'Photo: ')+cr):''; c.hidden=!cr; } lb.hidden=false};
   const close=()=>{lb.hidden=true;li.src=''};
-  document.querySelectorAll('.duo-img img,.hero-img img,.trav-imgs img:not(.cac-logo),.m-big img,.m-one img').forEach(im=>{im.style.cursor='zoom-in';im.addEventListener('click',()=>open(im.src,im.alt,im.dataset.credit))});
+  document.querySelectorAll('.duo-img img,.trav-imgs figure:not(:first-child) img,.m-big img').forEach(im=>{im.style.cursor='zoom-in';im.addEventListener('click',()=>open(im.src,im.alt,im.dataset.credit))});
   document.querySelectorAll('.row2 button').forEach(x=>x.addEventListener('click',()=>open(x.dataset.src,x.getAttribute('aria-label'))));
-  const reel=['01-james-kennedy-memoire-champlain-bridge-transport.webp','02-james-kennedy-memoire-champlain-bridge-truss-3.jpg','03-james-kennedy-memoire-dismantling-bridge-1.webp','04-james-kennedy-memoire-dismantling-bridge-3.webp','05-james-kennedy-memoire-dismantling-bridge-2.webp','james-kennedy-memoire-dismantling-bridge-4.webp','james-kennedy-memoire-truss-storage.jpg'];
-  let rh=''; for(let r=0;r<4;r++) reel.forEach(n=>rh+=`<figure${r?' aria-hidden="true"':''}><img src="/content/images/projects/public-art/memoire/bandeau/${n}" data-full="/content/images/projects/public-art/memoire/bandeau/${n}" alt="" decoding="sync"></figure>`);
+  const reel=['01-james-kennedy-memoire-champlain-bridge-transport.webp','02-james-kennedy-memoire-champlain-bridge-truss-3.jpg','03-james-kennedy-memoire-dismantling-bridge-1.webp','04-james-kennedy-memoire-dismantling-bridge-3.webp','05-james-kennedy-memoire-dismantling-bridge-2.webp','06-james-kennedy-memoire-dismantling-bridge-4.webp','07-james-kennedy-memoire-truss-storage.jpg'];
+  let rh=''; for(let r=0;r<4;r++) reel.forEach(n=>rh+=`<figure${r?' aria-hidden="true"':''}><img src="/content/images/projects/public-art/memoire/bandeau/${n}"${JKR.bandeau('/content/images/projects/public-art/memoire/bandeau/'+n)} data-full="/content/images/projects/public-art/memoire/bandeau/${n}" alt="" decoding="sync"></figure>`);
   const rl=document.getElementById('reel'); rl.innerHTML=rh;
   /* bandeau : défile seul vers la gauche ; on peut le faire glisser au doigt (ou à la souris) dans les deux sens,
      puis il reprend doucement son rythme vers la gauche */
@@ -1073,7 +1078,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   /* ---- réglages de la page ---- */
   const MAP=[  /* sélecteur, effet : tr trame · mk masque · up monte · l depuis la gauche · fl texte ligne par ligne */
     ['.head .h1','mk'],['.contact .h2','l'],
-    ['.head .hero-img','up plate'],['.m-one,.trav-imgs figure,.trav-imgs .cac-logo,.m-big,.m-duo figure,.pnav2','up'],
+    ['.head .hero-img','up plate'],['.m-one,.trav-imgs figure,.trav-imgs .cac-logo,.m-big,.m-duo figure','up'],
     ['.head .crumb,.head .lead,.split .tg-h,.trav .tg-h,.mtx .mr-in>p,.story .lab,.story>div,.dark .lab,.etat-t,.etat-txt,.etat-n,.fiche-h,.spec,.ray-txt,.form','fl'],
     ['.info .intent-top','fl'],['.ch-lab,.trav-cap,.trav-thanks,.m-cap','fl'],['.ray-imgs figcaption','fl'],
     ['.contact .trame','tr']
@@ -1126,7 +1131,13 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   const go1=(el,d)=>{ if(el.classList.contains('on')) return; const n=el.matches('.fl')?lines(el):0;
     el.style.setProperty('--ap-d',d.toFixed(2)+'s'); el.classList.add('on');
     requestAnimationFrame(()=>{ const r=Math.max(pace,accel&&HEROS().includes(el)?rate:1); if(r>1) anims(el).forEach(a=>{ if(a.playbackRate<r) a.playbackRate=r; }); });
-    el._t=setTimeout(()=>el.classList.add('done'),(END+1000+(d+n*gap(el))*1000)/Math.max(1,pace)); };
+    /* fin de l'apparition : à la fin réelle des mouvements de l'élément (outils/apparition.mjs) */
+    const k=el._k=(el._k||0)+1;
+    const fin=()=>{ if(el._k!==k||!el.classList.contains('on')) return;
+      const a=anims(el).filter(x=>x.playState!=='finished'&&x.effect&&x.effect.getComputedTiming().endTime!==Infinity);
+      if(!a.length){ el.classList.add('done'); return; }
+      Promise.allSettled(a.map(x=>x.finished)).then(()=>requestAnimationFrame(fin)); };
+    requestAnimationFrame(fin); };
   /* défilement avant la fin du héros : ce qui reste du héros accélère peu à peu (jusqu'à ACC fois), puis la suite enchaîne */
   const speedUp=()=>{ if(accel||gateOpen()) return; accel=true; const t0=performance.now();
     const step=t=>{ if(!accel) return; const k=Math.min(1,(t-t0)/900), e=k*k*(3-2*k); rate=1+(ACC-1)*e;
@@ -1158,7 +1169,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
     els.forEach(el=>{ if(el.dataset.d!==undefined) go(el,+el.dataset.d); });
     if(wEl&&wTop) wT=setTimeout(()=>{ if(maxS()<aim()||wEl.getBoundingClientRect().bottom<=innerHeight) go(wEl,0); },WAIT.delay*1000);
     arm(); })); };
-  const reset=()=>{ scrollTo(0,0); pend=[]; accel=false; rate=1; forced=false; pace=1; vel=0; els.forEach(el=>{ clearTimeout(el._t); io.unobserve(el); el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); }); void H.offsetWidth; start(); };
+  const reset=()=>{ scrollTo(0,0); pend=[]; accel=false; rate=1; forced=false; pace=1; vel=0; els.forEach(el=>{ clearTimeout(el._t); el._k=(el._k||0)+1; io.unobserve(el); el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); }); void H.offsetWidth; start(); };
   /* rythme : plus on défile vite, plus les apparitions en cours et à venir accélèrent (jusqu'à PMAX fois), en douceur ;
      défiler pendant l'ouverture lance tout de suite la suite de la page ; ce qu'on a dépassé sans le voir est déjà en place */
   const PMAX=3.2;
@@ -1218,7 +1229,7 @@ document.querySelectorAll('.tg').forEach(b=>{ const x=document.getElementById(b.
 (function(){
   const skip='.reel img,.lb img,#vmodal img,.nav img,.foot img,.trame,[data-nocredit]';
   document.querySelectorAll('main img').forEach(im=>{
-    if(!im.dataset.credit||im.matches(skip)||im.closest('.reel,.lb,#vmodal,.pnav2')) return;
+    if(!im.dataset.credit||im.matches(skip)||im.closest('.reel,.lb,#vmodal')) return;
     const box=im.closest('figure')||im.parentElement; if(!box||box.querySelector(':scope > .crd')) return;
     const name=im.dataset.credit, label=name;
     if(getComputedStyle(box).position==='static') box.style.position='relative';
@@ -1302,4 +1313,225 @@ document.querySelectorAll('.tg').forEach(b=>{ const x=document.getElementById(b.
   document.addEventListener('click',e=>{ const a=e.target.closest&&e.target.closest('a[href="#contact"]'); if(!a||e.defaultPrevented) return; const c=document.getElementById('contact'); if(c) setTimeout(()=>suivre(c),0); });
 })();
 </script>
+<script>
+/* Effet de rétrécissement au survol (modèle : jk-website-builder/modeles/retrecissement-image.html ; adaptation : outils/retrecissement.mjs) */
+(function () {
+  var CIBLES = [{"bloc":".trav-imgs figure:not(:first-child)"},{"bloc":".m-big img","carte":".m-big","legende":".m-cap"},{"bloc":".m-duo figure"},{"bloc":".reel figure"}];
+  var DUREE = 200;                    /* durée du mouvement, en ms (comme le modèle ; 0,3 s essayé, James garde 0,2 s, 17 nov.) */
+  var MARGE = 4;                      /* marge sur les côtés au survol, en px */
+  var R_REPOS = 2, R_SURVOL = 8;      /* coins du bloc image, en px */
+
+  /* Courbe de Bézier (même calcul que Framer Motion : recherche par subdivision) */
+  function bezier(x1, y1, x2, y2) {
+    function c(u, a, b) { return ((1 - 3 * b + 3 * a) * u + (3 * b - 6 * a)) * u * u + 3 * a * u; }
+    return function (t) {
+      if (t <= 0) return 0; if (t >= 1) return 1;
+      var lo = 0, hi = 1, u = t, x, i = 0;
+      do { u = lo + (hi - lo) / 2; x = c(u, x1, x2) - t; if (x > 0) hi = u; else lo = u; }
+      while (Math.abs(x) > 1e-7 && ++i < 12);
+      return c(u, y1, y2);
+    };
+  }
+  var EASE = bezier(.33, 0, .12, 1);   /* version D (James, 17 nov.) */
+  function mix(a, b, p) { return a + (b - a) * p; }
+
+  /* Seuils de Framer Motion : échelle à moins de 0,0001 de 1 → 1 ; décalage de moins de 0,01 px → 0 */
+  function seuilS(s) { return (s >= 1 - 1e-4 && s <= 1 + 1e-4) || isNaN(s) ? 1 : s; }
+  function seuilT(t) { return (t >= -0.01 && t <= 0.01) || isNaN(t) ? 0 : t; }
+
+  function mesurer(el) {
+    var r = el.getBoundingClientRect();
+    return { l: r.left, t: r.top, cx: r.left + r.width / 2, cy: r.top + r.height / 2, w: r.width, h: r.height };
+  }
+  /* bloc : on mesure l'image, c'est-à-dire la boîte sans la marge intérieure (centre inchangé) */
+  function mesurerImage(el) {
+    var m = mesurer(el), s = getComputedStyle(el), W = parseFloat(s.width), H = parseFloat(s.height);
+    var kx = W ? m.w / W : 1, ky = H ? m.h / H : 1;
+    var w = m.w - (parseFloat(s.paddingLeft) + parseFloat(s.paddingRight)) * kx;
+    var h = m.h - (parseFloat(s.paddingTop) + parseFloat(s.paddingBottom)) * ky;
+    return { l: m.cx - w / 2, t: m.cy - h / 2, cx: m.cx, cy: m.cy, w: w, h: h };
+  }
+
+  /* propriétés posées pendant le survol, rendues à la fin */
+  var PROPS = ['width', 'height', 'flex', 'padding', 'position', 'left', 'top', 'right', 'bottom', 'backgroundClip', 'boxShadow'];
+  function garder(el) { var g = {}; PROPS.forEach(function (p) { g[p] = el.style[p]; }); return g; }
+  function rendre(el, g) { PROPS.forEach(function (p) { el.style[p] = g[p]; }); }
+  /* transitions propres à l'élément, sans « transform » (elles ralentiraient le mouvement) */
+  function sansTransform(el) {
+    var s = getComputedStyle(el), p = s.transitionProperty.split(','), d = s.transitionDuration.split(','),
+        f = s.transitionTimingFunction.split(/,(?![^(]*\))/), r = s.transitionDelay.split(','), out = [];
+    p.forEach(function (x, i) { x = x.trim(); if (x === 'opacity') out.push('opacity ' + d[i % d.length].trim() + ' ' + f[i % f.length].trim() + ' ' + r[i % r.length].trim()); });
+    return out.length ? out.join(', ') : 'none';
+  }
+
+  function effet(bloc, legende) {
+    var els = legende ? [bloc, legende] : [bloc];
+    var deltas = [];
+    var r = R_REPOS, r0 = R_REPOS, r1 = R_REPOS;   /* coins : valeur actuelle, départ, arrivée */
+    var k = 1, k0 = 1, k1 = 1;                     /* réduction de la légende : actuelle, départ, arrivée */
+    var debut = null, raf = 0, survolActuel = false, gB = null, gL = null, gI = [], bx = 0, by = 0;   /* marge intérieure */
+
+    function dessiner(p) {
+      var e = EASE(p);
+      r = mix(r0, r1, e);
+      els.forEach(function (el, i) {
+        var d = deltas[i];
+        var sx = p >= 1 ? 1 : mix(d.sx, 1, e), sy = p >= 1 ? 1 : mix(d.sy, 1, e);
+        var tx = p >= 1 ? 0 : mix(d.tx, 0, e), ty = p >= 1 ? 0 : mix(d.ty, 0, e);
+        /* propriétés « translate » et « scale » plutôt que « transform » : l'apparition des blocs au défilement
+           impose « transform:none !important » jusqu'à sa fin (environ 3 s) ; translate et scale s'y ajoutent sans conflit */
+        el.style.translate = (tx || ty) ? tx + 'px ' + ty + 'px' : 'none';
+        if (el === bloc) {
+          el.style.scale = (sx !== 1 || sy !== 1) ? sx + ' ' + sy : 'none';
+        } else {
+          /* légende : réduction identique en largeur et en hauteur (le texte n'est jamais déformé) */
+          k = p >= 1 ? k1 : mix(k0, k1, e);
+          el.style.scale = k !== 1 ? String(k) : 'none';
+        }
+        if (el === bloc) {
+          /* coins : r px à l'écran sur l'image, quelle que soit la réduction en cours (même calcul que le modèle,
+             en px du bloc : r ÷ échelle) ; le bloc les porte autour de sa marge intérieure, l'image à l'intérieur */
+          el.style.borderRadius = (r / sx + bx) + 'px / ' + (r / sy + by) + 'px';
+          el.style.setProperty('--retr-r', (r / sx) + 'px / ' + (r / sy) + 'px');
+        }
+      });
+    }
+
+    /* fin du retour : plus rien d'inscrit sur les éléments, la page redevient celle de la référence */
+    function finir() {
+      els.forEach(function (el) { el.style.translate = el.style.scale = ''; });
+      bloc.style.borderRadius = ''; bloc.style.removeProperty('--retr-r');
+      void bloc.offsetWidth;   /* valeurs finales appliquées avant de rendre les transitions de la page (sinon elles rejoueraient) */
+      els.forEach(function (el) { el.style.transition = ''; });
+    }
+
+    function pas(t) {
+      if (debut === null) debut = t;
+      var p = Math.min(1, Math.max(0, (t - debut) / DUREE));
+      dessiner(p);
+      raf = p < 1 ? requestAnimationFrame(pas) : 0;
+      if (p >= 1 && !survolActuel) finir();
+    }
+
+    /* vrai changement de mise en page : taille du bloc fixée, marge intérieure autour de l'image */
+    function poser(survol, mv) {
+      if (survol) {
+        /* taille exacte au repos (transformation déjà remise à zéro ; la valeur calculée du navigateur est arrondie) */
+        var rb = bloc.getBoundingClientRect();
+        gB = garder(bloc); bx = MARGE; by = mv;
+        bloc.style.flex = 'none'; bloc.style.width = rb.width + 'px'; bloc.style.height = rb.height + 'px';
+        /* éléments placés en absolu dans le bloc (images des cartes de projets et des caribous, bouton « + » des crédits) :
+           mesurés avant la marge intérieure, puis replacés dans l'image réduite. Un élément qui couvre tout le bloc
+           est réduit de la marge ; les autres gardent leur taille et restent à la même place relative (coin, bord). */
+        gI = [];
+        /* mesures exactes (au centième de pixel ; clientWidth et offsetLeft sont arrondis au pixel) */
+        var Wp = rb.width, Hp = rb.height, abs = [];
+        Array.prototype.forEach.call(bloc.children, function (c) {
+          var s = getComputedStyle(c);
+          if (s.position !== 'absolute') return;
+          var w = parseFloat(s.width) + parseFloat(s.paddingLeft) + parseFloat(s.paddingRight) + parseFloat(s.borderLeftWidth) + parseFloat(s.borderRightWidth),
+              h = parseFloat(s.height) + parseFloat(s.paddingTop) + parseFloat(s.paddingBottom) + parseFloat(s.borderTopWidth) + parseFloat(s.borderBottomWidth);
+          abs.push([c, parseFloat(s.left) || 0, parseFloat(s.top) || 0, w, h]);
+        });
+        bloc.style.padding = by + 'px ' + bx + 'px';
+        bloc.style.backgroundClip = 'content-box';   /* fond du bloc seulement derrière l'image (la page peut le redéfinir) */
+        var ombre = getComputedStyle(bloc).boxShadow;  /* ombre portée : elle suit l'image (étalement réduit de la marge) */
+        if (ombre && ombre !== 'none') bloc.style.boxShadow = ombre.replace(/(-?[\d.]+px) (-?[\d.]+px) (-?[\d.]+px)( (-?[\d.]+)px)?/g,
+          function (x, a, b, c, d, e) { return a + ' ' + b + ' ' + c + ' ' + ((parseFloat(e) || 0) - MARGE) + 'px'; });
+        abs.forEach(function (x) {
+          var c = x[0], L = x[1], T = x[2], w = x[3], h = x[4], s = getComputedStyle(c);
+          gI.push([c, garder(c)]);
+          var pleinX = w >= Wp - 1, pleinY = h >= Hp - 1;
+          var nw = pleinX ? Wp - 2 * bx : w, nh = pleinY ? Hp - 2 * by : h;
+          var nl = pleinX ? bx : bx + (Wp - w > 0 ? L * (Wp - 2 * bx - w) / (Wp - w) : 0);
+          var nt = pleinY ? by : by + (Hp - h > 0 ? T * (Hp - 2 * by - h) / (Hp - h) : 0);
+          /* largeur et hauteur en px de la boîte de contenu (ou de bordure, selon box-sizing) */
+          var dw = s.boxSizing === 'border-box' ? 0 : w - parseFloat(s.width), dh = s.boxSizing === 'border-box' ? 0 : h - parseFloat(s.height);
+          /* un élément qui couvre le bloc est réduit de la marge ; un petit élément (bouton « + » des crédits) garde sa
+             taille libre (il doit pouvoir s'ouvrir) et reste accroché au bord le plus proche, à la même place relative */
+          if (pleinX) { c.style.left = nl + 'px'; c.style.right = 'auto'; c.style.width = (nw - dw) + 'px'; }
+          else if (L <= Wp - L - w) { c.style.left = nl + 'px'; c.style.right = 'auto'; }
+          else { c.style.right = (Wp - nl - w) + 'px'; c.style.left = 'auto'; }
+          if (pleinY) { c.style.top = nt + 'px'; c.style.bottom = 'auto'; c.style.height = (nh - dh) + 'px'; }
+          else if (T <= Hp - T - h) { c.style.top = nt + 'px'; c.style.bottom = 'auto'; }
+          else { c.style.bottom = (Hp - nt - h) + 'px'; c.style.top = 'auto'; }
+        });
+        if (legende) {
+          var sl = getComputedStyle(legende);
+          gL = garder(legende);
+          if (sl.position === 'static') legende.style.position = 'relative';
+          legende.style.left = ((parseFloat(sl.left) || 0) + MARGE) + 'px';
+          legende.style.top = ((parseFloat(sl.top) || 0) - mv) + 'px';
+        }
+      } else {
+        if (gB) rendre(bloc, gB); if (legende && gL) rendre(legende, gL);
+        gI.forEach(function (x) { rendre(x[0], x[1]); });
+        gB = gL = null; gI = []; bx = by = 0;
+      }
+    }
+
+    return function changer(survol) {
+      if (survolActuel === survol) return;
+      survolActuel = survol;
+      /* marge du haut et du bas proportionnelle au format du bloc image (taille au repos) */
+      var sb = getComputedStyle(bloc);
+      var mv = survol ? MARGE * parseFloat(sb.height) / parseFloat(sb.width) : 0;
+      /* transitions de la page coupées pendant le mouvement (sauf les fondus) */
+      bloc.style.transition = sansTransform(bloc);
+      if (legende) legende.style.transition = sansTransform(legende);
+      /* 1. mesure « avant » */
+      var avant = els.map(function (el) { return el === bloc ? mesurerImage(el) : mesurer(el); });
+      /* 2. remise à zéro, puis vrai changement de mise en page */
+      els.forEach(function (el) { el.style.translate = el.style.scale = 'none'; });
+      poser(survol, mv);
+      /* 3. mesure « après » et écart */
+      var apres = els.map(function (el) { return el === bloc ? mesurerImage(el) : mesurer(el); });
+      deltas = els.map(function (el, i) {
+        var a = avant[i], b = apres[i];
+        if (el !== bloc) {
+          /* légende : déplacement de son coin haut gauche ; sa réduction (k) est animée à part */
+          return { sx: 1, sy: 1, tx: seuilT(a.l - b.l), ty: seuilT(a.t - b.t), w: b.w, h: b.h };
+        }
+        return { sx: seuilS(a.w / b.w), sy: seuilS(a.h / b.h),
+                 tx: seuilT(a.cx - b.cx), ty: seuilT(a.cy - b.cy), w: b.w, h: b.h };
+      });
+      /* coins et légende : de la valeur actuelle vers la cible */
+      r0 = r; r1 = survol ? R_SURVOL : R_REPOS;
+      k0 = k; k1 = survol ? apres[0].w / (apres[0].w + 2 * MARGE) : 1;
+      /* 4. première image dessinée tout de suite, avant l'affichage : aucun saut visible */
+      dessiner(0);
+      debut = null;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(pas);
+    };
+  }
+
+  /* survol : délégué au document (les images des bandeaux et de la Démarche sont écrites par des scripts) */
+  var effets = new WeakMap();
+  function trouver(t) {
+    for (var i = 0; i < CIBLES.length; i++) {
+      var c = CIBLES[i], z = t.closest && t.closest(c.carte || c.bloc);
+      if (!z) continue;
+      var bloc = z.matches(c.bloc) ? z : z.querySelector(c.bloc);
+      if (!bloc) continue;
+      var carte = c.carte ? bloc.closest(c.carte) : bloc;
+      var legende = c.legende && carte ? carte.querySelector(c.legende) : null;
+      if (!effets.has(bloc)) effets.set(bloc, effet(bloc, legende));
+      return { zone: z, changer: effets.get(bloc) };
+    }
+    return null;
+  }
+  document.addEventListener('pointerover', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var x = trouver(e.target);
+    if (x && !(e.relatedTarget && x.zone.contains(e.relatedTarget))) x.changer(true);
+  });
+  document.addEventListener('pointerout', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var x = trouver(e.target);
+    if (x && !(e.relatedTarget && x.zone.contains(e.relatedTarget))) x.changer(false);
+  });
+})();
+</script>
+<script>JKR.taille(); addEventListener('load',function(){ JKR.taille(); }); (function(){ var t; addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(function(){ JKR.taille(); },200); }); })();</script>
 </body></html>

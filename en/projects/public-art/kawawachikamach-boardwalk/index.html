@@ -1,9 +1,31 @@
-<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Naskapi Community Boardwalk · James Kennedy</title><meta name="description" content=""><link rel="alternate" hreflang="en" href="https://jameskennedy.ca/en/projects/public-art/kawawachikamach-boardwalk/"><link rel="alternate" hreflang="fr" href="https://jameskennedy.ca/fr/projets/art-public/promenade-kawawachikamach/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="preload" as="image" href="/content/images/projects/public-art/kawawachikamach-boardwalk/kawawachikamach-hero/james-kennedy-community-boardwalk-mural-sculpture-contre-jour.jpg" fetchpriority="high">
+<!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Naskapi Community Boardwalk · James Kennedy</title><meta name="description" content=""><link rel="alternate" hreflang="en" href="https://jameskennedy.ca/en/projects/public-art/kawawachikamach-boardwalk/"><link rel="alternate" hreflang="fr" href="https://jameskennedy.ca/fr/projets/art-public/promenade-kawawachikamach/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="preload" as="image" href="/content/images/projects/public-art/kawawachikamach-boardwalk/kawawachikamach-hero/james-kennedy-community-boardwalk-kawawachikamach-top-view-mural.jpg" fetchpriority="high">
 <style>/* corrections du 14 novembre (James) */
-.proj .pic,.proj .pic img,.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
+.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
 .vgrid .vsq img,.vgrid .vbot img{cursor:zoom-in}
 .by-img img{height:auto}
+/* images pleine largeur : pas de loupe (point 15) */
+:is(.hero-img img,.rt-full img){cursor:auto!important}
+/* effet de rétrécissement au survol (outils/retrecissement.mjs) */
+:is(.vgrid .vsq, .vgrid .vbot,.rt-duo figure,.by-img img){border-radius:2px;background-clip:content-box;transform-origin:50% 50% 0}
+:is(.vgrid .vsq, .vgrid .vbot,.rt-duo figure,.by-img img){overflow:clip}
+:is(.vgrid .vsq, .vgrid .vbot,.rt-duo figure,.by-img img) img{border-radius:var(--retr-r,0)}
+@media (hover:hover) and (pointer:fine){:is(.vgrid .vsq, .vgrid .vbot,.rt-duo figure,.by-img img){will-change:transform}}
+:is(.by-img figcaption){transform-origin:0 0}
 </style>
+<script>/* copies réduites : srcset des images écrites par les scripts (JKR.s), et « sizes » réglé sur la largeur affichée */
+window.JKR={m:{},
+  s:function(u){ var r=decodeURI(u).replace(/^\/content\/images\//,''), x=this.m[r]; if(!x) return '';
+    var p=r.lastIndexOf('.'), b=r.slice(0,p), e=/\.webp$/i.test(r)?'.jpg':r.slice(p);
+    return x[2].map(function(l){ return encodeURI('/content/images-reduites/'+b+'-'+l+'w'+e)+' '+l+'w'; }).concat(encodeURI('/content/images/'+r)+' '+x[0]+'w').join(', '); },
+  /* bandeau : hauteur clamp(192px,20vw,280px), largeur = hauteur × format de l'image */
+  bandeau:function(u){ var r=decodeURI(u).replace(/^\/content\/images\//,''), x=this.m[r], s=this.s(u); if(!s) return ''; var f=x[0]/x[1];
+    return ' srcset="'+s+'" sizes="(max-width:960px) '+Math.ceil(192*f)+'px, (max-width:1400px) '+(20*f).toFixed(2)+'vw, '+Math.ceil(280*f)+'px" style="aspect-ratio:'+x[0]+' / '+x[1]+'"'; },
+  /* format de l'original (la hauteur d'une copie est arrondie au pixel) : seulement si la page ne fixe pas déjà le format */
+  taille:function(){ document.querySelectorAll('img[srcset]').forEach(function(im){ if(im.closest('.reel')) return;
+    if(im.dataset.r && !im.style.aspectRatio && /^auto/.test(getComputedStyle(im).aspectRatio)) im.style.aspectRatio=im.dataset.r;
+    var w=im.offsetWidth; if(w>0) im.sizes=Math.ceil(w)+'px'; }); }
+};
+</script>
 </head><body>
 <style>
 /* Fiche de projet, même système que la version D : fond gris clair, grain, Geist + Geist Mono,
@@ -131,7 +153,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .quote cite{display:block;margin-top:20px;font-style:normal}
 @media (max-width:760px){.quote{grid-template-columns:minmax(0,1fr)}}
 
-/* appel à l'action + projet suivant */
+/* appel à l'action */
 .ask{padding-block:clamp(80px,11vw,170px) clamp(40px,5vw,72px);display:grid;gap:clamp(24px,3vw,40px)}
 .ask .h2{font-size:clamp(25.6px,3.25vw,39px);margin:0}
 .ask .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
@@ -259,17 +281,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 @media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important}}
 
 /* ---------- navigation entre projets (commune aux fiches) ---------- */
-.pnav{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(12px,3vw,40px);border-top:1.5px solid var(--ink);border-bottom:1px solid color-mix(in srgb,var(--mute) 30%,transparent);padding-block:clamp(18px,2.4vw,28px);margin-bottom:clamp(28px,4vw,48px);touch-action:pan-y}
-.pnav a{display:flex;align-items:center;gap:clamp(8px,1.4vw,18px);min-width:0}
-.pnav .nx{justify-content:flex-end;text-align:right}
-.pnav img{width:clamp(52px,8vw,112px);aspect-ratio:4/3;object-fit:cover;flex:none;display:block}
-.pnav .tx{display:grid;gap:5px;min-width:0}
-.pnav .tx .mono{font-size:11px;white-space:nowrap}
-.pnav .t{font-weight:500;font-size:clamp(16px,2.4vw,29px);letter-spacing:-.04em;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pnav .ar{font-size:clamp(18px,2vw,24px);flex:none;transition:transform .3s}
-.pnav .pv:hover .ar{transform:translateX(-5px)}
-.pnav .nx:hover .ar{transform:translateX(5px)}
-@media (max-width:420px){.pnav .tx .mono{font-size:10px;letter-spacing:.04em}.pnav a{gap:7px}}
 
 /* texte d'intention : les mots s'allument au défilement, comme sur l'accueil */
 .rv .w{opacity:.22;transition:opacity .35s}
@@ -287,8 +298,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .icons a:hover,.icons a:focus-visible{color:var(--paper);background-color:var(--ink);border-color:var(--ink);transform:scale(1.12)}
 .rvl{opacity:0;transform:translateY(32px);transition:opacity 1.6s ease,transform 2s cubic-bezier(.16,.84,.24,1)}
 .rvl.in{opacity:1;transform:none}
-@media (hover:hover){main img:not(.reel img):not(.pnav img){transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
-main .fiche-l img:hover{transform:scale(.985);border-radius:4px}}
 
 /* ===== fiche E : formulaire collaborons ===== */
 :root{--dot:#FAFAF8}
@@ -326,11 +335,7 @@ main .fiche-l img:hover{transform:scale(.985);border-radius:4px}}
 .info.solo .txt p.big{max-width:30em}
 .fiche{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,6vw,110px);padding-block:clamp(60px,8vw,120px) 0;align-items:start}
 @media (max-width:860px){.fiche{grid-template-columns:minmax(0,1fr);gap:18px}}
-.pnav{border:0;margin-top:clamp(48px,6vw,96px);padding-block:0;gap:clamp(10px,1.6vw,20px)}
-.pnav a{background:var(--paper-2);padding:clamp(14px,1.8vw,26px);transition:background .3s}
-.pnav a:hover{background:#FAFAF8}
-.pnav img{width:clamp(72px,11vw,168px);transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
-@media (hover:hover){.pnav a:hover img{transform:scale(.97);border-radius:4px}}
+
 .contact{margin-top:clamp(80px,10vw,150px)}
 
 /* mandat, caribous, idéation */
@@ -364,7 +369,7 @@ main .fiche-l img:hover{transform:scale(.985);border-radius:4px}}
 .vrow{display:flex;gap:clamp(8px,1vw,14px)}
 .vrow figure{margin:0;flex:var(--r) 1 0;min-width:0;aspect-ratio:var(--r);overflow:hidden;background:var(--paper-2)}
 .vrow img,.vwide img{display:block;width:100%;height:100%;object-fit:cover}
-.vwide{margin:0;aspect-ratio:3500/981;overflow:hidden;background:var(--paper-2)}
+.vwide{margin:0;aspect-ratio:2000/1018;overflow:hidden;background:var(--paper-2)}
 .vtxt{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.3fr);gap:clamp(20px,4vw,64px);margin-top:clamp(20px,2.4vw,32px)}
 .vtxt .lab{margin:0}
 .vtxt p{margin:0;font-size:clamp(17px,1.3vw,17px);line-height:1.45;max-width:38em}
@@ -534,7 +539,6 @@ main,main>section{overflow-x:clip}
   .by-img{max-width:340px}
   .rc-q .cc-q{font-size:72px;margin-bottom:8px}
 }
-
 
 /* version B : seul l'intertitre est visible ; le texte s'ouvre au clic */
 .mr-x{max-height:0;overflow:hidden;opacity:0;transition:max-height .7s cubic-bezier(.22,1,.36,1),opacity .5s ease}
@@ -788,7 +792,7 @@ html body .route .rt-line.go{display:flex!important;border-bottom:0!important;pa
       <p data-i18n="k7">A curved corten steel mural and six life-size caribou sculptures line the community boardwalk in Kawawachikamach.</p>
     </div>
     <figure class="hero-img">
-      <img data-i18n="k8" data-i18n-m="a" fetchpriority="high" src="/content/images/projects/public-art/kawawachikamach-boardwalk/kawawachikamach-hero/james-kennedy-community-boardwalk-mural-sculpture-contre-jour.jpg" width="2000" height="1018" alt="Backlit corten steel mural arranged in a curve around a circular bench in the snow">
+      <img data-i18n="k8" data-i18n-m="a" fetchpriority="high" src="/content/images/projects/public-art/kawawachikamach-boardwalk/kawawachikamach-hero/james-kennedy-community-boardwalk-kawawachikamach-top-view-mural.jpg" width="3017" height="1697" alt="Aerial view of the Naskapi Community Boardwalk project in Kawawachikamach, showing the snow-covered pathway, balsam fir trees and the steel mural created by James Kennedy.">
       <figcaption data-i18n="k9" class="mono mute"><span>Narrative corten steel mural</span><span>Kawawachikamach, Québec · 2024</span></figcaption>
     </figure>
   </section>
@@ -804,9 +808,9 @@ html body .route .rt-line.go{display:flex!important;border-bottom:0!important;pa
     <h2 class="lab tg-h"><button type="button" class="tg mono" aria-expanded="false" aria-controls="mr-carib"><span data-i18n="k16" class="tg-l">six caribou</span><span class="mr-i" aria-hidden="true">+</span></button></h2>
     <div class="mr-x tgp" id="mr-carib"><div class="mr-in"><p data-i18n="k17">Central to Naskapi life and territory, the caribou becomes a presence along the boardwalk.</p></div></div>
     <div class="vgrid">
-      <figure class="vsq"><img data-i18n="k18" data-i18n-m="a" src="/content/images/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-cummunity-boardwalk-kawawachikamach-caribou-sculpture-2.jpg" alt="Life-size corten steel caribou sculpture in a snowy forest" loading="lazy"></figure>
-      <figure class="vtop"><button data-i18n="k19" data-i18n-m="a" type="button" class="vplay" data-video="/content/images/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture2.mp4" aria-label="Play video: a Corten steel caribou by the lake"><img data-i18n="k20" data-i18n-m="a" src="/content/images/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-cummunity-boardwalk-kawawachikamach-caribou-sculpture-1.jpg" alt="Head and antlers of a corten steel caribou sculpture beside the lake" loading="lazy"><span class="vico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span><span data-i18n="k21" class="vlab mono" aria-hidden="true">video</span></button></figure>
-      <figure class="vbot"><img data-i18n="k22" data-i18n-m="a" src="/content/images/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-cummunity-boardwalk-kawawachikamach-caribou-sculpture-3.jpg" alt="Two corten steel caribou sculptures in the snow near the water" loading="lazy"></figure>
+      <figure class="vsq"><img data-i18n="k18" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-2-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-2-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-2.jpg 1179w" sizes="100vw" data-r="1179 / 1179" src="/content/images/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-2.jpg" alt="Life-size corten steel caribou sculpture in a snowy forest" loading="lazy"></figure>
+      <figure class="vtop"><button data-i18n="k19" data-i18n-m="a" type="button" class="vplay" data-video="/content/images/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture2.mp4" aria-label="Play video: a Corten steel caribou by the lake"><img data-i18n="k20" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-1-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-1-800w.jpg 800w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-1-1200w.jpg 1200w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-1-1600w.jpg 1600w, /content/images/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-1.jpg 2000w" sizes="100vw" data-r="2000 / 1127" src="/content/images/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-1.jpg" alt="Head and antlers of a corten steel caribou sculpture beside the lake" loading="lazy"><span class="vico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span><span data-i18n="k21" class="vlab mono" aria-hidden="true">video</span></button></figure>
+      <figure class="vbot"><img data-i18n="k22" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-3-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-3-800w.jpg 800w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-3-1200w.jpg 1200w, /content/images/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-3.jpg 1920w" sizes="100vw" data-r="1920 / 1107" src="/content/images/projects/public-art/kawawachikamach-boardwalk/six-caribous/james-kennedy-community-boardwalk-kawawachikamach-caribou-sculpture-3.jpg" alt="Two corten steel caribou sculptures in the snow near the water" loading="lazy"></figure>
     </div>
 
   </section>
@@ -814,7 +818,7 @@ html body .route .rt-line.go{display:flex!important;border-bottom:0!important;pa
   <section data-i18n="k23" data-i18n-m="a" class="vsec wrap" aria-label="The mural">
     <h2 class="lab tg-h"><button type="button" class="tg mono" aria-expanded="false" aria-controls="mr-mur"><span data-i18n="k24" class="tg-l">the mural</span><span class="mr-i" aria-hidden="true">+</span></button></h2>
     <div class="mr-x tgp" id="mr-mur"><div class="mr-in"><p data-i18n="k25">The mural traces a landscape, echoing the meaning of Naskapi: “people beyond the horizon.” Beginning with the image of a caribou overlooking the land, the composition grew through stories shared by community members. It brings together a wolf, a black bear, a fish, geese, Elders in a canoe, Fort Chimo and ancestral motifs. A ptarmigan is hidden within it, much as it would be in nature.</p></div></div>
-    <figure class="vwide"><button data-i18n="k26" data-i18n-m="a" type="button" class="vplay" data-video="/content/images/projects/public-art/kawawachikamach-boardwalk/mural/james-kennedy-community-boardwalk-kawawachikamach-mural-sculpture-26.mp4" aria-label="Play video: light passing through the mural"><img data-i18n="k27" data-i18n-m="a" src="/content/images/projects/public-art/kawawachikamach-boardwalk/mural/james-kennedy-community-boardwalk-kawawachikamach-mural-sculpture-panorama.jpg" alt="Panoramic view of the curved corten steel mural in the snow" loading="lazy"><span class="vico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span><span data-i18n="k28" class="vlab mono" aria-hidden="true">video</span></button></figure>
+    <figure class="vwide"><button data-i18n="k26" data-i18n-m="a" type="button" class="vplay" data-video="/content/images/projects/public-art/kawawachikamach-boardwalk/mural/james-kennedy-community-boardwalk-kawawachikamach-mural-sculpture-26.mp4" aria-label="Play video: light passing through the mural"><img data-i18n="k27" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/mural/james-kennedy-community-boardwalk-mural-sculpture-contre-jour-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/mural/james-kennedy-community-boardwalk-mural-sculpture-contre-jour-800w.jpg 800w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/mural/james-kennedy-community-boardwalk-mural-sculpture-contre-jour-1200w.jpg 1200w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/mural/james-kennedy-community-boardwalk-mural-sculpture-contre-jour-1600w.jpg 1600w, /content/images/projects/public-art/kawawachikamach-boardwalk/mural/james-kennedy-community-boardwalk-mural-sculpture-contre-jour.jpg 2000w" sizes="100vw" data-r="2000 / 1018" src="/content/images/projects/public-art/kawawachikamach-boardwalk/mural/james-kennedy-community-boardwalk-mural-sculpture-contre-jour.jpg" alt="Backlit corten steel mural arranged in a curve around a circular bench in the snow" loading="lazy"><span class="vico" aria-hidden="true"><svg viewBox="0 0 24 24" width="22" height="22"><path d="M8 5.5v13l11-6.5z" fill="currentColor"/></svg></span><span data-i18n="k28" class="vlab mono" aria-hidden="true">video</span></button></figure>
 
   </section>
 
@@ -842,10 +846,10 @@ html body .route .rt-line.go{display:flex!important;border-bottom:0!important;pa
       <li>Montréal</li><li class="seg" aria-hidden="true"></li><li data-i18n="k33">truck</li><li class="seg" aria-hidden="true"></li><li>train</li><li class="seg" aria-hidden="true"></li><li class="end">Kawawachikamach</li>
     </ol>
     </div></div>
-    <figure class="rt-full"><img data-i18n="k34" data-i18n-m="a" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-kawawachikamach-production-mural-4.jpg" width="1080" height="660" alt="The artist working on a section of the mural in his studio" loading="lazy"></figure>
+    <figure class="rt-full"><img data-i18n="k34" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-kawawachikamach-production-mural-4-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-kawawachikamach-production-mural-4-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-kawawachikamach-production-mural-4.jpg 1080w" sizes="100vw" data-r="1080 / 660" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-kawawachikamach-production-mural-4.jpg" width="1080" height="660" alt="The artist working on a section of the mural in his studio" loading="lazy"></figure>
     <div class="rt-duo">
-      <figure style="--r:1"><img data-i18n="k35" data-i18n-m="a" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-kawawachikamach-female-woodland-caribou-production.jpg" width="1200" height="1200" alt="A female woodland caribou sculpture being lifted in the workshop" loading="lazy"></figure>
-      <figure style="--r:1.5924"><img data-i18n="k36" data-i18n-m="a" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-scukptures-transport1.jpg" width="2000" height="1256" alt="Mural sections and caribou sculptures secured to a trailer for transportation" loading="lazy"></figure>
+      <figure style="--r:1"><img data-i18n="k35" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-kawawachikamach-female-woodland-caribou-production-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-kawawachikamach-female-woodland-caribou-production-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-kawawachikamach-female-woodland-caribou-production.jpg 1200w" sizes="100vw" data-r="1200 / 1200" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-kawawachikamach-female-woodland-caribou-production.jpg" width="1200" height="1200" alt="A female woodland caribou sculpture being lifted in the workshop" loading="lazy"></figure>
+      <figure style="--r:1.5924"><img data-i18n="k36" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1-800w.jpg 800w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1-1200w.jpg 1200w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1-1600w.jpg 1600w, /content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1.jpg 2000w" sizes="100vw" data-r="2000 / 1256" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1.jpg" width="2000" height="1256" alt="Mural sections and caribou sculptures secured to a trailer for transportation" loading="lazy"></figure>
     </div>
   </section>
 
@@ -935,7 +939,7 @@ html body .route .rt-line.go{display:flex!important;border-bottom:0!important;pa
     </article>
       </div></div>
       <div class="by-right">
-        <figure class="by-img"><img data-i18n="k96" data-i18n-m="a" src="/content/images/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders.jpg" width="1200" height="1200" alt="Small corten steel caribou sculptures presented to Naskapi Elders, cut from the same plates as the life-size sculptures" loading="lazy"><figcaption data-i18n="k97" class="mono mute">Caribou sculptures gifted to Elders · corten steel · 300 × 300 × 100 mm · 2024</figcaption></figure>
+        <figure class="by-img"><img data-i18n="k96" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders.jpg 1200w" sizes="100vw" data-r="1200 / 1200" src="/content/images/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders.jpg" width="1200" height="1200" alt="Small corten steel caribou sculptures presented to Naskapi Elders, cut from the same plates as the life-size sculptures" loading="lazy"><figcaption data-i18n="k97" class="mono mute">Caribou sculptures gifted to Elders · corten steel · 300 × 300 × 100 mm · 2024</figcaption></figure>
       </div>
     </div>
   </section>
@@ -1004,7 +1008,7 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
   const lb=document.getElementById('lb'), li=document.getElementById('lbImg');
   const open=(src,alt)=>{li.src=src;li.alt=alt||'';lb.hidden=false};
   const close=()=>{lb.hidden=true;li.src=''};
-  document.querySelectorAll('.duo-img img,.split .one img,.hero-img img,.merci img,.pair-img img,.by-img img,.route figure img,.vgrid .vsq img,.vgrid .vbot img').forEach(im=>im.addEventListener('click',()=>open(im.src,im.alt)));
+  document.querySelectorAll('.duo-img img,.split .one img,.merci img,.pair-img img,.by-img img,.rt-duo img,.vgrid .vsq img,.vgrid .vbot img').forEach(im=>im.addEventListener('click',()=>open(im.src,im.alt)));
   document.getElementById('lbClose').addEventListener('click',close);
   lb.addEventListener('click',close);
   addEventListener('keydown',e=>{if(e.key==='Escape')close()});
@@ -1186,7 +1190,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   /* ---- réglages de la page ---- */
   const MAP=[  /* sélecteur, effet : tr trame · mk masque · up monte · l depuis la gauche · fl texte ligne par ligne */
     ['.head .h1','mk'],['.contact .h2','l'],
-    ['.head .hero-img','up plate'],['.vgrid figure,.vwide,.rt-full,.rt-duo figure,.by-img,.pnav2','up'],
+    ['.head .hero-img','up plate'],['.vgrid figure,.vwide,.rt-full,.rt-duo figure,.by-img','up'],
     ['.head .crumb,.head .lead,.mandat>div,.vsec .lab,.cocr2 .lab,.cc-p,.cc-quote,.route .lab,.aw-head,.aw-note,.aw-list,.fiche-end .lab,.sp-h,.spec,.by-h,.by-row .lab,.by-row p,.by-row .go,.form','fl'],
     ['.tgp .mr-in>p,.rt-txt','fl'],['.route .rt-line,.rc-q .cc-q','up'],['.cc-link','fl'],
     ['.contact .trame','tr']
@@ -1239,7 +1243,13 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   const go1=(el,d)=>{ if(el.classList.contains('on')) return; const n=el.matches('.fl')?lines(el):0;
     el.style.setProperty('--ap-d',d.toFixed(2)+'s'); el.classList.add('on');
     requestAnimationFrame(()=>{ const r=Math.max(pace,accel&&HEROS().includes(el)?rate:1); if(r>1) anims(el).forEach(a=>{ if(a.playbackRate<r) a.playbackRate=r; }); });
-    el._t=setTimeout(()=>el.classList.add('done'),(END+1000+(d+n*gap(el))*1000)/Math.max(1,pace)); };
+    /* fin de l'apparition : à la fin réelle des mouvements de l'élément (outils/apparition.mjs) */
+    const k=el._k=(el._k||0)+1;
+    const fin=()=>{ if(el._k!==k||!el.classList.contains('on')) return;
+      const a=anims(el).filter(x=>x.playState!=='finished'&&x.effect&&x.effect.getComputedTiming().endTime!==Infinity);
+      if(!a.length){ el.classList.add('done'); return; }
+      Promise.allSettled(a.map(x=>x.finished)).then(()=>requestAnimationFrame(fin)); };
+    requestAnimationFrame(fin); };
   /* défilement avant la fin du héros : ce qui reste du héros accélère peu à peu (jusqu'à ACC fois), puis la suite enchaîne */
   const speedUp=()=>{ if(accel||gateOpen()) return; accel=true; const t0=performance.now();
     const step=t=>{ if(!accel) return; const k=Math.min(1,(t-t0)/900), e=k*k*(3-2*k); rate=1+(ACC-1)*e;
@@ -1271,7 +1281,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
     els.forEach(el=>{ if(el.dataset.d!==undefined) go(el,+el.dataset.d); });
     if(wEl&&wTop) wT=setTimeout(()=>{ if(maxS()<aim()||wEl.getBoundingClientRect().bottom<=innerHeight) go(wEl,0); },WAIT.delay*1000);
     arm(); })); };
-  const reset=()=>{ scrollTo(0,0); pend=[]; accel=false; rate=1; forced=false; pace=1; vel=0; els.forEach(el=>{ clearTimeout(el._t); io.unobserve(el); el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); }); void H.offsetWidth; start(); };
+  const reset=()=>{ scrollTo(0,0); pend=[]; accel=false; rate=1; forced=false; pace=1; vel=0; els.forEach(el=>{ clearTimeout(el._t); el._k=(el._k||0)+1; io.unobserve(el); el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); }); void H.offsetWidth; start(); };
   /* rythme : plus on défile vite, plus les apparitions en cours et à venir accélèrent (jusqu'à PMAX fois), en douceur ;
      défiler pendant l'ouverture lance tout de suite la suite de la page ; ce qu'on a dépassé sans le voir est déjà en place */
   const PMAX=3.2;
@@ -1400,4 +1410,225 @@ document.querySelectorAll('.tg,.sp-btn').forEach(b=>{
   document.addEventListener('click',e=>{ const a=e.target.closest&&e.target.closest('a[href="#contact"]'); if(!a||e.defaultPrevented) return; const c=document.getElementById('contact'); if(c) setTimeout(()=>suivre(c),0); });
 })();
 </script>
+<script>
+/* Effet de rétrécissement au survol (modèle : jk-website-builder/modeles/retrecissement-image.html ; adaptation : outils/retrecissement.mjs) */
+(function () {
+  var CIBLES = [{"bloc":".vgrid .vsq, .vgrid .vbot"},{"bloc":".rt-duo figure"},{"bloc":".by-img img","carte":".by-img","legende":"figcaption"}];
+  var DUREE = 200;                    /* durée du mouvement, en ms (comme le modèle ; 0,3 s essayé, James garde 0,2 s, 17 nov.) */
+  var MARGE = 4;                      /* marge sur les côtés au survol, en px */
+  var R_REPOS = 2, R_SURVOL = 8;      /* coins du bloc image, en px */
+
+  /* Courbe de Bézier (même calcul que Framer Motion : recherche par subdivision) */
+  function bezier(x1, y1, x2, y2) {
+    function c(u, a, b) { return ((1 - 3 * b + 3 * a) * u + (3 * b - 6 * a)) * u * u + 3 * a * u; }
+    return function (t) {
+      if (t <= 0) return 0; if (t >= 1) return 1;
+      var lo = 0, hi = 1, u = t, x, i = 0;
+      do { u = lo + (hi - lo) / 2; x = c(u, x1, x2) - t; if (x > 0) hi = u; else lo = u; }
+      while (Math.abs(x) > 1e-7 && ++i < 12);
+      return c(u, y1, y2);
+    };
+  }
+  var EASE = bezier(.33, 0, .12, 1);   /* version D (James, 17 nov.) */
+  function mix(a, b, p) { return a + (b - a) * p; }
+
+  /* Seuils de Framer Motion : échelle à moins de 0,0001 de 1 → 1 ; décalage de moins de 0,01 px → 0 */
+  function seuilS(s) { return (s >= 1 - 1e-4 && s <= 1 + 1e-4) || isNaN(s) ? 1 : s; }
+  function seuilT(t) { return (t >= -0.01 && t <= 0.01) || isNaN(t) ? 0 : t; }
+
+  function mesurer(el) {
+    var r = el.getBoundingClientRect();
+    return { l: r.left, t: r.top, cx: r.left + r.width / 2, cy: r.top + r.height / 2, w: r.width, h: r.height };
+  }
+  /* bloc : on mesure l'image, c'est-à-dire la boîte sans la marge intérieure (centre inchangé) */
+  function mesurerImage(el) {
+    var m = mesurer(el), s = getComputedStyle(el), W = parseFloat(s.width), H = parseFloat(s.height);
+    var kx = W ? m.w / W : 1, ky = H ? m.h / H : 1;
+    var w = m.w - (parseFloat(s.paddingLeft) + parseFloat(s.paddingRight)) * kx;
+    var h = m.h - (parseFloat(s.paddingTop) + parseFloat(s.paddingBottom)) * ky;
+    return { l: m.cx - w / 2, t: m.cy - h / 2, cx: m.cx, cy: m.cy, w: w, h: h };
+  }
+
+  /* propriétés posées pendant le survol, rendues à la fin */
+  var PROPS = ['width', 'height', 'flex', 'padding', 'position', 'left', 'top', 'right', 'bottom', 'backgroundClip', 'boxShadow'];
+  function garder(el) { var g = {}; PROPS.forEach(function (p) { g[p] = el.style[p]; }); return g; }
+  function rendre(el, g) { PROPS.forEach(function (p) { el.style[p] = g[p]; }); }
+  /* transitions propres à l'élément, sans « transform » (elles ralentiraient le mouvement) */
+  function sansTransform(el) {
+    var s = getComputedStyle(el), p = s.transitionProperty.split(','), d = s.transitionDuration.split(','),
+        f = s.transitionTimingFunction.split(/,(?![^(]*\))/), r = s.transitionDelay.split(','), out = [];
+    p.forEach(function (x, i) { x = x.trim(); if (x === 'opacity') out.push('opacity ' + d[i % d.length].trim() + ' ' + f[i % f.length].trim() + ' ' + r[i % r.length].trim()); });
+    return out.length ? out.join(', ') : 'none';
+  }
+
+  function effet(bloc, legende) {
+    var els = legende ? [bloc, legende] : [bloc];
+    var deltas = [];
+    var r = R_REPOS, r0 = R_REPOS, r1 = R_REPOS;   /* coins : valeur actuelle, départ, arrivée */
+    var k = 1, k0 = 1, k1 = 1;                     /* réduction de la légende : actuelle, départ, arrivée */
+    var debut = null, raf = 0, survolActuel = false, gB = null, gL = null, gI = [], bx = 0, by = 0;   /* marge intérieure */
+
+    function dessiner(p) {
+      var e = EASE(p);
+      r = mix(r0, r1, e);
+      els.forEach(function (el, i) {
+        var d = deltas[i];
+        var sx = p >= 1 ? 1 : mix(d.sx, 1, e), sy = p >= 1 ? 1 : mix(d.sy, 1, e);
+        var tx = p >= 1 ? 0 : mix(d.tx, 0, e), ty = p >= 1 ? 0 : mix(d.ty, 0, e);
+        /* propriétés « translate » et « scale » plutôt que « transform » : l'apparition des blocs au défilement
+           impose « transform:none !important » jusqu'à sa fin (environ 3 s) ; translate et scale s'y ajoutent sans conflit */
+        el.style.translate = (tx || ty) ? tx + 'px ' + ty + 'px' : 'none';
+        if (el === bloc) {
+          el.style.scale = (sx !== 1 || sy !== 1) ? sx + ' ' + sy : 'none';
+        } else {
+          /* légende : réduction identique en largeur et en hauteur (le texte n'est jamais déformé) */
+          k = p >= 1 ? k1 : mix(k0, k1, e);
+          el.style.scale = k !== 1 ? String(k) : 'none';
+        }
+        if (el === bloc) {
+          /* coins : r px à l'écran sur l'image, quelle que soit la réduction en cours (même calcul que le modèle,
+             en px du bloc : r ÷ échelle) ; le bloc les porte autour de sa marge intérieure, l'image à l'intérieur */
+          el.style.borderRadius = (r / sx + bx) + 'px / ' + (r / sy + by) + 'px';
+          el.style.setProperty('--retr-r', (r / sx) + 'px / ' + (r / sy) + 'px');
+        }
+      });
+    }
+
+    /* fin du retour : plus rien d'inscrit sur les éléments, la page redevient celle de la référence */
+    function finir() {
+      els.forEach(function (el) { el.style.translate = el.style.scale = ''; });
+      bloc.style.borderRadius = ''; bloc.style.removeProperty('--retr-r');
+      void bloc.offsetWidth;   /* valeurs finales appliquées avant de rendre les transitions de la page (sinon elles rejoueraient) */
+      els.forEach(function (el) { el.style.transition = ''; });
+    }
+
+    function pas(t) {
+      if (debut === null) debut = t;
+      var p = Math.min(1, Math.max(0, (t - debut) / DUREE));
+      dessiner(p);
+      raf = p < 1 ? requestAnimationFrame(pas) : 0;
+      if (p >= 1 && !survolActuel) finir();
+    }
+
+    /* vrai changement de mise en page : taille du bloc fixée, marge intérieure autour de l'image */
+    function poser(survol, mv) {
+      if (survol) {
+        /* taille exacte au repos (transformation déjà remise à zéro ; la valeur calculée du navigateur est arrondie) */
+        var rb = bloc.getBoundingClientRect();
+        gB = garder(bloc); bx = MARGE; by = mv;
+        bloc.style.flex = 'none'; bloc.style.width = rb.width + 'px'; bloc.style.height = rb.height + 'px';
+        /* éléments placés en absolu dans le bloc (images des cartes de projets et des caribous, bouton « + » des crédits) :
+           mesurés avant la marge intérieure, puis replacés dans l'image réduite. Un élément qui couvre tout le bloc
+           est réduit de la marge ; les autres gardent leur taille et restent à la même place relative (coin, bord). */
+        gI = [];
+        /* mesures exactes (au centième de pixel ; clientWidth et offsetLeft sont arrondis au pixel) */
+        var Wp = rb.width, Hp = rb.height, abs = [];
+        Array.prototype.forEach.call(bloc.children, function (c) {
+          var s = getComputedStyle(c);
+          if (s.position !== 'absolute') return;
+          var w = parseFloat(s.width) + parseFloat(s.paddingLeft) + parseFloat(s.paddingRight) + parseFloat(s.borderLeftWidth) + parseFloat(s.borderRightWidth),
+              h = parseFloat(s.height) + parseFloat(s.paddingTop) + parseFloat(s.paddingBottom) + parseFloat(s.borderTopWidth) + parseFloat(s.borderBottomWidth);
+          abs.push([c, parseFloat(s.left) || 0, parseFloat(s.top) || 0, w, h]);
+        });
+        bloc.style.padding = by + 'px ' + bx + 'px';
+        bloc.style.backgroundClip = 'content-box';   /* fond du bloc seulement derrière l'image (la page peut le redéfinir) */
+        var ombre = getComputedStyle(bloc).boxShadow;  /* ombre portée : elle suit l'image (étalement réduit de la marge) */
+        if (ombre && ombre !== 'none') bloc.style.boxShadow = ombre.replace(/(-?[\d.]+px) (-?[\d.]+px) (-?[\d.]+px)( (-?[\d.]+)px)?/g,
+          function (x, a, b, c, d, e) { return a + ' ' + b + ' ' + c + ' ' + ((parseFloat(e) || 0) - MARGE) + 'px'; });
+        abs.forEach(function (x) {
+          var c = x[0], L = x[1], T = x[2], w = x[3], h = x[4], s = getComputedStyle(c);
+          gI.push([c, garder(c)]);
+          var pleinX = w >= Wp - 1, pleinY = h >= Hp - 1;
+          var nw = pleinX ? Wp - 2 * bx : w, nh = pleinY ? Hp - 2 * by : h;
+          var nl = pleinX ? bx : bx + (Wp - w > 0 ? L * (Wp - 2 * bx - w) / (Wp - w) : 0);
+          var nt = pleinY ? by : by + (Hp - h > 0 ? T * (Hp - 2 * by - h) / (Hp - h) : 0);
+          /* largeur et hauteur en px de la boîte de contenu (ou de bordure, selon box-sizing) */
+          var dw = s.boxSizing === 'border-box' ? 0 : w - parseFloat(s.width), dh = s.boxSizing === 'border-box' ? 0 : h - parseFloat(s.height);
+          /* un élément qui couvre le bloc est réduit de la marge ; un petit élément (bouton « + » des crédits) garde sa
+             taille libre (il doit pouvoir s'ouvrir) et reste accroché au bord le plus proche, à la même place relative */
+          if (pleinX) { c.style.left = nl + 'px'; c.style.right = 'auto'; c.style.width = (nw - dw) + 'px'; }
+          else if (L <= Wp - L - w) { c.style.left = nl + 'px'; c.style.right = 'auto'; }
+          else { c.style.right = (Wp - nl - w) + 'px'; c.style.left = 'auto'; }
+          if (pleinY) { c.style.top = nt + 'px'; c.style.bottom = 'auto'; c.style.height = (nh - dh) + 'px'; }
+          else if (T <= Hp - T - h) { c.style.top = nt + 'px'; c.style.bottom = 'auto'; }
+          else { c.style.bottom = (Hp - nt - h) + 'px'; c.style.top = 'auto'; }
+        });
+        if (legende) {
+          var sl = getComputedStyle(legende);
+          gL = garder(legende);
+          if (sl.position === 'static') legende.style.position = 'relative';
+          legende.style.left = ((parseFloat(sl.left) || 0) + MARGE) + 'px';
+          legende.style.top = ((parseFloat(sl.top) || 0) - mv) + 'px';
+        }
+      } else {
+        if (gB) rendre(bloc, gB); if (legende && gL) rendre(legende, gL);
+        gI.forEach(function (x) { rendre(x[0], x[1]); });
+        gB = gL = null; gI = []; bx = by = 0;
+      }
+    }
+
+    return function changer(survol) {
+      if (survolActuel === survol) return;
+      survolActuel = survol;
+      /* marge du haut et du bas proportionnelle au format du bloc image (taille au repos) */
+      var sb = getComputedStyle(bloc);
+      var mv = survol ? MARGE * parseFloat(sb.height) / parseFloat(sb.width) : 0;
+      /* transitions de la page coupées pendant le mouvement (sauf les fondus) */
+      bloc.style.transition = sansTransform(bloc);
+      if (legende) legende.style.transition = sansTransform(legende);
+      /* 1. mesure « avant » */
+      var avant = els.map(function (el) { return el === bloc ? mesurerImage(el) : mesurer(el); });
+      /* 2. remise à zéro, puis vrai changement de mise en page */
+      els.forEach(function (el) { el.style.translate = el.style.scale = 'none'; });
+      poser(survol, mv);
+      /* 3. mesure « après » et écart */
+      var apres = els.map(function (el) { return el === bloc ? mesurerImage(el) : mesurer(el); });
+      deltas = els.map(function (el, i) {
+        var a = avant[i], b = apres[i];
+        if (el !== bloc) {
+          /* légende : déplacement de son coin haut gauche ; sa réduction (k) est animée à part */
+          return { sx: 1, sy: 1, tx: seuilT(a.l - b.l), ty: seuilT(a.t - b.t), w: b.w, h: b.h };
+        }
+        return { sx: seuilS(a.w / b.w), sy: seuilS(a.h / b.h),
+                 tx: seuilT(a.cx - b.cx), ty: seuilT(a.cy - b.cy), w: b.w, h: b.h };
+      });
+      /* coins et légende : de la valeur actuelle vers la cible */
+      r0 = r; r1 = survol ? R_SURVOL : R_REPOS;
+      k0 = k; k1 = survol ? apres[0].w / (apres[0].w + 2 * MARGE) : 1;
+      /* 4. première image dessinée tout de suite, avant l'affichage : aucun saut visible */
+      dessiner(0);
+      debut = null;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(pas);
+    };
+  }
+
+  /* survol : délégué au document (les images des bandeaux et de la Démarche sont écrites par des scripts) */
+  var effets = new WeakMap();
+  function trouver(t) {
+    for (var i = 0; i < CIBLES.length; i++) {
+      var c = CIBLES[i], z = t.closest && t.closest(c.carte || c.bloc);
+      if (!z) continue;
+      var bloc = z.matches(c.bloc) ? z : z.querySelector(c.bloc);
+      if (!bloc) continue;
+      var carte = c.carte ? bloc.closest(c.carte) : bloc;
+      var legende = c.legende && carte ? carte.querySelector(c.legende) : null;
+      if (!effets.has(bloc)) effets.set(bloc, effet(bloc, legende));
+      return { zone: z, changer: effets.get(bloc) };
+    }
+    return null;
+  }
+  document.addEventListener('pointerover', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var x = trouver(e.target);
+    if (x && !(e.relatedTarget && x.zone.contains(e.relatedTarget))) x.changer(true);
+  });
+  document.addEventListener('pointerout', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var x = trouver(e.target);
+    if (x && !(e.relatedTarget && x.zone.contains(e.relatedTarget))) x.changer(false);
+  });
+})();
+</script>
+<script>JKR.taille(); addEventListener('load',function(){ JKR.taille(); }); (function(){ var t; addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(function(){ JKR.taille(); },200); }); })();</script>
 </body></html>

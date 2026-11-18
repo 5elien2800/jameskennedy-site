@@ -1,7 +1,32 @@
 <!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>Ponts · James Kennedy</title><meta name="description" content=""><link rel="alternate" hreflang="en" href="https://jameskennedy.ca/en/projects/collaboration/ponts/"><link rel="alternate" hreflang="fr" href="https://jameskennedy.ca/fr/projets/collaboration/ponts/"><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style><link rel="preload" as="image" href="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-2019.jpg" fetchpriority="high">
 <style>/* corrections du 14 novembre (James) */
-.proj .pic,.proj .pic img,.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
+.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
+.fiche-livre{margin:clamp(24px,3vw,40px) 0 0}
+.fiche-couv{display:block;width:clamp(150px,16vw,230px)}
+.fiche-couv img{display:block;width:100%;height:auto;box-shadow:0 1px 2px rgba(15,15,15,.08),0 8px 24px rgba(15,15,15,.12);cursor:zoom-in}
+.fiche-livre figcaption{margin-top:clamp(18px,2vw,24px)}
+.fiche-note{margin:14px 0 0;font-family:var(--f-display);font-size:17px;letter-spacing:-.01em;line-height:1.35}
+/* images pleine largeur : pas de loupe (point 15) */
+:is(.hero-img img){cursor:auto!important}
+/* effet de rétrécissement au survol (outils/retrecissement.mjs) */
+:is(.fiche-couv){border-radius:2px;background-clip:content-box;transform-origin:50% 50% 0}
+:is(.fiche-couv) img{border-radius:var(--retr-r,2px)}
+@media (hover:hover) and (pointer:fine){:is(.fiche-couv){will-change:transform}}
 </style>
+<script>/* copies réduites : srcset des images écrites par les scripts (JKR.s), et « sizes » réglé sur la largeur affichée */
+window.JKR={m:{},
+  s:function(u){ var r=decodeURI(u).replace(/^\/content\/images\//,''), x=this.m[r]; if(!x) return '';
+    var p=r.lastIndexOf('.'), b=r.slice(0,p), e=/\.webp$/i.test(r)?'.jpg':r.slice(p);
+    return x[2].map(function(l){ return encodeURI('/content/images-reduites/'+b+'-'+l+'w'+e)+' '+l+'w'; }).concat(encodeURI('/content/images/'+r)+' '+x[0]+'w').join(', '); },
+  /* bandeau : hauteur clamp(192px,20vw,280px), largeur = hauteur × format de l'image */
+  bandeau:function(u){ var r=decodeURI(u).replace(/^\/content\/images\//,''), x=this.m[r], s=this.s(u); if(!s) return ''; var f=x[0]/x[1];
+    return ' srcset="'+s+'" sizes="(max-width:960px) '+Math.ceil(192*f)+'px, (max-width:1400px) '+(20*f).toFixed(2)+'vw, '+Math.ceil(280*f)+'px" style="aspect-ratio:'+x[0]+' / '+x[1]+'"'; },
+  /* format de l'original (la hauteur d'une copie est arrondie au pixel) : seulement si la page ne fixe pas déjà le format */
+  taille:function(){ document.querySelectorAll('img[srcset]').forEach(function(im){ if(im.closest('.reel')) return;
+    if(im.dataset.r && !im.style.aspectRatio && /^auto/.test(getComputedStyle(im).aspectRatio)) im.style.aspectRatio=im.dataset.r;
+    var w=im.offsetWidth; if(w>0) im.sizes=Math.ceil(w)+'px'; }); }
+};
+</script>
 </head><body>
 <style>
 /* Fiche Hôtel Embassy : même système que la fiche Altana. */
@@ -131,15 +156,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .ask p{margin:0;font-size:clamp(17px,1.3vw,17px);line-height:1.42;letter-spacing:-.015em;max-width:34em}
 .ask .row{display:flex;gap:14px;flex-wrap:wrap;align-items:center}
 
-/* projets précédent / suivant */
-.pn{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(16px,3vw,40px);border-top:1.5px solid var(--ink);padding-block:22px clamp(40px,5vw,72px)}
-.pn a{display:grid;gap:8px;align-content:start}
-.pn .t{font-weight:500;font-size:clamp(28px,3.6vw,43px);letter-spacing:-.055em;line-height:.95;transition:transform .35s;display:block}
-.pn a.prev:hover .t{transform:translateX(-8px)}
-.pn a.nxt{text-align:right;justify-items:end}
-.pn a.nxt:hover .t{transform:translateX(8px)}
-@media (max-width:620px){.pn{grid-template-columns:minmax(0,1fr)}.pn a.nxt{text-align:left;justify-items:start}}
-
 /* visionneuse */
 .lb{position:fixed;inset:0;z-index:80;background:#0F0F0FE6;display:grid;place-items:center;padding:max(24px,env(safe-area-inset-top,0px)) max(24px,env(safe-area-inset-right,0px)) max(24px,env(safe-area-inset-bottom,0px)) max(24px,env(safe-area-inset-left,0px))}
 .lb[hidden]{display:none}
@@ -156,20 +172,8 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .dark .full{margin:0 0 clamp(14px,2vw,28px);display:grid;gap:10px}
 .dark .full img{width:100%;height:auto;cursor:zoom-in}
 .dark .full figcaption{color:var(--on-2)}
-.pn.solo{grid-template-columns:minmax(0,1fr)}
 
 /* ---------- navigation entre projets (commune aux fiches) ---------- */
-.pnav{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(12px,3vw,40px);border-top:1.5px solid var(--ink);border-bottom:1px solid color-mix(in srgb,var(--mute) 30%,transparent);padding-block:clamp(18px,2.4vw,28px);margin-bottom:clamp(28px,4vw,48px);touch-action:pan-y}
-.pnav a{display:flex;align-items:center;gap:clamp(8px,1.4vw,18px);min-width:0}
-.pnav .nx{justify-content:flex-end;text-align:right}
-.pnav img{width:clamp(52px,8vw,112px);aspect-ratio:4/3;object-fit:cover;flex:none;display:block}
-.pnav .tx{display:grid;gap:5px;min-width:0}
-.pnav .tx .mono{font-size:11px;white-space:nowrap}
-.pnav .t{font-weight:500;font-size:clamp(16px,2.4vw,29px);letter-spacing:-.04em;line-height:1;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-.pnav .ar{font-size:clamp(18px,2vw,24px);flex:none;transition:transform .3s}
-.pnav .pv:hover .ar{transform:translateX(-5px)}
-.pnav .nx:hover .ar{transform:translateX(5px)}
-@media (max-width:420px){.pnav .tx .mono{font-size:10px;letter-spacing:.04em}.pnav a{gap:7px}}
 
 /* texte d'intention : les mots s'allument au défilement, comme sur l'accueil */
 .rv .w{opacity:.22;transition:opacity .35s}
@@ -187,8 +191,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .icons a:hover,.icons a:focus-visible{color:var(--paper);background-color:var(--ink);border-color:var(--ink);transform:scale(1.12)}
 .rvl{opacity:0;transform:translateY(32px);transition:opacity 1.6s ease,transform 2s cubic-bezier(.16,.84,.24,1)}
 .rvl.in{opacity:1;transform:none}
-@media (hover:hover){main img:not(.reel img):not(.pnav img){transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
-main .fiche-l img:hover{transform:scale(.985);border-radius:4px}}
 
 /* ===== fiche E : formulaire collaborons ===== */
 :root{--dot:#FAFAF8}
@@ -226,11 +228,7 @@ main .fiche-l img:hover{transform:scale(.985);border-radius:4px}}
 .info.solo .txt p.big{max-width:30em}
 .fiche{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.15fr);gap:clamp(28px,6vw,110px);padding-block:clamp(60px,8vw,120px) 0;align-items:start}
 @media (max-width:860px){.fiche{grid-template-columns:minmax(0,1fr);gap:18px}}
-.pnav{border:0;margin-top:clamp(48px,6vw,96px);padding-block:0;gap:clamp(10px,1.6vw,20px)}
-.pnav a{background:var(--paper-2);padding:clamp(14px,1.8vw,26px);transition:background .3s}
-.pnav a:hover{background:#FAFAF8}
-.pnav img{width:clamp(72px,11vw,168px);transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
-@media (hover:hover){.pnav a:hover img{transform:scale(.97);border-radius:4px}}
+
 .contact{margin-top:clamp(80px,10vw,150px)}
 
 /* ===== Ponts ===== */
@@ -267,8 +265,6 @@ main .fiche-l img:hover{transform:scale(.985);border-radius:4px}}
 @media (max-width:760px){.expo{grid-template-columns:1fr 1fr}.expo .w{grid-column:1/-1}}
 .press{margin:0;line-height:1.45}
 .press-n{margin:8px 0 0}
-.fiche-cover{display:block;width:clamp(150px,16vw,230px);height:auto;margin-top:clamp(24px,3vw,40px);box-shadow:0 1px 2px rgba(15,15,15,.08),0 8px 24px rgba(15,15,15,.12)}
-@media (max-width:860px){.fiche-cover{display:none}}
 .nv{display:flex;flex-direction:column}
 .nv-t{flex:1;display:flex;flex-direction:column;align-items:flex-start}
 .nv-t .pt{margin-bottom:16px}
@@ -322,15 +318,8 @@ main,main>section{overflow-x:clip}
 .info.intro1{padding-top:clamp(32px,3.4vw,48px);padding-bottom:0}
 
 /* acheter le livre */
-.buy{padding-block:clamp(60px,8vw,120px) 0}
-.buy-in{display:grid;grid-template-columns:auto minmax(0,1fr);gap:clamp(28px,5vw,80px);align-items:center;background:var(--paper-2);padding:clamp(24px,4vw,56px)}
-.buy-cover{display:block;width:clamp(140px,16vw,220px);height:auto;box-shadow:0 1px 2px rgba(15,15,15,.08),0 8px 24px rgba(15,15,15,.12)}
-.buy-t .lab{margin:0 0 18px}
 .buy-title{margin:0;font-size:clamp(28px,3.6vw,43px);font-weight:500;letter-spacing:-.04em;line-height:1}
 .buy-meta{margin:10px 0 0;font-size:12px;letter-spacing:.06em;text-transform:uppercase}
-.buy-price{margin:clamp(18px,2vw,28px) 0 clamp(18px,2vw,26px);font-size:clamp(22px,2.3vw,28px);letter-spacing:-.02em}
-@media (max-width:620px){.buy-in{grid-template-columns:minmax(0,1fr)}.buy-cover{width:150px}}
-.buy-cta .arr svg{width:11px;height:11px}
 
 /* ===== menu téléphone et tablette (≤ 980 px) : panneau sous la barre, la page descend dessous ===== */
 @media (max-width:980px){
@@ -376,7 +365,7 @@ main,main>section{overflow-x:clip}
   </div>
 </header>
 
-<script>/* langues : textes tenus par les scripts, et adresses des pages (changement de langue sur place) */window.JKT=Object.assign({"fr":["fermer","Achat du livre Ponts","Indiquez une adresse courriel valide.","Indiquez votre nom.","Œuvre agrandie","écouter","Les œuvres arrivent bientôt en ligne. D'ici là, écrivez-moi pour toute question ou pour acquérir une œuvre.","M'écrire →","Fermer ×","Œuvres"],"en":["close","Purchase of the book Ponts","Please enter a valid email address.","Please enter your name.","Enlarged artwork","listen","Artworks will be available online soon. In the meantime, feel free to get in touch with any questions or to inquire about purchasing a piece.","Get in touch →","Close ×","Works"],"adresses":{"fr":["/404.html","/fr/","/fr/projets/","/fr/a-propos/","/fr/projets/art-public/promenade-kawawachikamach/","/fr/projets/art-public/memoire/","/fr/projets/commandes-privees/altana-technologies/","/fr/projets/commandes-privees/hotel-embassy/","/fr/projets/collaboration/ponts/","/fr/confidentialite/","/fr/oeuvres/"],"en":["/en/404.html","/en/","/en/projects/","/en/about/","/en/projects/public-art/kawawachikamach-boardwalk/","/en/projects/public-art/memoire/","/en/projects/private-commissions/altana-technologies/","/en/projects/private-commissions/embassy-hotel/","/en/projects/collaboration/ponts/","/en/privacy/","/en/works/"]}},{t(i){return this[document.documentElement.lang==="en"?"en":"fr"][i]}});</script>
+<script>/* langues : textes tenus par les scripts, et adresses des pages (changement de langue sur place) */window.JKT=Object.assign({"fr":["fermer","Indiquez une adresse courriel valide.","Indiquez votre nom.","Œuvre agrandie","écouter","Les œuvres arrivent bientôt en ligne. D'ici là, écrivez-moi pour toute question ou pour acquérir une œuvre.","M'écrire →","Fermer ×","Œuvres"],"en":["close","Please enter a valid email address.","Please enter your name.","Enlarged artwork","listen","Artworks will be available online soon. In the meantime, feel free to get in touch with any questions or to inquire about purchasing a piece.","Get in touch →","Close ×","Works"],"adresses":{"fr":["/404.html","/fr/","/fr/projets/","/fr/a-propos/","/fr/projets/art-public/promenade-kawawachikamach/","/fr/projets/art-public/memoire/","/fr/projets/commandes-privees/altana-technologies/","/fr/projets/commandes-privees/hotel-embassy/","/fr/projets/collaboration/ponts/","/fr/confidentialite/","/fr/oeuvres/"],"en":["/en/404.html","/en/","/en/projects/","/en/about/","/en/projects/public-art/kawawachikamach-boardwalk/","/en/projects/public-art/memoire/","/en/projects/private-commissions/altana-technologies/","/en/projects/private-commissions/embassy-hotel/","/en/projects/collaboration/ponts/","/en/privacy/","/en/works/"]}},{t(i){return this[document.documentElement.lang==="en"?"en":"fr"][i]}});</script>
 <script src="/langue.js"></script>
 <script>/* apparitions : activées avant l'affichage pour éviter un flash */(function(){if('IntersectionObserver' in window&&!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('apjs')})();</script>
 <main>
@@ -412,7 +401,7 @@ main,main>section{overflow-x:clip}
     </div>
     <div class="nvs">
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-tristan-malavoy/3-dharma-love.mp3">
-        <figure><img data-i18n="k16" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-golden-gate-bridge-2436-2018-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Golden Gate Bridge, San Francisco" loading="lazy"></figure>
+        <figure><img data-i18n="k16" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-golden-gate-bridge-61x91cm-24x36in-no1-2018-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-golden-gate-bridge-61x91cm-24x36in-no1-2018-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-golden-gate-bridge-61x91cm-24x36in-no1-2018-1200w.jpg 1200w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-golden-gate-bridge-61x91cm-24x36in-no1-2018.jpg 1600w" sizes="100vw" data-r="1600 / 1091" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-golden-gate-bridge-61x91cm-24x36in-no1-2018.jpg" alt="James Kennedy steel artwork depicting the Golden Gate Bridge, San Francisco" loading="lazy"></figure>
         <div class="nv-t"><h3><i>Dharma love</i></h3><p class="au">Marie-Eve Bourassa</p>
         <p data-i18n="k17" class="mono pt">Golden Gate Bridge · San Francisco</p>
         <button data-i18n="k18" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from Dharma love, read by Tristan Malavoy"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k19" class="lbl">listen</span><span class="tm">0:27</span></button>
@@ -420,7 +409,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-tristan-malavoy/2-piegee.mp3">
-        <figure><img data-i18n="k21" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-brooklyn-bridge-i-2436-3-2017-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Brooklyn Bridge, New York" loading="lazy"></figure>
+        <figure><img data-i18n="k21" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-brooklyn-bridge-61x91cm-24x36in-no3-2017-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-brooklyn-bridge-61x91cm-24x36in-no3-2017-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-brooklyn-bridge-61x91cm-24x36in-no3-2017-1200w.jpg 1200w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-brooklyn-bridge-61x91cm-24x36in-no3-2017.jpg 1600w" sizes="100vw" data-r="1600 / 1090" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-brooklyn-bridge-61x91cm-24x36in-no3-2017.jpg" alt="James Kennedy steel artwork depicting the Brooklyn Bridge, New York" loading="lazy"></figure>
         <div class="nv-t"><h3><i>Piégée</i></h3><p class="au">Claudine Bourbonnais</p>
         <p data-i18n="k22" class="mono pt">Brooklyn Bridge · New York</p>
         <button data-i18n="k23" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from Piégée, read by Tristan Malavoy"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k24" class="lbl">listen</span><span class="tm">0:35</span></button>
@@ -428,7 +417,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-chrystine-brouillet/4-la-faucille-du-bacille.mp3">
-        <figure><img data-i18n="k26" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-ii-1844-5-2017-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Confederation Bridge, Prince Edward Island" loading="lazy"></figure>
+        <figure><img data-i18n="k26" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-II-46x112cm-18x44in-no5-2017-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-II-46x112cm-18x44in-no5-2017-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-II-46x112cm-18x44in-no5-2017-1200w.jpg 1200w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-II-46x112cm-18x44in-no5-2017.jpg 2000w" sizes="100vw" data-r="2000 / 865" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-II-46x112cm-18x44in-no5-2017.jpg" alt="James Kennedy steel artwork depicting the Confederation Bridge, Prince Edward Island" loading="lazy"></figure>
         <div class="nv-t"><h3><i>La faucille du bacille</i></h3><p class="au">Benoît Bouthillette</p>
         <p data-i18n="k27" class="mono pt">Confederation Bridge · Prince Edward Island</p>
         <button data-i18n="k28" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from La faucille du bacille, read by Chrystine Brouillet"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k29" class="lbl">listen</span><span class="tm">0:33</span></button>
@@ -436,7 +425,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-tristan-malavoy/4-retrouvaille.mp3">
-        <figure><img data-i18n="k31" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-tracel-de-cap-rouge-2436-1-2018-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Cap-Rouge railway trestle, Québec City" loading="lazy"></figure>
+        <figure><img data-i18n="k31" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-tracel-de-cap-rouge-61x91cm-24x36in-no1-2018-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-tracel-de-cap-rouge-61x91cm-24x36in-no1-2018-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-tracel-de-cap-rouge-61x91cm-24x36in-no1-2018-1200w.jpg 1200w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-tracel-de-cap-rouge-61x91cm-24x36in-no1-2018.jpg 1600w" sizes="100vw" data-r="1600 / 1091" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-tracel-de-cap-rouge-61x91cm-24x36in-no1-2018.jpg" alt="James Kennedy steel artwork depicting the Cap-Rouge railway trestle, Québec City" loading="lazy"></figure>
         <div class="nv-t"><h3><i>Retrouvailles</i></h3><p class="au">Chrystine Brouillet</p>
         <p data-i18n="k32" class="mono pt">Cap-Rouge railway trestle · Québec City</p>
         <button data-i18n="k33" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from Retrouvailles, read by Tristan Malavoy"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k34" class="lbl">listen</span><span class="tm">0:38</span></button>
@@ -444,7 +433,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-chrystine-brouillet/7-batir-des-ponts.mp3">
-        <figure><img data-i18n="k36" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-manhattan-bridge-3272-3-2017-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Manhattan Bridge, New York" loading="lazy"></figure>
+        <figure><img data-i18n="k36" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-manhattan-bridge-81x183cm-32x72in-no3-2017-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-manhattan-bridge-81x183cm-32x72in-no3-2017-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-manhattan-bridge-81x183cm-32x72in-no3-2017-1200w.jpg 1200w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-manhattan-bridge-81x183cm-32x72in-no3-2017-1600w.jpg 1600w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-manhattan-bridge-81x183cm-32x72in-no3-2017.jpg 2000w" sizes="100vw" data-r="2000 / 931" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-manhattan-bridge-81x183cm-32x72in-no3-2017.jpg" alt="James Kennedy steel artwork depicting the Manhattan Bridge, New York" loading="lazy"></figure>
         <div class="nv-t"><h3><i>Bâtir des ponts</i></h3><p class="au">R. J. Ellory</p>
         <p data-i18n="k37" class="mono pt">Manhattan Bridge · New York</p>
         <button data-i18n="k38" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from Bâtir des ponts, read by Chrystine Brouillet"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k39" class="lbl">listen</span><span class="tm">0:23</span></button>
@@ -452,7 +441,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-chrystine-brouillet/6-acrophobie.mp3">
-        <figure><img data-i18n="k41" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-macdonald-bridge-2468-5-2017-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Macdonald Bridge, Halifax" loading="lazy"></figure>
+        <figure><img data-i18n="k41" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-macdonald-bridge-61x173cm-24x68in-no5-2017-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-macdonald-bridge-61x173cm-24x68in-no5-2017-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-macdonald-bridge-61x173cm-24x68in-no5-2017-1200w.jpg 1200w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-macdonald-bridge-61x173cm-24x68in-no5-2017-1600w.jpg 1600w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-macdonald-bridge-61x173cm-24x68in-no5-2017.jpg 2000w" sizes="100vw" data-r="2000 / 758" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-macdonald-bridge-61x173cm-24x68in-no5-2017.jpg" alt="James Kennedy steel artwork depicting the Macdonald Bridge, Halifax" loading="lazy"></figure>
         <div class="nv-t"><h3><i>Acrophobie</i></h3><p class="au">Claude A. Garneau</p>
         <p data-i18n="k42" class="mono pt">Macdonald Bridge · Halifax</p>
         <button data-i18n="k43" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from Acrophobie, read by Chrystine Brouillet"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k44" class="lbl">listen</span><span class="tm">0:27</span></button>
@@ -460,7 +449,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-chrystine-brouillet/2-bien-parti-pour-mal-finir.mp3">
-        <figure><img data-i18n="k46" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-jacques-cartier-3285-7-2018-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Jacques Cartier Bridge, Montréal" loading="lazy"></figure>
+        <figure><img data-i18n="k46" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-jacques-cartier-81x216cm-32x85-no7-2018-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-jacques-cartier-81x216cm-32x85-no7-2018-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-jacques-cartier-81x216cm-32x85-no7-2018-1200w.jpg 1200w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-jacques-cartier-81x216cm-32x85-no7-2018.jpg 2000w" sizes="100vw" data-r="2000 / 804" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-jacques-cartier-81x216cm-32x85-no7-2018.jpg" alt="James Kennedy steel artwork depicting the Jacques Cartier Bridge, Montréal" loading="lazy"></figure>
         <div class="nv-t"><h3><i>Bien parti pour mal finir</i></h3><p class="au">David Goudreault</p>
         <p data-i18n="k47" class="mono pt">Jacques Cartier Bridge · Montréal</p>
         <button data-i18n="k48" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from Bien parti pour mal finir, read by Chrystine Brouillet"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k49" class="lbl">listen</span><span class="tm">0:26</span></button>
@@ -468,7 +457,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-chrystine-brouillet/5-a-l-aurore-ou-au-crepuscule-cette-odeur.mp3">
-        <figure><img data-i18n="k51" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-queen-street-bridge-5232-1-2016-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Queen Street Bridge, Toronto" loading="lazy"></figure>
+        <figure><img data-i18n="k51" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-queen-street-bridge-81x132cm-32x52-no1-2016-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-queen-street-bridge-81x132cm-32x52-no1-2016-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-queen-street-bridge-81x132cm-32x52-no1-2016-1200w.jpg 1200w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-queen-street-bridge-81x132cm-32x52-no1-2016.jpg 1800w" sizes="100vw" data-r="1800 / 1138" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-queen-street-bridge-81x132cm-32x52-no1-2016.jpg" alt="James Kennedy steel artwork depicting the Queen Street Bridge, Toronto" loading="lazy"></figure>
         <div class="nv-t"><h3><i>À l&#x27;aurore ou au crépuscule, cette odeur</i></h3><p class="au">François Lévesque</p>
         <p data-i18n="k52" class="mono pt">Queen Street Bridge · Toronto</p>
         <button data-i18n="k53" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from À l'aurore ou au crépuscule, cette odeur, read by Chrystine Brouillet"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k54" class="lbl">listen</span><span class="tm">0:27</span></button>
@@ -476,7 +465,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-chrystine-brouillet/1-1959.mp3">
-        <figure><img data-i18n="k56" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-under-williamsburg-bridge-3252-1-2016-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Williamsburg Bridge, New York" loading="lazy"></figure>
+        <figure><img data-i18n="k56" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-under-williamsburg-bridge-81x132cm-32x52in-no1-2016-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-under-williamsburg-bridge-81x132cm-32x52in-no1-2016-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-under-williamsburg-bridge-81x132cm-32x52in-no1-2016-1200w.jpg 1200w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-under-williamsburg-bridge-81x132cm-32x52in-no1-2016.jpg 2000w" sizes="100vw" data-r="2000 / 1267" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-under-williamsburg-bridge-81x132cm-32x52in-no1-2016.jpg" alt="James Kennedy steel artwork depicting the Williamsburg Bridge, New York" loading="lazy"></figure>
         <div class="nv-t"><h3><i>1959</i></h3><p class="au">Tristan Malavoy</p>
         <p data-i18n="k57" class="mono pt">Williamsburg Bridge · New York</p>
         <button data-i18n="k58" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from 1959, read by Chrystine Brouillet"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k59" class="lbl">listen</span><span class="tm">0:34</span></button>
@@ -484,7 +473,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-chrystine-brouillet/3-des-ricochets-sur-l-eau.mp3">
-        <figure><img data-i18n="k61" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-george-washington-bridge-5232-3-2018-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the George Washington Bridge, New York" loading="lazy"></figure>
+        <figure><img data-i18n="k61" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-george-washington-bridge-132x81cm-52x32in-no3-2018-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-george-washington-bridge-132x81cm-52x32in-no3-2018-800w.jpg 800w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-george-washington-bridge-132x81cm-52x32in-no3-2018.jpg 1270w" sizes="100vw" data-r="1270 / 2000" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-george-washington-bridge-132x81cm-52x32in-no3-2018.jpg" alt="James Kennedy steel artwork depicting the George Washington Bridge, New York" loading="lazy"></figure>
         <div class="nv-t"><h3><i>Des ricochets sur l&#x27;eau</i></h3><p class="au">Martin Michaud</p>
         <p data-i18n="k62" class="mono pt">George Washington Bridge · New York</p>
         <button data-i18n="k63" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from Des ricochets sur l'eau, read by Chrystine Brouillet"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k64" class="lbl">listen</span><span class="tm">0:32</span></button>
@@ -492,7 +481,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-tristan-malavoy/1-james-kennedy-vous-et-moi.mp3">
-        <figure><img data-i18n="k66" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-bloor-viaduct-3252-3-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Bloor Viaduct, Toronto" loading="lazy"></figure>
+        <figure><img data-i18n="k66" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-bloor-viaduct-81x132cm-32x52in-no3-2018-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-bloor-viaduct-81x132cm-32x52in-no3-2018-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-bloor-viaduct-81x132cm-32x52in-no3-2018-1200w.jpg 1200w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-bloor-viaduct-81x132cm-32x52in-no3-2018.jpg 1600w" sizes="100vw" data-r="1600 / 1012" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-bloor-viaduct-81x132cm-32x52in-no3-2018.jpg" alt="James Kennedy steel artwork depicting the Bloor Viaduct, Toronto" loading="lazy"></figure>
         <div class="nv-t"><h3><i>James Kennedy, vous et moi</i></h3><p class="au">Ariane Moffatt</p>
         <p class="mono pt">Bloor Viaduct · Toronto</p>
         <button data-i18n="k67" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from James Kennedy, vous et moi, read by Tristan Malavoy"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k68" class="lbl">listen</span><span class="tm">0:25</span></button>
@@ -500,7 +489,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-tristan-malavoy/6-northumberland-sous-la-neige.mp3">
-        <figure><img data-i18n="k70" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-i-2236-3-2017-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Confederation Bridge, Prince Edward Island" loading="lazy"></figure>
+        <figure><img data-i18n="k70" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-I-56x91cm-22x36in-no3-2017-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-I-56x91cm-22x36in-no3-2017-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-I-56x91cm-22x36in-no3-2017-1200w.jpg 1200w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-I-56x91cm-22x36in-no3-2017.jpg 1800w" sizes="100vw" data-r="1800 / 1130" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-de-la-confederation-I-56x91cm-22x36in-no3-2017.jpg" alt="James Kennedy steel artwork depicting the Confederation Bridge, Prince Edward Island" loading="lazy"></figure>
         <div class="nv-t"><h3><i>Northumberland sous la neige</i></h3><p class="au">Marie-Ève Sévigny</p>
         <p data-i18n="k71" class="mono pt">Confederation Bridge · Prince Edward Island</p>
         <button data-i18n="k72" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from Northumberland sous la neige, read by Tristan Malavoy"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k73" class="lbl">listen</span><span class="tm">0:33</span></button>
@@ -508,7 +497,7 @@ main,main>section{overflow-x:clip}
         <span class="bar" aria-hidden="true"><span></span></span></div>
       </article>
       <article class="nv" data-src="/content/images/projects/collaboration/ponts/extraits-sonores/mp3-james-kennedy-livre-ponts-extraits-sonores-lus-par-tristan-malavoy/5-mini-victoria.mp3">
-        <figure><img data-i18n="k75" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-victoria-3252-1-2014-bordure-blanche.jpg" alt="James Kennedy steel artwork depicting the Victoria Bridge, Montréal" loading="lazy"></figure>
+        <figure><img data-i18n="k75" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-victoria-81x132cm-32x52in-no1-2014-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-victoria-81x132cm-32x52in-no1-2014-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-victoria-81x132cm-32x52in-no1-2014-1200w.jpg 1200w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-victoria-81x132cm-32x52in-no1-2014.jpg 1800w" sizes="100vw" data-r="1800 / 1138" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-images-couleur-finales-pour-livre/james-kennedy-pont-victoria-81x132cm-32x52in-no1-2014.jpg" alt="James Kennedy steel artwork depicting the Victoria Bridge, Montréal" loading="lazy"></figure>
         <div class="nv-t"><h3><i>Mini Victoria</i></h3><p class="au">Johanne Seymour</p>
         <p data-i18n="k76" class="mono pt">Victoria Bridge · Montréal</p>
         <button data-i18n="k77" data-i18n-m="a" class="play mono" type="button" aria-label="Listen to the excerpt from Mini Victoria, read by Tristan Malavoy"><svg viewBox="0 0 10 10" aria-hidden="true"><path class="pl" d="M3 2l5 3-5 3z"/><path class="pa" d="M2.6 2h1.6v6H2.6zM5.8 2h1.6v6H5.8z"/></svg><span data-i18n="k78" class="lbl">listen</span><span class="tm">0:33</span></button>
@@ -519,77 +508,65 @@ main,main>section{overflow-x:clip}
   </section>
 
   <section data-i18n="k80" data-i18n-m="a" class="expo wrap" aria-label="Exhibition and launch">
-    <figure class="w"><img data-i18n="k81" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-exposition-ponts-fonderie-darling.jpg" alt="Artworks from the Bridges series exhibited at Fonderie Darling" loading="lazy"></figure>
-    <figure><img data-i18n="k82" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-2.jpg" alt="A visitor reading Ponts at the book launch" loading="lazy"></figure>
-    <figure><img data-i18n="k83" data-i18n-m="a" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-3.jpg" alt="Launch of Ponts, with readers among the artworks" loading="lazy"></figure>
+    <figure class="w"><img data-i18n="k81" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-exposition-ponts-fonderie-darling-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-exposition-ponts-fonderie-darling-800w.jpg 800w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-exposition-ponts-fonderie-darling-1200w.jpg 1200w, /content/images/projects/collaboration/ponts/james-kennedy-exposition-ponts-fonderie-darling.jpg 2000w" sizes="100vw" data-r="2000 / 1500" src="/content/images/projects/collaboration/ponts/james-kennedy-exposition-ponts-fonderie-darling.jpg" alt="Artworks from the Bridges series exhibited at Fonderie Darling" loading="lazy"></figure>
+    <figure><img data-i18n="k82" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-2-400w.jpg 400w, /content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-2-800w.jpg 800w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-2.jpg 1333w" sizes="100vw" data-r="1333 / 2000" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-2.jpg" alt="A visitor reading Ponts at the book launch" loading="lazy"></figure>
+    <figure><img data-i18n="k83" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-3-400w.jpg 400w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-3.jpg 900w" sizes="100vw" data-r="900 / 1200" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-lancement-3.jpg" alt="Launch of Ponts, with readers among the artworks" loading="lazy"></figure>
     <p data-i18n="k84" class="mono mute cap">Exhibition of thirteen artworks and book launch · Fonderie Darling, Montréal · 2020</p>
   </section>
 
   <section data-i18n="k85" data-i18n-m="a" class="fiche wrap" aria-label="Project details">
-    <div class="fiche-l"><h2 data-i18n="k86" class="mono mute lab">project details</h2></div>
+    <div class="fiche-l"><h2 data-i18n="k86" class="mono mute lab">project details</h2><figure class="fiche-livre"><span class="fiche-couv"><img data-i18n="k87" data-i18n-m="a" srcset="/content/images-reduites/projects/collaboration/ponts/james-kennedy-livre-ponts-couverture-400w.jpg 400w, /content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-couverture.webp 952w" sizes="100vw" data-r="952 / 1248" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-couverture.webp" width="952" height="1248" alt="Cover of Ponts, published by Éditions Druide" loading="lazy"></span><figcaption><p class="buy-title"><i>Ponts</i></p><p data-i18n="k88" class="mono mute buy-meta">Short stories · Éditions Druide · 248 pages · In French</p><p data-i18n="k89" class="fiche-note">to get a copy of the book, ask James</p></figcaption></figure></div>
       <dl class="spec mono">
-        <div><dt data-i18n="k87">book</dt><dd data-i18n="k88"><i>Ponts</i> · Short stories · 248 pages · In French</dd></div>
-        <div><dt data-i18n="k89">editor</dt><dd>Chrystine Brouillet</dd></div>
-        <div><dt data-i18n="k90">writers</dt><dd>Marie-Eve Bourassa, Claudine Bourbonnais, Benoît Bouthillette, Chrystine Brouillet, R. J. Ellory, Claude A. Garneau, David Goudreault, François Lévesque, Tristan Malavoy, Martin Michaud, Ariane Moffatt, Marie-Ève Sévigny, Johanne Seymour</dd></div>
-        <div><dt data-i18n="k91">artworks</dt><dd data-i18n="k92">13 steel artworks from James Kennedy's <i>Bridges</i> series</dd></div>
-        <div><dt data-i18n="k93">publisher</dt><dd data-i18n="k94">Éditions Druide · Reliefs collection</dd></div>
-        <div><dt data-i18n="k95">publication</dt><dd>2020</dd></div>
-        <div><dt data-i18n="k96">readings</dt><dd data-i18n="k97">Chrystine Brouillet and Tristan Malavoy</dd></div>
-        <div><dt data-i18n="k98">print media</dt><dd><p class="press">La Presse+ · Le Devoir · Le Soleil · Journal de Montréal · Journal de Québec · 24 heures · 7 Jours · La Semaine · Échos Vedettes · TV Hebdo · Coup de pouce · Clin d&#x27;œil · Les Libraires</p></dd></div>
-        <div><dt>radio</dt><dd><p data-i18n="k99" class="press">Le 15-18 and Pénélope (ICI Première) · 360 PM (ICI Première Mauricie) · Vivement le retour (ICI Première Estrie) · Aux quotidiens (Canal M)</p></dd></div>
-        <div><dt data-i18n="k100">television</dt><dd><p class="press">La Fabrique culturelle (Télé-Québec) · NVL (Noovo)</p></dd></div>
-        <div><dt data-i18n="k101">online</dt><dd><p class="press">La Bible urbaine · Eklectik Média · Les ArtsZé · Média des 2 rives</p></dd></div>
+        <div><dt data-i18n="k90">book</dt><dd data-i18n="k91"><i>Ponts</i> · Short stories · 248 pages · In French</dd></div>
+        <div><dt data-i18n="k92">editor</dt><dd>Chrystine Brouillet</dd></div>
+        <div><dt data-i18n="k93">writers</dt><dd>Marie-Eve Bourassa, Claudine Bourbonnais, Benoît Bouthillette, Chrystine Brouillet, R. J. Ellory, Claude A. Garneau, David Goudreault, François Lévesque, Tristan Malavoy, Martin Michaud, Ariane Moffatt, Marie-Ève Sévigny, Johanne Seymour</dd></div>
+        <div><dt data-i18n="k94">artworks</dt><dd data-i18n="k95">13 steel artworks from James Kennedy's <i>Bridges</i> series</dd></div>
+        <div><dt data-i18n="k96">publisher</dt><dd data-i18n="k97">Éditions Druide · Reliefs collection</dd></div>
+        <div><dt data-i18n="k98">publication</dt><dd>2020</dd></div>
+        <div><dt data-i18n="k99">readings</dt><dd data-i18n="k100">Chrystine Brouillet and Tristan Malavoy</dd></div>
+        <div><dt data-i18n="k101">print media</dt><dd><p class="press">La Presse+ · Le Devoir · Le Soleil · Journal de Montréal · Journal de Québec · 24 heures · 7 Jours · La Semaine · Échos Vedettes · TV Hebdo · Coup de pouce · Clin d&#x27;œil · Les Libraires</p></dd></div>
+        <div><dt>radio</dt><dd><p data-i18n="k102" class="press">Le 15-18 and Pénélope (ICI Première) · 360 PM (ICI Première Mauricie) · Vivement le retour (ICI Première Estrie) · Aux quotidiens (Canal M)</p></dd></div>
+        <div><dt data-i18n="k103">television</dt><dd><p class="press">La Fabrique culturelle (Télé-Québec) · NVL (Noovo)</p></dd></div>
+        <div><dt data-i18n="k104">online</dt><dd><p class="press">La Bible urbaine · Eklectik Média · Les ArtsZé · Média des 2 rives</p></dd></div>
       </dl>
   </section>
 
-  <section data-i18n="k102" data-i18n-m="a" class="buy wrap" aria-label="Buy the book">
-    <div class="buy-in">
-      <img data-i18n="k103" data-i18n-m="a" class="buy-cover" src="/content/images/projects/collaboration/ponts/james-kennedy-livre-ponts-couverture.webp" width="952" height="1248" alt="Cover of Ponts, published by Éditions Druide" loading="lazy">
-      <div class="buy-t">
-        <h2 data-i18n="k104" class="mono mute lab">buy the book</h2>
-        <p class="buy-title"><i>Ponts</i></p>
-        <p data-i18n="k105" class="mono mute buy-meta">Short stories · Éditions Druide · 248 pages · In French</p>
-        <p data-i18n="k106" class="buy-price">$24.95</p>
-        <a href="#contact" class="cta buy-cta" data-buy><span data-i18n="k107">Contact the artist</span> <span class="arr"><svg viewBox="0 0 10 10" aria-hidden="true"><path d="M5 1.8v6.4M2.4 5.6 5 8.2l2.6-2.6" fill="none" stroke="currentColor" stroke-width="1.35" stroke-linecap="round" stroke-linejoin="round"/></svg></span></a>
-      </div>
-    </div>
-  </section>
 
 
   <section class="contact wrap" id="contact">
   <canvas class="trame" aria-hidden="true"></canvas>
   <div>
-    <h2 data-i18n="k108" class="h2">beyond the artwork</h2>
+    <h2 data-i18n="k105" class="h2">beyond the artwork</h2>
     <div class="cgrid">
       <form class="form" id="form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate><input type="hidden" name="form-name" value="contact"><input type="hidden" name="page" value="/en/projects/collaboration/ponts/"><p hidden><input name="bot-field" tabindex="-1" autocomplete="off" aria-hidden="true"></p>
-        <p data-i18n="k109" class="intro">From books to exhibitions and collaborations, the artworks can take on new forms.<br>Contact me here or by <a class="mail" href="mailto:james@jameskennedy.ca" target="_blank" rel="noopener" title="james@jameskennedy.ca">email&nbsp;<svg class="a" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.6 2.5h3.9v3.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
-        <label data-i18n="k110" data-i18n-m="t" class="mono" for="f-objet">Subject of your inquiry
+        <p data-i18n="k106" class="intro">From books to exhibitions and collaborations, the artworks can take on new forms.<br>Contact me here or by <a class="mail" href="mailto:james@jameskennedy.ca" target="_blank" rel="noopener" title="james@jameskennedy.ca">email&nbsp;<svg class="a" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.6 2.5h3.9v3.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+        <label data-i18n="k107" data-i18n-m="t" class="mono" for="f-objet">Subject of your inquiry
           <select id="f-objet" name="objet">
-            <option data-i18n="k111" value="" selected>Select an option (optional)</option>
-            <option data-i18n="k112">Purchasing an artwork</option>
-            <option data-i18n="k113">Custom commission</option>
-            <option data-i18n="k114">Public art or architectural project</option>
-            <option data-i18n="k115">Exhibition or gallery representation</option>
-            <option data-i18n="k116">Studio visit</option>
-            <option data-i18n="k117">Purchase of the book Ponts</option>
-            <option data-i18n="k118">Other inquiry</option>
+            <option data-i18n="k108" value="" selected>Select an option (optional)</option>
+            <option data-i18n="k109">Purchasing an artwork</option>
+            <option data-i18n="k110">Custom commission</option>
+            <option data-i18n="k111">Public art or architectural project</option>
+            <option data-i18n="k112">Exhibition or gallery representation</option>
+            <option data-i18n="k113">Studio visit</option>
+            <option data-i18n="k114">Purchase of the book Ponts</option>
+            <option data-i18n="k115">Other inquiry</option>
           </select>
         </label>
         <div class="two">
-          <label data-i18n="k119" data-i18n-m="t" class="mono" for="f-nom">Name<input id="f-nom" name="nom" autocomplete="name"></label>
-          <label data-i18n="k120" data-i18n-m="t" class="mono" for="f-mail">Email<input id="f-mail" name="courriel" type="email" autocomplete="email"></label>
+          <label data-i18n="k116" data-i18n-m="t" class="mono" for="f-nom">Name<input id="f-nom" name="nom" autocomplete="name"></label>
+          <label data-i18n="k117" data-i18n-m="t" class="mono" for="f-mail">Email<input id="f-mail" name="courriel" type="email" autocomplete="email"></label>
         </div>
         <label class="mono" for="f-msg">Message<textarea id="f-msg" name="message"></textarea></label>
         <p class="err" id="err" aria-live="polite"></p>
-        <button data-i18n="k121" type="submit" class="send">Send <span class="arr">→</span></button>
-        <p data-i18n="k122" class="sent" id="sent" hidden>Thank you. Your message has been sent. I'll get back to you as soon as possible.</p>
+        <button data-i18n="k118" type="submit" class="send">Send <span class="arr">→</span></button>
+        <p data-i18n="k119" class="sent" id="sent" hidden>Thank you. Your message has been sent. I'll get back to you as soon as possible.</p>
       </form>
     </div>
   </div>
   <footer class="foot mono">
     <div>
-      <a data-i18n="k123" href="#" class="mute" data-up>Back to top ↑</a><br>
-      <a data-i18n="k124" href="/en/privacy/" class="legal">Privacy</a>
+      <a data-i18n="k120" href="#" class="mute" data-up>Back to top ↑</a><br>
+      <a data-i18n="k121" href="/en/privacy/" class="legal">Privacy</a>
     </div>
     <div class="r">
       <div class="icons">
@@ -602,7 +579,7 @@ main,main>section{overflow-x:clip}
   </section>
 </main>
 
-<div class="lb" id="lb" hidden><img id="lbImg" alt=""><button data-i18n="k125" type="button" class="mono" id="lbClose">Close ✕</button></div>
+<div class="lb" id="lb" hidden><img id="lbImg" alt=""><button data-i18n="k122" type="button" class="mono" id="lbClose">Close ✕</button></div>
 
 <script>
 /* la fiche s'ouvre toujours en haut de la page */
@@ -613,7 +590,7 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
   const lb=document.getElementById('lb'), li=document.getElementById('lbImg');
   const open=(src,alt)=>{li.src=src;li.alt=alt||'';lb.hidden=false};
   const close=()=>{lb.hidden=true;li.src=''};
-  document.querySelectorAll('.hero-img img,.det-grid img,.full img').forEach(im=>im.addEventListener('click',()=>open(im.src,im.alt)));
+  document.querySelectorAll('.det-grid img,.full img,.fiche-couv img').forEach(im=>im.addEventListener('click',()=>open(im.src,im.alt)));
   document.getElementById('lbClose').addEventListener('click',close);
   lb.addEventListener('click',close);
   addEventListener('keydown',e=>{if(e.key==='Escape')close()});
@@ -648,8 +625,8 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
   /* ---- réglages de la page ---- */
   const MAP=[  /* sélecteur, effet : tr trame · mk masque · up monte · l depuis la gauche · fl texte ligne par ligne */
     ['.head .h1','mk'],['.contact .h2','l'],
-    ['.head .hero-img','up plate'],['.nvs figure,.expo figure,.buy-cover,.pnav2','up'],
-    ['.head .crumb,.head .lead,.info .lab,.info .txt p:not(.big),.ec-head,.nv-t,.expo .cap,.fiche .lab,.spec,.buy-t,.form','fl'],
+    ['.head .hero-img','up plate'],['.nvs figure,.expo figure,.fiche-couv','up'],
+    ['.head .crumb,.head .lead,.info .lab,.info .txt p:not(.big),.ec-head,.nv-t,.expo .cap,.fiche .lab,.spec,.fiche-livre figcaption,.form','fl'],
     ['.info .txt p.big','fl'],
     ['.contact .trame','tr']
   ];
@@ -701,7 +678,13 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
   const go1=(el,d)=>{ if(el.classList.contains('on')) return; const n=el.matches('.fl')?lines(el):0;
     el.style.setProperty('--ap-d',d.toFixed(2)+'s'); el.classList.add('on');
     requestAnimationFrame(()=>{ const r=Math.max(pace,accel&&HEROS().includes(el)?rate:1); if(r>1) anims(el).forEach(a=>{ if(a.playbackRate<r) a.playbackRate=r; }); });
-    el._t=setTimeout(()=>el.classList.add('done'),(END+1000+(d+n*gap(el))*1000)/Math.max(1,pace)); };
+    /* fin de l'apparition : à la fin réelle des mouvements de l'élément (outils/apparition.mjs) */
+    const k=el._k=(el._k||0)+1;
+    const fin=()=>{ if(el._k!==k||!el.classList.contains('on')) return;
+      const a=anims(el).filter(x=>x.playState!=='finished'&&x.effect&&x.effect.getComputedTiming().endTime!==Infinity);
+      if(!a.length){ el.classList.add('done'); return; }
+      Promise.allSettled(a.map(x=>x.finished)).then(()=>requestAnimationFrame(fin)); };
+    requestAnimationFrame(fin); };
   /* défilement avant la fin du héros : ce qui reste du héros accélère peu à peu (jusqu'à ACC fois), puis la suite enchaîne */
   const speedUp=()=>{ if(accel||gateOpen()) return; accel=true; const t0=performance.now();
     const step=t=>{ if(!accel) return; const k=Math.min(1,(t-t0)/900), e=k*k*(3-2*k); rate=1+(ACC-1)*e;
@@ -733,7 +716,7 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
     els.forEach(el=>{ if(el.dataset.d!==undefined) go(el,+el.dataset.d); });
     if(wEl&&wTop) wT=setTimeout(()=>{ if(maxS()<aim()||wEl.getBoundingClientRect().bottom<=innerHeight) go(wEl,0); },WAIT.delay*1000);
     arm(); })); };
-  const reset=()=>{ scrollTo(0,0); pend=[]; accel=false; rate=1; forced=false; pace=1; vel=0; els.forEach(el=>{ clearTimeout(el._t); io.unobserve(el); el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); }); void H.offsetWidth; start(); };
+  const reset=()=>{ scrollTo(0,0); pend=[]; accel=false; rate=1; forced=false; pace=1; vel=0; els.forEach(el=>{ clearTimeout(el._t); el._k=(el._k||0)+1; io.unobserve(el); el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); }); void H.offsetWidth; start(); };
   /* rythme : plus on défile vite, plus les apparitions en cours et à venir accélèrent (jusqu'à PMAX fois), en douceur ;
      défiler pendant l'ouverture lance tout de suite la suite de la page ; ce qu'on a dépassé sans le voir est déjà en place */
   const PMAX=3.2;
@@ -782,10 +765,6 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
   addEventListener('pageshow',e=>{ if(e.isTrusted) { left=false; H.classList.remove('jk-wait'); } });
   addEventListener('resize',()=>{ const was0=!w||!h; w=innerWidth; h=innerHeight; if(was0&&w&&h) back(); });
 })();
-</script>
-<script>
-/* acheter le livre : le formulaire indique la demande */
-document.querySelectorAll('[data-buy]').forEach(a=>a.addEventListener('click',()=>{ const sel=document.getElementById('f-objet'); if(sel) sel.value=JKT.t(1); }));
 </script>
 <script>
 /* menu téléphone : hauteur du panneau → la page descend d'autant ; un toucher sur la page referme */
@@ -907,8 +886,8 @@ document.querySelectorAll('[data-buy]').forEach(a=>a.addEventListener('click',()
   document.getElementById('form').addEventListener('submit',e=>{
     e.preventDefault();
     const nom=document.getElementById('f-nom').value.trim(), mail=document.getElementById('f-mail').value.trim();
-    if(!nom){err.textContent=JKT.t(3);return}
-    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){err.textContent=JKT.t(2);return}
+    if(!nom){err.textContent=JKT.t(2);return}
+    if(!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(mail)){err.textContent=JKT.t(1);return}
     err.textContent=''; const fm=e.target; fetch(location.pathname,{method:'POST',headers:{'Content-Type':'application/x-www-form-urlencoded'},body:new URLSearchParams(new FormData(fm)).toString()}).then(r=>{ if(!r.ok) throw r; sent.hidden=false; }).catch(()=>fm.submit());
   });
 })();
@@ -919,11 +898,11 @@ document.querySelectorAll('[data-buy]').forEach(a=>a.addEventListener('click',()
 (function(){
   const au=new Audio(); au.preload='none'; let cur=null;
   const fmt=t=>{t=Math.max(0,Math.round(t));return Math.floor(t/60)+':'+String(t%60).padStart(2,'0')};
-  function stop(){ if(!cur) return; cur.classList.remove('on'); cur.querySelector('.lbl').textContent=JKT.t(5); cur.querySelector('.bar span').style.width='0'; cur=null; }
+  function stop(){ if(!cur) return; cur.classList.remove('on'); cur.querySelector('.lbl').textContent=JKT.t(4); cur.querySelector('.bar span').style.width='0'; cur=null; }
   document.querySelectorAll('.nv').forEach(nv=>{
     const tm=nv.querySelector('.tm'), dflt=tm.textContent;
     nv.querySelector('.play').addEventListener('click',()=>{
-      if(cur===nv){ if(au.paused){ au.play(); nv.classList.add('on'); nv.querySelector('.lbl').textContent='pause'; } else { au.pause(); nv.classList.remove('on'); nv.querySelector('.lbl').textContent=JKT.t(5); } return; }
+      if(cur===nv){ if(au.paused){ au.play(); nv.classList.add('on'); nv.querySelector('.lbl').textContent='pause'; } else { au.pause(); nv.classList.remove('on'); nv.querySelector('.lbl').textContent=JKT.t(4); } return; }
       if(cur){ cur.querySelector('.tm').textContent=cur.dataset.d||cur.querySelector('.tm').textContent; stop(); }
       nv.dataset.d=dflt; cur=nv; au.src=nv.dataset.src; au.currentTime=0;
       au.play().catch(()=>{}); nv.classList.add('on'); nv.querySelector('.lbl').textContent='pause';
@@ -932,7 +911,7 @@ document.querySelectorAll('[data-buy]').forEach(a=>a.addEventListener('click',()
   });
   au.addEventListener('timeupdate',()=>{ if(!cur||!au.duration) return; cur.querySelector('.bar span').style.width=(au.currentTime/au.duration*100)+'%'; cur.querySelector('.tm').textContent=fmt(au.duration-au.currentTime); });
   au.addEventListener('ended',()=>{ if(cur){ cur.querySelector('.tm').textContent=cur.dataset.d; stop(); } });
-  const lb=document.createElement('div'); lb.className='lbp'; lb.setAttribute('role','dialog'); lb.setAttribute('aria-label',JKT.t(4));
+  const lb=document.createElement('div'); lb.className='lbp'; lb.setAttribute('role','dialog'); lb.setAttribute('aria-label',JKT.t(3));
   lb.innerHTML='<img alt="">'; document.body.append(lb); let t0=0;
   function openLb(src){ t0=performance.now(); lb.querySelector('img').src=src; lb.classList.add('on'); }
   lb.addEventListener('click',()=>{ if(performance.now()-t0>400) lb.classList.remove('on'); });
@@ -963,8 +942,8 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
 /* Œuvres : la page est en préparation. Pour la remettre en ligne, redonner aux liens [data-soon] leur adresse (data-href) et retirer ce bloc. */
 (function(){
   const links=[...document.querySelectorAll('a[data-href]')]; if(!links.length) return;
-  const box=document.createElement('div'); box.className='soon'; box.setAttribute('role','dialog'); box.setAttribute('aria-label',JKT.t(9)); box.id='soon';
-  box.innerHTML='<p>'+JKT.t(6)+'</p><div class="sn-a"><a href="#contact">'+JKT.t(7)+'</a><button type="button">'+JKT.t(8)+'</button></div>';
+  const box=document.createElement('div'); box.className='soon'; box.setAttribute('role','dialog'); box.setAttribute('aria-label',JKT.t(8)); box.id='soon';
+  box.innerHTML='<p>'+JKT.t(5)+'</p><div class="sn-a"><a href="#contact">'+JKT.t(6)+'</a><button type="button">'+JKT.t(7)+'</button></div>';
   document.body.append(box); let from=null;
   const place=a=>{ const r=a.getBoundingClientRect(), w=box.offsetWidth, h=box.offsetHeight;
     let x=Math.min(Math.max(16,r.left+r.width/2-w/2),innerWidth-w-16), y=r.bottom+12;
@@ -1002,4 +981,225 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   document.addEventListener('click',e=>{ const a=e.target.closest&&e.target.closest('a[href="#contact"]'); if(!a||e.defaultPrevented) return; const c=document.getElementById('contact'); if(c) setTimeout(()=>suivre(c),0); });
 })();
 </script>
+<script>
+/* Effet de rétrécissement au survol (modèle : jk-website-builder/modeles/retrecissement-image.html ; adaptation : outils/retrecissement.mjs) */
+(function () {
+  var CIBLES = [{"bloc":".fiche-couv","ombre":true}];
+  var DUREE = 200;                    /* durée du mouvement, en ms (comme le modèle ; 0,3 s essayé, James garde 0,2 s, 17 nov.) */
+  var MARGE = 4;                      /* marge sur les côtés au survol, en px */
+  var R_REPOS = 2, R_SURVOL = 8;      /* coins du bloc image, en px */
+
+  /* Courbe de Bézier (même calcul que Framer Motion : recherche par subdivision) */
+  function bezier(x1, y1, x2, y2) {
+    function c(u, a, b) { return ((1 - 3 * b + 3 * a) * u + (3 * b - 6 * a)) * u * u + 3 * a * u; }
+    return function (t) {
+      if (t <= 0) return 0; if (t >= 1) return 1;
+      var lo = 0, hi = 1, u = t, x, i = 0;
+      do { u = lo + (hi - lo) / 2; x = c(u, x1, x2) - t; if (x > 0) hi = u; else lo = u; }
+      while (Math.abs(x) > 1e-7 && ++i < 12);
+      return c(u, y1, y2);
+    };
+  }
+  var EASE = bezier(.33, 0, .12, 1);   /* version D (James, 17 nov.) */
+  function mix(a, b, p) { return a + (b - a) * p; }
+
+  /* Seuils de Framer Motion : échelle à moins de 0,0001 de 1 → 1 ; décalage de moins de 0,01 px → 0 */
+  function seuilS(s) { return (s >= 1 - 1e-4 && s <= 1 + 1e-4) || isNaN(s) ? 1 : s; }
+  function seuilT(t) { return (t >= -0.01 && t <= 0.01) || isNaN(t) ? 0 : t; }
+
+  function mesurer(el) {
+    var r = el.getBoundingClientRect();
+    return { l: r.left, t: r.top, cx: r.left + r.width / 2, cy: r.top + r.height / 2, w: r.width, h: r.height };
+  }
+  /* bloc : on mesure l'image, c'est-à-dire la boîte sans la marge intérieure (centre inchangé) */
+  function mesurerImage(el) {
+    var m = mesurer(el), s = getComputedStyle(el), W = parseFloat(s.width), H = parseFloat(s.height);
+    var kx = W ? m.w / W : 1, ky = H ? m.h / H : 1;
+    var w = m.w - (parseFloat(s.paddingLeft) + parseFloat(s.paddingRight)) * kx;
+    var h = m.h - (parseFloat(s.paddingTop) + parseFloat(s.paddingBottom)) * ky;
+    return { l: m.cx - w / 2, t: m.cy - h / 2, cx: m.cx, cy: m.cy, w: w, h: h };
+  }
+
+  /* propriétés posées pendant le survol, rendues à la fin */
+  var PROPS = ['width', 'height', 'flex', 'padding', 'position', 'left', 'top', 'right', 'bottom', 'backgroundClip', 'boxShadow'];
+  function garder(el) { var g = {}; PROPS.forEach(function (p) { g[p] = el.style[p]; }); return g; }
+  function rendre(el, g) { PROPS.forEach(function (p) { el.style[p] = g[p]; }); }
+  /* transitions propres à l'élément, sans « transform » (elles ralentiraient le mouvement) */
+  function sansTransform(el) {
+    var s = getComputedStyle(el), p = s.transitionProperty.split(','), d = s.transitionDuration.split(','),
+        f = s.transitionTimingFunction.split(/,(?![^(]*\))/), r = s.transitionDelay.split(','), out = [];
+    p.forEach(function (x, i) { x = x.trim(); if (x === 'opacity') out.push('opacity ' + d[i % d.length].trim() + ' ' + f[i % f.length].trim() + ' ' + r[i % r.length].trim()); });
+    return out.length ? out.join(', ') : 'none';
+  }
+
+  function effet(bloc, legende) {
+    var els = legende ? [bloc, legende] : [bloc];
+    var deltas = [];
+    var r = R_REPOS, r0 = R_REPOS, r1 = R_REPOS;   /* coins : valeur actuelle, départ, arrivée */
+    var k = 1, k0 = 1, k1 = 1;                     /* réduction de la légende : actuelle, départ, arrivée */
+    var debut = null, raf = 0, survolActuel = false, gB = null, gL = null, gI = [], bx = 0, by = 0;   /* marge intérieure */
+
+    function dessiner(p) {
+      var e = EASE(p);
+      r = mix(r0, r1, e);
+      els.forEach(function (el, i) {
+        var d = deltas[i];
+        var sx = p >= 1 ? 1 : mix(d.sx, 1, e), sy = p >= 1 ? 1 : mix(d.sy, 1, e);
+        var tx = p >= 1 ? 0 : mix(d.tx, 0, e), ty = p >= 1 ? 0 : mix(d.ty, 0, e);
+        /* propriétés « translate » et « scale » plutôt que « transform » : l'apparition des blocs au défilement
+           impose « transform:none !important » jusqu'à sa fin (environ 3 s) ; translate et scale s'y ajoutent sans conflit */
+        el.style.translate = (tx || ty) ? tx + 'px ' + ty + 'px' : 'none';
+        if (el === bloc) {
+          el.style.scale = (sx !== 1 || sy !== 1) ? sx + ' ' + sy : 'none';
+        } else {
+          /* légende : réduction identique en largeur et en hauteur (le texte n'est jamais déformé) */
+          k = p >= 1 ? k1 : mix(k0, k1, e);
+          el.style.scale = k !== 1 ? String(k) : 'none';
+        }
+        if (el === bloc) {
+          /* coins : r px à l'écran sur l'image, quelle que soit la réduction en cours (même calcul que le modèle,
+             en px du bloc : r ÷ échelle) ; le bloc les porte autour de sa marge intérieure, l'image à l'intérieur */
+          el.style.borderRadius = (r / sx + bx) + 'px / ' + (r / sy + by) + 'px';
+          el.style.setProperty('--retr-r', (r / sx) + 'px / ' + (r / sy) + 'px');
+        }
+      });
+    }
+
+    /* fin du retour : plus rien d'inscrit sur les éléments, la page redevient celle de la référence */
+    function finir() {
+      els.forEach(function (el) { el.style.translate = el.style.scale = ''; });
+      bloc.style.borderRadius = ''; bloc.style.removeProperty('--retr-r');
+      void bloc.offsetWidth;   /* valeurs finales appliquées avant de rendre les transitions de la page (sinon elles rejoueraient) */
+      els.forEach(function (el) { el.style.transition = ''; });
+    }
+
+    function pas(t) {
+      if (debut === null) debut = t;
+      var p = Math.min(1, Math.max(0, (t - debut) / DUREE));
+      dessiner(p);
+      raf = p < 1 ? requestAnimationFrame(pas) : 0;
+      if (p >= 1 && !survolActuel) finir();
+    }
+
+    /* vrai changement de mise en page : taille du bloc fixée, marge intérieure autour de l'image */
+    function poser(survol, mv) {
+      if (survol) {
+        /* taille exacte au repos (transformation déjà remise à zéro ; la valeur calculée du navigateur est arrondie) */
+        var rb = bloc.getBoundingClientRect();
+        gB = garder(bloc); bx = MARGE; by = mv;
+        bloc.style.flex = 'none'; bloc.style.width = rb.width + 'px'; bloc.style.height = rb.height + 'px';
+        /* éléments placés en absolu dans le bloc (images des cartes de projets et des caribous, bouton « + » des crédits) :
+           mesurés avant la marge intérieure, puis replacés dans l'image réduite. Un élément qui couvre tout le bloc
+           est réduit de la marge ; les autres gardent leur taille et restent à la même place relative (coin, bord). */
+        gI = [];
+        /* mesures exactes (au centième de pixel ; clientWidth et offsetLeft sont arrondis au pixel) */
+        var Wp = rb.width, Hp = rb.height, abs = [];
+        Array.prototype.forEach.call(bloc.children, function (c) {
+          var s = getComputedStyle(c);
+          if (s.position !== 'absolute') return;
+          var w = parseFloat(s.width) + parseFloat(s.paddingLeft) + parseFloat(s.paddingRight) + parseFloat(s.borderLeftWidth) + parseFloat(s.borderRightWidth),
+              h = parseFloat(s.height) + parseFloat(s.paddingTop) + parseFloat(s.paddingBottom) + parseFloat(s.borderTopWidth) + parseFloat(s.borderBottomWidth);
+          abs.push([c, parseFloat(s.left) || 0, parseFloat(s.top) || 0, w, h]);
+        });
+        bloc.style.padding = by + 'px ' + bx + 'px';
+        bloc.style.backgroundClip = 'content-box';   /* fond du bloc seulement derrière l'image (la page peut le redéfinir) */
+        var ombre = getComputedStyle(bloc).boxShadow;  /* ombre portée : elle suit l'image (étalement réduit de la marge) */
+        if (ombre && ombre !== 'none') bloc.style.boxShadow = ombre.replace(/(-?[\d.]+px) (-?[\d.]+px) (-?[\d.]+px)( (-?[\d.]+)px)?/g,
+          function (x, a, b, c, d, e) { return a + ' ' + b + ' ' + c + ' ' + ((parseFloat(e) || 0) - MARGE) + 'px'; });
+        abs.forEach(function (x) {
+          var c = x[0], L = x[1], T = x[2], w = x[3], h = x[4], s = getComputedStyle(c);
+          gI.push([c, garder(c)]);
+          var pleinX = w >= Wp - 1, pleinY = h >= Hp - 1;
+          var nw = pleinX ? Wp - 2 * bx : w, nh = pleinY ? Hp - 2 * by : h;
+          var nl = pleinX ? bx : bx + (Wp - w > 0 ? L * (Wp - 2 * bx - w) / (Wp - w) : 0);
+          var nt = pleinY ? by : by + (Hp - h > 0 ? T * (Hp - 2 * by - h) / (Hp - h) : 0);
+          /* largeur et hauteur en px de la boîte de contenu (ou de bordure, selon box-sizing) */
+          var dw = s.boxSizing === 'border-box' ? 0 : w - parseFloat(s.width), dh = s.boxSizing === 'border-box' ? 0 : h - parseFloat(s.height);
+          /* un élément qui couvre le bloc est réduit de la marge ; un petit élément (bouton « + » des crédits) garde sa
+             taille libre (il doit pouvoir s'ouvrir) et reste accroché au bord le plus proche, à la même place relative */
+          if (pleinX) { c.style.left = nl + 'px'; c.style.right = 'auto'; c.style.width = (nw - dw) + 'px'; }
+          else if (L <= Wp - L - w) { c.style.left = nl + 'px'; c.style.right = 'auto'; }
+          else { c.style.right = (Wp - nl - w) + 'px'; c.style.left = 'auto'; }
+          if (pleinY) { c.style.top = nt + 'px'; c.style.bottom = 'auto'; c.style.height = (nh - dh) + 'px'; }
+          else if (T <= Hp - T - h) { c.style.top = nt + 'px'; c.style.bottom = 'auto'; }
+          else { c.style.bottom = (Hp - nt - h) + 'px'; c.style.top = 'auto'; }
+        });
+        if (legende) {
+          var sl = getComputedStyle(legende);
+          gL = garder(legende);
+          if (sl.position === 'static') legende.style.position = 'relative';
+          legende.style.left = ((parseFloat(sl.left) || 0) + MARGE) + 'px';
+          legende.style.top = ((parseFloat(sl.top) || 0) - mv) + 'px';
+        }
+      } else {
+        if (gB) rendre(bloc, gB); if (legende && gL) rendre(legende, gL);
+        gI.forEach(function (x) { rendre(x[0], x[1]); });
+        gB = gL = null; gI = []; bx = by = 0;
+      }
+    }
+
+    return function changer(survol) {
+      if (survolActuel === survol) return;
+      survolActuel = survol;
+      /* marge du haut et du bas proportionnelle au format du bloc image (taille au repos) */
+      var sb = getComputedStyle(bloc);
+      var mv = survol ? MARGE * parseFloat(sb.height) / parseFloat(sb.width) : 0;
+      /* transitions de la page coupées pendant le mouvement (sauf les fondus) */
+      bloc.style.transition = sansTransform(bloc);
+      if (legende) legende.style.transition = sansTransform(legende);
+      /* 1. mesure « avant » */
+      var avant = els.map(function (el) { return el === bloc ? mesurerImage(el) : mesurer(el); });
+      /* 2. remise à zéro, puis vrai changement de mise en page */
+      els.forEach(function (el) { el.style.translate = el.style.scale = 'none'; });
+      poser(survol, mv);
+      /* 3. mesure « après » et écart */
+      var apres = els.map(function (el) { return el === bloc ? mesurerImage(el) : mesurer(el); });
+      deltas = els.map(function (el, i) {
+        var a = avant[i], b = apres[i];
+        if (el !== bloc) {
+          /* légende : déplacement de son coin haut gauche ; sa réduction (k) est animée à part */
+          return { sx: 1, sy: 1, tx: seuilT(a.l - b.l), ty: seuilT(a.t - b.t), w: b.w, h: b.h };
+        }
+        return { sx: seuilS(a.w / b.w), sy: seuilS(a.h / b.h),
+                 tx: seuilT(a.cx - b.cx), ty: seuilT(a.cy - b.cy), w: b.w, h: b.h };
+      });
+      /* coins et légende : de la valeur actuelle vers la cible */
+      r0 = r; r1 = survol ? R_SURVOL : R_REPOS;
+      k0 = k; k1 = survol ? apres[0].w / (apres[0].w + 2 * MARGE) : 1;
+      /* 4. première image dessinée tout de suite, avant l'affichage : aucun saut visible */
+      dessiner(0);
+      debut = null;
+      if (raf) cancelAnimationFrame(raf);
+      raf = requestAnimationFrame(pas);
+    };
+  }
+
+  /* survol : délégué au document (les images des bandeaux et de la Démarche sont écrites par des scripts) */
+  var effets = new WeakMap();
+  function trouver(t) {
+    for (var i = 0; i < CIBLES.length; i++) {
+      var c = CIBLES[i], z = t.closest && t.closest(c.carte || c.bloc);
+      if (!z) continue;
+      var bloc = z.matches(c.bloc) ? z : z.querySelector(c.bloc);
+      if (!bloc) continue;
+      var carte = c.carte ? bloc.closest(c.carte) : bloc;
+      var legende = c.legende && carte ? carte.querySelector(c.legende) : null;
+      if (!effets.has(bloc)) effets.set(bloc, effet(bloc, legende));
+      return { zone: z, changer: effets.get(bloc) };
+    }
+    return null;
+  }
+  document.addEventListener('pointerover', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var x = trouver(e.target);
+    if (x && !(e.relatedTarget && x.zone.contains(e.relatedTarget))) x.changer(true);
+  });
+  document.addEventListener('pointerout', function (e) {
+    if (e.pointerType !== 'mouse') return;
+    var x = trouver(e.target);
+    if (x && !(e.relatedTarget && x.zone.contains(e.relatedTarget))) x.changer(false);
+  });
+})();
+</script>
+<script>JKR.taille(); addEventListener('load',function(){ JKR.taille(); }); (function(){ var t; addEventListener('resize',function(){ clearTimeout(t); t=setTimeout(function(){ JKR.taille(); },200); }); })();</script>
 </body></html>

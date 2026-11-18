@@ -1,6 +1,6 @@
 <!doctype html><html lang="en"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>404 · James Kennedy</title><meta name="description" content=""><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 </style><style>/* corrections du 14 novembre (James) */
-.proj .pic,.proj .pic img,.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
+.go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
 </style>
 </head><body>
 <style>
@@ -349,7 +349,6 @@ main,main>section{overflow-x:clip}
 /* téléphone : image du héros plus lente et de moins loin */
 @media (max-width:760px){.apjs .ap.up.plate{--ap-y:80px;--ap-t:3.2s;--ap-o:2.2s}}
 @media (prefers-reduced-motion:reduce){.apjs .ap,.apjs .ap .ln{opacity:1!important;transform:none!important;clip-path:none!important;transition:none!important}}
-
 
 /* lignes des projets : plus pâles, elles se tracent avec l'apparition du texte
    (la ligne appartient au texte, pour partir au même moment ; elle couvre toute la largeur du projet) */
@@ -955,7 +954,13 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   const go1=(el,d)=>{ if(el.classList.contains('on')) return; const n=el.matches('.fl')?lines(el):0;
     el.style.setProperty('--ap-d',d.toFixed(2)+'s'); el.classList.add('on');
     requestAnimationFrame(()=>{ const r=Math.max(pace,accel&&HEROS().includes(el)?rate:1); if(r>1) anims(el).forEach(a=>{ if(a.playbackRate<r) a.playbackRate=r; }); });
-    el._t=setTimeout(()=>el.classList.add('done'),(END+1000+(d+n*gap(el))*1000)/Math.max(1,pace)); };
+    /* fin de l'apparition : à la fin réelle des mouvements de l'élément (outils/apparition.mjs) */
+    const k=el._k=(el._k||0)+1;
+    const fin=()=>{ if(el._k!==k||!el.classList.contains('on')) return;
+      const a=anims(el).filter(x=>x.playState!=='finished'&&x.effect&&x.effect.getComputedTiming().endTime!==Infinity);
+      if(!a.length){ el.classList.add('done'); return; }
+      Promise.allSettled(a.map(x=>x.finished)).then(()=>requestAnimationFrame(fin)); };
+    requestAnimationFrame(fin); };
   /* défilement avant la fin du héros : ce qui reste du héros accélère peu à peu (jusqu'à ACC fois), puis la suite enchaîne */
   const speedUp=()=>{ if(accel||gateOpen()) return; accel=true; const t0=performance.now();
     const step=t=>{ if(!accel) return; const k=Math.min(1,(t-t0)/900), e=k*k*(3-2*k); rate=1+(ACC-1)*e;
@@ -987,7 +992,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
     els.forEach(el=>{ if(el.dataset.d!==undefined) go(el,+el.dataset.d); });
     if(wEl&&wTop) wT=setTimeout(()=>{ if(maxS()<aim()||wEl.getBoundingClientRect().bottom<=innerHeight) go(wEl,0); },WAIT.delay*1000);
     arm(); })); };
-  const reset=()=>{ scrollTo(0,0); pend=[]; accel=false; rate=1; forced=false; pace=1; vel=0; els.forEach(el=>{ clearTimeout(el._t); io.unobserve(el); el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); }); void H.offsetWidth; start(); };
+  const reset=()=>{ scrollTo(0,0); pend=[]; accel=false; rate=1; forced=false; pace=1; vel=0; els.forEach(el=>{ clearTimeout(el._t); el._k=(el._k||0)+1; io.unobserve(el); el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); }); void H.offsetWidth; start(); };
   /* rythme : plus on défile vite, plus les apparitions en cours et à venir accélèrent (jusqu'à PMAX fois), en douceur ;
      défiler pendant l'ouverture lance tout de suite la suite de la page ; ce qu'on a dépassé sans le voir est déjà en place */
   const PMAX=3.2;
