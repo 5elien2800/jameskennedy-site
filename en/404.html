@@ -939,7 +939,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   const LAST=document.querySelector(WAIT?WAIT.el:(HERO.slice().sort((a,b)=>b[1]-a[1])[0]||[''])[0]);
   const HEROS=()=>els.filter(el=>el.dataset.d!==undefined||el===LAST);
   let pend=[], rate=1, accel=false, forced=false, pace=1;
-  const anims=el=>el.getAnimations({subtree:true});
+  const anims=el=>el.getAnimations({subtree:true}).filter(a=>!(a.effect&&a.effect.getComputedTiming().endTime===Infinity));  /* mouvements sans fin (bandeaux) exclus (outils/apparition.mjs) */
   const gateOpen=()=>{ if(forced||!LAST) return true; if(!LAST.classList.contains('on')) return false;
     const a=anims(LAST); if(!a.length) return true;
     const g=a.reduce((m,x)=>x.effect.getTiming().delay>m.effect.getTiming().delay?x:m);

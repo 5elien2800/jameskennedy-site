@@ -11,7 +11,6 @@
 :is(.row5 .im){border-radius:2px;background-clip:content-box;transform-origin:50% 50% 0}
 :is(.row5 .im){overflow:clip}
 :is(.row5 .im) img{border-radius:var(--retr-r,0)}
-@media (hover:hover) and (pointer:fine){:is(.row5 .im){will-change:transform}}
 :is(.row5 figure figcaption){transform-origin:0 0}
 </style>
 <script>/* copies réduites : srcset des images écrites par les scripts (JKR.s), et « sizes » réglé sur la largeur affichée */
@@ -333,9 +332,9 @@ html.lb-open{overflow:hidden}
 @media (hover:hover){.works-link:hover::after{transform:scaleX(1)}.works-link:hover .ar{transform:translateX(.18em)}}
 .works-link:focus-visible::after{transform:scaleX(1)}
 #projets{padding-top:clamp(120px,15vw,240px)}
-.proj .pic{transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
+
 @media (hover:hover){.proj:hover .pic{transform:scale(.985);border-radius:4px}}
-.reel figure{overflow:hidden;transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
+
 @media (hover:hover){.reel figure:hover{transform:scale(.97);border-radius:4px}}
 .all{border-top:1.5px solid var(--ink);margin-top:clamp(20px,2.4vw,36px);padding-top:clamp(16px,2vw,24px);display:flex;justify-content:flex-end}
 .bio2{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,72px);align-items:start}
@@ -1055,7 +1054,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   const LAST=document.querySelector(WAIT?WAIT.el:(HERO.slice().sort((a,b)=>b[1]-a[1])[0]||[''])[0]);
   const HEROS=()=>els.filter(el=>el.dataset.d!==undefined||el===LAST);
   let pend=[], rate=1, accel=false, forced=false, pace=1;
-  const anims=el=>el.getAnimations({subtree:true});
+  const anims=el=>el.getAnimations({subtree:true}).filter(a=>!(a.effect&&a.effect.getComputedTiming().endTime===Infinity));  /* mouvements sans fin (bandeaux) exclus (outils/apparition.mjs) */
   const gateOpen=()=>{ if(forced||!LAST) return true; if(!LAST.classList.contains('on')) return false;
     const a=anims(LAST); if(!a.length) return true;
     const g=a.reduce((m,x)=>x.effect.getTiming().delay>m.effect.getTiming().delay?x:m);
@@ -1242,7 +1241,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
 /* Effet de rétrécissement au survol (modèle : jk-website-builder/modeles/retrecissement-image.html ; adaptation : outils/retrecissement.mjs) */
 (function () {
   var CIBLES = [{"bloc":".row5 .im","carte":".row5 figure","legende":"figcaption"}];
-  var DUREE = 200;                    /* durée du mouvement, en ms (comme le modèle ; 0,3 s essayé, James garde 0,2 s, 17 nov.) */
+  var DUREE = 300;                    /* durée du mouvement, en ms (James, 18 nov. ; le modèle a 0,2 s) */
   var MARGE = 4;                      /* marge sur les côtés au survol, en px */
   var R_REPOS = 2, R_SURVOL = 8;      /* coins du bloc image, en px */
 

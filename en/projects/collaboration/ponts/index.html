@@ -11,7 +11,6 @@
 /* effet de rétrécissement au survol (outils/retrecissement.mjs) */
 :is(.fiche-couv){border-radius:2px;background-clip:content-box;transform-origin:50% 50% 0}
 :is(.fiche-couv) img{border-radius:var(--retr-r,2px)}
-@media (hover:hover) and (pointer:fine){:is(.fiche-couv){will-change:transform}}
 </style>
 <script>/* copies réduites : srcset des images écrites par les scripts (JKR.s), et « sizes » réglé sur la largeur affichée */
 window.JKR={m:{},
@@ -579,7 +578,7 @@ main,main>section{overflow-x:clip}
   </section>
 </main>
 
-<div class="lb" id="lb" hidden><img id="lbImg" alt=""><button data-i18n="k122" type="button" class="mono" id="lbClose">Close ✕</button></div>
+<div class="lb" id="lb" hidden><img id="lbImg" alt=""><button data-i18n="k122" type="button" class="mono" id="lbClose">Close ×</button></div>
 
 <script>
 /* la fiche s'ouvre toujours en haut de la page */
@@ -663,7 +662,7 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
   const LAST=document.querySelector(WAIT?WAIT.el:(HERO.slice().sort((a,b)=>b[1]-a[1])[0]||[''])[0]);
   const HEROS=()=>els.filter(el=>el.dataset.d!==undefined||el===LAST);
   let pend=[], rate=1, accel=false, forced=false, pace=1;
-  const anims=el=>el.getAnimations({subtree:true});
+  const anims=el=>el.getAnimations({subtree:true}).filter(a=>!(a.effect&&a.effect.getComputedTiming().endTime===Infinity));  /* mouvements sans fin (bandeaux) exclus (outils/apparition.mjs) */
   const gateOpen=()=>{ if(forced||!LAST) return true; if(!LAST.classList.contains('on')) return false;
     const a=anims(LAST); if(!a.length) return true;
     const g=a.reduce((m,x)=>x.effect.getTiming().delay>m.effect.getTiming().delay?x:m);
@@ -985,7 +984,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
 /* Effet de rétrécissement au survol (modèle : jk-website-builder/modeles/retrecissement-image.html ; adaptation : outils/retrecissement.mjs) */
 (function () {
   var CIBLES = [{"bloc":".fiche-couv","ombre":true}];
-  var DUREE = 200;                    /* durée du mouvement, en ms (comme le modèle ; 0,3 s essayé, James garde 0,2 s, 17 nov.) */
+  var DUREE = 300;                    /* durée du mouvement, en ms (James, 18 nov. ; le modèle a 0,2 s) */
   var MARGE = 4;                      /* marge sur les côtés au survol, en px */
   var R_REPOS = 2, R_SURVOL = 8;      /* coins du bloc image, en px */
 

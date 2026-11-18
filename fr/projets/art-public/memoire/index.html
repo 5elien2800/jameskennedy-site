@@ -8,7 +8,6 @@
 :is(.trav-imgs figure:not(:first-child),.m-big img,.m-duo figure,.reel figure){border-radius:2px;background-clip:content-box;transform-origin:50% 50% 0}
 :is(.trav-imgs figure:not(:first-child),.m-big img,.m-duo figure,.reel figure){overflow:clip}
 :is(.trav-imgs figure:not(:first-child),.m-big img,.m-duo figure,.reel figure) img{border-radius:var(--retr-r,0)}
-@media (hover:hover) and (pointer:fine){:is(.trav-imgs figure:not(:first-child),.m-big img,.m-duo figure,.reel figure){will-change:transform}}
 :is(.m-big .m-cap){transform-origin:0 0}
 </style>
 <script>/* copies réduites : srcset des images écrites par les scripts (JKR.s), et « sizes » réglé sur la largeur affichée */
@@ -130,7 +129,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .row5{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px}
 .row5 button{text-align:left;display:grid;gap:10px}
 .row5 .im{aspect-ratio:1;overflow:hidden;background:#ffffff10}
-.row5 img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+
 .row5 button:hover img{transform:scale(1.04)}
 .row5 .cap{display:flex;gap:10px;align-items:baseline;font-size:clamp(15px,1.4vw,17px);letter-spacing:-.02em}
 .row5 .cap span{font-family:var(--f-mono);font-size:11px;color:var(--on-2)}
@@ -194,7 +193,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .proc .side p{margin:0 0 22px;color:var(--on-2);font-size:18px;line-height:1.4}
 .row3{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
 .row3 button .im{aspect-ratio:1;overflow:hidden}
-.row3 img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+
 .row3 button:hover img{transform:scale(1.04)}
 .awards{padding-block:clamp(70px,9vw,140px) 0}
 .awards .intro{margin:-12px 0 28px;font-size:clamp(19px,1.6vw,19px);letter-spacing:-.02em;max-width:34em}
@@ -295,7 +294,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .icons a:hover,.icons a:focus-visible{color:var(--paper);background-color:var(--ink);border-color:var(--ink);transform:scale(1.12)}
 .rvl{opacity:0;transform:translateY(32px);transition:opacity 1.6s ease,transform 2s cubic-bezier(.16,.84,.24,1)}
 .rvl.in{opacity:1;transform:none}
-.reel figure{overflow:hidden;transition:transform .6s cubic-bezier(.2,.8,.2,1),border-radius .6s cubic-bezier(.2,.8,.2,1)}
+.reel figure{overflow:hidden}
 
 .lbr{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px);background:rgba(15,15,15,.9);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s;cursor:zoom-out}
 .lbr.on{opacity:1;visibility:visible;transition:opacity .3s ease}
@@ -407,7 +406,7 @@ html.lb-open{overflow:hidden}
 .story+.story{border-top:1px solid #0F0F0F2E}
 .row2{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;margin-bottom:22px}
 .row2 .im{aspect-ratio:1;overflow:hidden}
-.row2 img{width:100%;height:100%;object-fit:cover;transition:transform .8s cubic-bezier(.2,.8,.2,1)}
+
 .row2 button:hover img{transform:scale(1.04)}
 .rendus{padding-block:clamp(56px,7vw,110px);border-top:1.5px solid var(--ink);display:grid;gap:12px}
 .rendus .lab{margin:0 0 clamp(12px,2vw,24px)}
@@ -858,7 +857,7 @@ html body .trav .trav-row .trav-thanks{text-wrap:balance}
   </section>
 </main>
 
-<div class="lb" id="lb" hidden><img id="lbImg" alt=""><p class="lb-cr mono" hidden></p><button data-i18n="k88" type="button" class="mono" id="lbClose">Fermer ✕</button></div>
+<div class="lb" id="lb" hidden><img id="lbImg" alt=""><p class="lb-cr mono" hidden></p><button data-i18n="k88" type="button" class="mono" id="lbClose">Fermer ×</button></div>
 
 <script>
 /* la fiche s'ouvre toujours en haut de la page */
@@ -877,30 +876,32 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
   /* bandeau : défile seul vers la gauche ; on peut le faire glisser au doigt (ou à la souris) dans les deux sens,
      puis il reprend doucement son rythme vers la gauche */
   (function(track){
-    const reel=track.parentElement, DUR=80*1000, N=4;
+    const reel=track.parentElement, N=4;
+    /* ordinateur : vitesse fixe, attente et reprise courtes (outils/bandeau.mjs) ; téléphone et tablette : comme avant */
+    const FIN=matchMedia('(hover:hover) and (pointer:fine)').matches, V=24; let DUR=80*1000;
     /* le doigt fait défiler le bandeau nativement (fluidité et élan du téléphone) ;
        le mouvement automatique est une animation gérée par la carte graphique, mise en pause au toucher,
        puis relancée en douceur une fois le geste terminé */
     track.style.animation='none'; reel.classList.add('nat');
-    let paused=false, half=0, anim=null, ramp=0, idle=0, touching=false, own=false, mdown=false, moved=0, msx=0, mss=0;
+    let paused=false, half=0, anim=null, ramp=0, idle=0, touching=false, own=false, mdown=false, moved=0, msx=0, mss=0, glide=0, vel=0, lastX=0, lastT=0;
     const mk=(t=0,state='running',rate=1)=>{ if(anim) anim.cancel();
       anim=track.animate([{transform:'translate3d(0,0,0)'},{transform:`translate3d(${-half}px,0,0)`}],{duration:DUR,iterations:Infinity});
       anim.currentTime=t; anim.playbackRate=rate; if(state==='paused') anim.pause(); };
     const setSL=v=>{ own=true; reel.scrollLeft=v; requestAnimationFrame(()=>own=false); };
     const norm=()=>{ if(!half) return; const s=reel.scrollLeft; if(s<half*.5) setSL(s+half); else if(s>half*1.5) setSL(s-half); };
     const measure=()=>{ const w=track.scrollWidth/N; if(!w||Math.abs(w-half)<1) return;
-      const k=half?w/half:1, sl=half?reel.scrollLeft*k:w, t=anim?(anim.currentTime%DUR):0, st=anim?anim.playState:'running', r=anim?anim.playbackRate:1;
-      half=w; setSL(sl); mk(t,(paused||touching)?'paused':st,r); };
+      const k=half?w/half:1, sl=half?reel.scrollLeft*k:w, f=anim?(anim.currentTime%DUR)/DUR:0, st=anim?anim.playState:'running', r=anim?anim.playbackRate:1;
+      half=w; if(FIN) DUR=w/V*1000; setSL(sl); mk(f*DUR,(paused||touching)?'paused':st,r); };
     const imgs=[...track.querySelectorAll('img')]; imgs.forEach(im=>{ im.draggable=false; if(!im.complete) im.addEventListener('load',measure); });
     Promise.all(imgs.map(im=>im.decode?im.decode().catch(()=>0):0)).then(measure);
     addEventListener('resize',measure); addEventListener('load',measure); measure();
     const setRate=r=>{ if(!anim) return; if(anim.updatePlaybackRate) anim.updatePlaybackRate(r); else anim.playbackRate=r; };
-    const stop=()=>{ cancelAnimationFrame(ramp); clearTimeout(idle); if(anim&&anim.playState!=='paused') anim.pause(); };
+    const stop=()=>{ cancelAnimationFrame(glide); cancelAnimationFrame(ramp); clearTimeout(idle); if(anim&&anim.playState!=='paused') anim.pause(); };
     const start=()=>{ if(paused||touching||mdown||!anim) return; cancelAnimationFrame(ramp); norm();
-      setRate(0); anim.play(); const t0=performance.now(), T=1600;
+      setRate(0); anim.play(); const t0=performance.now(), T=FIN?800:1600;
       const step=t=>{ const p=Math.min((t-t0)/T,1), e=p<.5?2*p*p:1-Math.pow(-2*p+2,2)/2; setRate(e); if(p<1) ramp=requestAnimationFrame(step); };
       ramp=requestAnimationFrame(step); };
-    const later=(ms=220)=>{ clearTimeout(idle); idle=setTimeout(start,ms); };
+    const later=(ms=FIN?60:220)=>{ clearTimeout(idle); idle=setTimeout(start,ms); };
     const hold=()=>stop(), resume=()=>later(60);
     reel.addEventListener('scroll',()=>{ if(own) return; stop(); if(!touching&&!mdown) later(); },{passive:true});
     reel.addEventListener('touchstart',()=>{ touching=true; stop(); },{passive:true});
@@ -908,9 +909,19 @@ if(!location.hash){ const top0=()=>{ const h=document.documentElement; h.style.s
     reel.addEventListener('touchend',tEnd,{passive:true}); reel.addEventListener('touchcancel',tEnd,{passive:true});
     /* ordinateur : glisser à la souris */
     reel.style.cursor='grab';
-    reel.addEventListener('pointerdown',e=>{ if(e.pointerType!=='mouse'||e.button>0) return; mdown=true; moved=0; msx=e.clientX; mss=reel.scrollLeft; stop(); reel.setPointerCapture(e.pointerId); reel.style.cursor='grabbing'; });
-    reel.addEventListener('pointermove',e=>{ if(!mdown) return; const d=e.clientX-msx; moved=Math.max(moved,Math.abs(d)); if(moved>4) setSL(mss-d); });
-    const mEnd=()=>{ if(!mdown) return; mdown=false; reel.style.cursor='grab'; later(120); };
+    reel.addEventListener('pointerdown',e=>{ if(e.pointerType!=='mouse'||e.button>0) return; mdown=true; moved=0; msx=e.clientX; mss=reel.scrollLeft; vel=0; lastX=e.clientX; lastT=e.timeStamp; stop(); reel.setPointerCapture(e.pointerId); reel.style.cursor='grabbing'; });
+    reel.addEventListener('pointermove',e=>{ if(!mdown) return; const d=e.clientX-msx; moved=Math.max(moved,Math.abs(d)); if(moved>4) setSL(mss-d);
+      const dt=e.timeStamp-lastT; if(dt>0) vel=vel*.6+((e.clientX-lastX)/dt)*.4; lastX=e.clientX; lastT=e.timeStamp; });
+    /* élan à la souris : le bandeau continue sur sa lancée et ralentit doucement (outils/bandeau.mjs) */
+    const mEnd=e=>{ if(!mdown) return; mdown=false; reel.style.cursor='grab';
+      if(e&&e.timeStamp-lastT>80) vel=0;   /* souris immobile avant le relâchement : pas d'élan */
+      if(moved<=4||Math.abs(vel)<.05){ later(); return; }
+      let v=vel*1000, t0=null;   /* vitesse en px par seconde */
+      const g=t=>{ if(t0===null){ t0=t; glide=requestAnimationFrame(g); return; }
+        const dt=Math.min(.05,(t-t0)/1000); t0=t; v*=Math.exp(-dt/.325);
+        setSL(reel.scrollLeft-v*dt); norm();
+        if(Math.abs(v)>8) glide=requestAnimationFrame(g); else { glide=0; later(); } };
+      glide=requestAnimationFrame(g); };
     reel.addEventListener('pointerup',mEnd); reel.addEventListener('pointercancel',mEnd);
     reel.addEventListener('click',e=>{ if(moved>4){ moved=0; return; } const fig=(document.elementFromPoint(e.clientX,e.clientY)||e.target).closest('figure'); if(fig) openLb(fig.querySelector('img').dataset.full); });
     /* image agrandie : le bandeau s'immobilise tant qu'elle est ouverte */
@@ -1116,7 +1127,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   const LAST=document.querySelector(WAIT?WAIT.el:(HERO.slice().sort((a,b)=>b[1]-a[1])[0]||[''])[0]);
   const HEROS=()=>els.filter(el=>el.dataset.d!==undefined||el===LAST);
   let pend=[], rate=1, accel=false, forced=false, pace=1;
-  const anims=el=>el.getAnimations({subtree:true});
+  const anims=el=>el.getAnimations({subtree:true}).filter(a=>!(a.effect&&a.effect.getComputedTiming().endTime===Infinity));  /* mouvements sans fin (bandeaux) exclus (outils/apparition.mjs) */
   const gateOpen=()=>{ if(forced||!LAST) return true; if(!LAST.classList.contains('on')) return false;
     const a=anims(LAST); if(!a.length) return true;
     const g=a.reduce((m,x)=>x.effect.getTiming().delay>m.effect.getTiming().delay?x:m);
@@ -1317,7 +1328,7 @@ document.querySelectorAll('.tg').forEach(b=>{ const x=document.getElementById(b.
 /* Effet de rétrécissement au survol (modèle : jk-website-builder/modeles/retrecissement-image.html ; adaptation : outils/retrecissement.mjs) */
 (function () {
   var CIBLES = [{"bloc":".trav-imgs figure:not(:first-child)"},{"bloc":".m-big img","carte":".m-big","legende":".m-cap"},{"bloc":".m-duo figure"},{"bloc":".reel figure"}];
-  var DUREE = 200;                    /* durée du mouvement, en ms (comme le modèle ; 0,3 s essayé, James garde 0,2 s, 17 nov.) */
+  var DUREE = 300;                    /* durée du mouvement, en ms (James, 18 nov. ; le modèle a 0,2 s) */
   var MARGE = 4;                      /* marge sur les côtés au survol, en px */
   var R_REPOS = 2, R_SURVOL = 8;      /* coins du bloc image, en px */
 
