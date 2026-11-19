@@ -1,6 +1,12 @@
 <!doctype html><html lang="fr"><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><title>404 · James Kennedy</title><meta name="description" content=""><link rel="icon" href="/favicon.ico" sizes="any"><link rel="icon" href="/favicon.svg" type="image/svg+xml"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="preload" href="/fonts/geist-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/geist-mono-latin.woff2" as="font" type="font/woff2" crossorigin><link rel="stylesheet" href="/fonts/fonts.css"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0 0 0 0);white-space:nowrap;border:0}
 </style><style>/* corrections du 14 novembre (James) */
 .go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
+/* le texte ne se replace plus après son apparition : chaque mot, « collaborons » et les titres à fente gardent leur calque
+   pour toujours ; la fenêtre des titres à fente reste en place après la montée (outils/apparition.mjs, James, 18 nov.) */
+.apjs .ap.fl .ln{will-change:opacity}
+.apjs .ap.l{will-change:transform,opacity}
+.apjs .ap.mk .mki{will-change:transform}
+.apjs .ap.mk:has(> .mki){overflow:hidden}
 </style>
 </head><body>
 <style>
@@ -119,8 +125,7 @@ section{scroll-margin-top:70px}
 .manif h2{margin:0;font-weight:500;font-size:clamp(30px,3vw,36px);letter-spacing:-.045em;line-height:1}
 .manif h2 em{font-style:normal;font-weight:300;color:var(--mute)}
 .manif p{font-size:clamp(22px,2.1vw,25px);line-height:1.22;letter-spacing:-.03em;font-weight:400;margin:0;max-width:22em;text-wrap:pretty}
-.manif .w{opacity:.22;transition:opacity .35s}
-.manif .w.lit{opacity:1}
+
 @media (max-width:760px){.manif{grid-template-columns:minmax(0,1fr)}.manif figure{max-width:240px;margin-left:0}}
 
 /* ---------- œuvres ---------- */
@@ -295,7 +300,7 @@ html.lb-open{overflow:hidden}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
   .h1 .ch,.pulse{animation:none}
-  .manif .w{opacity:1}
+
 }
 
 /* ===== version E : accueil épuré ===== */
@@ -452,7 +457,7 @@ main,main>section{overflow-x:clip}
 /* masque fluide : le mot glisse dans une fenêtre fixe (déplacement seul, calculé par la carte graphique) */
 .apjs .ap.ap.mk:not(.done){clip-path:none!important;--ap-y:0;overflow:hidden}
 .apjs .ap.mk .mki{display:inline-block;vertical-align:top}
-.apjs .ap.mk:not(.done) .mki{transform:translate3d(0,calc(100% + .7em),0);will-change:transform}
+.apjs .ap.mk:not(.done) .mki{transform:translate3d(0,calc(100% + .7em),0)}
 .apjs .ap.mk.on:not(.done) .mki{transform:translate3d(0,0,0);transition:transform var(--ap-t,1.6s) cubic-bezier(.22,1,.36,1) var(--ap-d,0s)}
 
 /* téléphone : la liste des auteurs et autrices passe sous son titre, sur toute la largeur */
@@ -646,7 +651,7 @@ main,main>section{overflow-x:clip}
   const secs=tops.map(a=>document.querySelector(a.getAttribute('href')));
 
   /* manifeste : mots */
-  const m=document.getElementById('manif'); const words=(window.JKRV=window.JKRV||[])[window.JKRV.push([])-1];
+  const m=document.getElementById('manif'); const words=[];
   (function wrap(node){[...node.childNodes].forEach(n=>{
     if(n.nodeType===3){const f=document.createDocumentFragment(); n.textContent.split(/(\s+)/).forEach(t=>{ if(/^\s+$/.test(t)||!t) f.appendChild(document.createTextNode(t)); else {const s=document.createElement('span');s.className='w';s.textContent=t;f.appendChild(s);words.push(s);} }); n.replaceWith(f);}
     else wrap(n);});})(m||document.createElement('p'));
@@ -927,7 +932,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   function units(el){ if(el._u) return el._u; const u=[];
     if(el.matches('p')) words(el,u);
     else [...el.children].forEach(c=>{ if(c.classList.contains('ap')) return;
-      if(c.matches('p')) words(c,u); else if(c.matches('dl')) [...c.children].forEach(d=>{ d.classList.add('ln'); u.push(d); }); else { c.classList.add('ln'); u.push(c); } });
+      if(c.matches('p,dd,li')) words(c,u); else if(c.matches('dl,ul,ol')) [...c.children].forEach(d=>{ if(d.matches('dd,li')) words(d,u); else { d.classList.add('ln'); u.push(d); } }); else { c.classList.add('ln'); u.push(c); } });
     return el._u=u; }
   const gap=el=>el.classList.contains('slow')?SLOW:LINE;
   function lines(el){ let n=-1, top=-1e9; const g=gap(el);
@@ -947,7 +952,10 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   const tick=()=>{ if(!pend.length) return; if(gateOpen()){ const p=pend; pend=[]; p.forEach((x,i)=>go(x,i*CASCADE)); } else requestAnimationFrame(tick); };
   const imgWait=el=>{ const im=[...el.querySelectorAll('img')]; if(el.tagName==='IMG') im.push(el); return im.filter(i=>!(i.complete&&i.naturalWidth)); };
   /* une image part seulement quand elle est chargée (2,5 s au plus) : le fondu se voit toujours */
-  const go=(el,d)=>{ if(el.classList.contains('on')||el._w) return; const im=imgWait(el);
+  const go=(el,d)=>{ if(el.classList.contains('on')||el._w) return;
+    /* texte dans une fenêtre en train de s'ouvrir (fiche de projet, texte replié) : il attend la fin réelle de l'ouverture (outils/apparition.mjs) */
+    { const fen=[], ouv=[]; for(let x=el.parentElement;x;x=x.parentElement) if(x.classList.contains('mr-x')) x.getAnimations().forEach(t=>{ if(t.transitionProperty==='grid-template-rows'&&t.playState==='running'){ fen.push(x); ouv.push(t); } });
+      if(ouv.length){ el._w=1; Promise.allSettled(ouv.map(t=>t.finished)).then(()=>{ el._w=0; if(fen.every(x=>x.classList.contains('open'))) go(el,d); }); return; } } const im=imgWait(el);
     if(im.length){ el._w=1; Promise.race([Promise.all(im.map(i=>new Promise(r=>{ if(i.loading==='lazy') i.loading='eager'; i.addEventListener('load',r,{once:true}); i.addEventListener('error',r,{once:true}); if(i.complete&&i.naturalWidth) r(); }))),new Promise(r=>setTimeout(r,2500))])
         .then(()=>{ el._w=0; if(!el.classList.contains('on')) go1(el,0); }); return; }
     go1(el,d); };
@@ -1015,6 +1023,13 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
     H.classList.remove('ready'); H.style.scrollBehavior='auto';
     requestAnimationFrame(()=>{ H.style.scrollBehavior=''; reset(); setTimeout(()=>H.classList.add('ready'),400); });
   });
+  /* fenêtres (fiches de projet, textes repliés) : à chaque ouverture ou fermeture, leur texte est caché tout de suite ;
+     à l'ouverture, il apparaît de nouveau, une fois la fenêtre ouverte (voir go) (outils/apparition.mjs) */
+  document.querySelectorAll('.mr-x').forEach(x=>{ let ouvert=x.classList.contains('open');
+    new MutationObserver(()=>{ const o=x.classList.contains('open'); if(o===ouvert) return; ouvert=o;
+      const txt=els.filter(el=>el.matches('.fl')&&x.contains(el));
+      txt.forEach(el=>{ el._k=(el._k||0)+1; el._w=0; el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); });
+      if(o) requestAnimationFrame(()=>txt.forEach(el=>go(el,0))); }).observe(x,{attributes:true,attributeFilter:['class']}); });
   ready().then(start);
 })();
 </script>

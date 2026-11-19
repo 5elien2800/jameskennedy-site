@@ -9,6 +9,14 @@
 :is(.trav-imgs figure:not(:first-child),.m-big img,.m-duo figure,.reel figure){overflow:clip}
 :is(.trav-imgs figure:not(:first-child),.m-big img,.m-duo figure,.reel figure) img{border-radius:var(--retr-r,0)}
 :is(.m-big .m-cap){transform-origin:0 0}
+/* le texte ne se replace plus après son apparition : chaque mot, « collaborons » et les titres à fente gardent leur calque
+   pour toujours ; la fenêtre des titres à fente reste en place après la montée (outils/apparition.mjs, James, 18 nov.) */
+.apjs .ap.fl .ln{will-change:opacity}
+.apjs .ap.l{will-change:transform,opacity}
+.apjs .ap.mk .mki{will-change:transform}
+.apjs .ap.mk:has(> .mki){overflow:hidden}
+/* le + des fenêtres garde son calque pour toujours : en tournant, il ne fait plus bouger le titre (outils/fiches.mjs, James, 18 nov.) */
+.mr-i{will-change:transform}
 </style>
 <script>/* copies réduites : srcset des images écrites par les scripts (JKR.s), et « sizes » réglé sur la largeur affichée */
 window.JKR={m:{"projects/public-art/memoire/bandeau/01-james-kennedy-memoire-champlain-bridge-transport.webp":[1269,952,[400,800]],"projects/public-art/memoire/bandeau/02-james-kennedy-memoire-champlain-bridge-truss-3.jpg":[2000,1500,[400,800,1200]],"projects/public-art/memoire/bandeau/03-james-kennedy-memoire-dismantling-bridge-1.webp":[1456,822,[400,800]],"projects/public-art/memoire/bandeau/04-james-kennedy-memoire-dismantling-bridge-3.webp":[1179,658,[400,800]],"projects/public-art/memoire/bandeau/05-james-kennedy-memoire-dismantling-bridge-2.webp":[1179,661,[400]],"projects/public-art/memoire/bandeau/06-james-kennedy-memoire-dismantling-bridge-4.webp":[1456,819,[400]],"projects/public-art/memoire/bandeau/07-james-kennedy-memoire-truss-storage.jpg":[1500,1125,[400,800,1200]]},
@@ -278,11 +286,6 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 
 /* ---------- navigation entre projets (commune aux fiches) ---------- */
 
-/* texte d'intention : les mots s'allument au défilement, comme sur l'accueil */
-.rv .w{opacity:.22;transition:opacity .35s}
-.rv .w.lit{opacity:1}
-@media (prefers-reduced-motion:reduce){.rv .w{opacity:1}}
-
 /* ===== version E : comportements communs ===== */
 .nav.solid{background:none;backdrop-filter:none;-webkit-backdrop-filter:none}
 .nav{transition:transform .5s cubic-bezier(.2,.8,.2,1)}
@@ -292,8 +295,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .nav .cta:hover .arr svg{transform:translateY(2px)}
 .icons a{color:color-mix(in srgb,var(--ink) 72%,var(--mute));border-color:color-mix(in srgb,var(--ink) 55%,transparent);transition:color .25s,background-color .25s,border-color .25s,transform .3s cubic-bezier(.2,.8,.2,1)}
 .icons a:hover,.icons a:focus-visible{color:var(--paper);background-color:var(--ink);border-color:var(--ink);transform:scale(1.12)}
-.rvl{opacity:0;transform:translateY(32px);transition:opacity 1.6s ease,transform 2s cubic-bezier(.16,.84,.24,1)}
-.rvl.in{opacity:1;transform:none}
+
 .reel figure{overflow:hidden}
 
 .lbr{position:fixed;inset:0;z-index:200;display:flex;align-items:center;justify-content:center;padding:clamp(16px,4vw,56px);background:rgba(15,15,15,.9);opacity:0;visibility:hidden;transition:opacity .3s ease,visibility 0s linear .3s;cursor:zoom-out}
@@ -424,12 +426,6 @@ html.lb-open{overflow:hidden}
 .cac{margin-top:20px;padding-top:14px;border-top:1px solid #E9ECEE55;color:var(--on-2)}
 @media (max-width:980px){.nav.open .menu .top{text-transform:lowercase}}
 
-/* apparitions façon Nina Park : ressort doux (amorti 0,9 · ~1 s), long trajet, léger délai */
-.rvl{opacity:0;transform:translate3d(0,80px,0) scale(.98);transition:opacity 1s linear(0.0, 0.0152, 0.0544, 0.1097, 0.175, 0.2456, 0.318, 0.3896, 0.4586, 0.5236, 0.5841, 0.6394, 0.6895, 0.7344, 0.7743, 0.8094, 0.8401, 0.8667, 0.8897, 0.9093, 0.9261, 0.9402, 0.9521, 0.962, 0.9702, 0.9769, 0.9824, 0.9869, 0.9904, 0.9933, 0.9955, 0.9973, 0.9986, 0.9996, 1.0003, 1.0008, 1.0012, 1.0014, 1.0015, 1.0015, 1),transform 1s linear(0.0, 0.0152, 0.0544, 0.1097, 0.175, 0.2456, 0.318, 0.3896, 0.4586, 0.5236, 0.5841, 0.6394, 0.6895, 0.7344, 0.7743, 0.8094, 0.8401, 0.8667, 0.8897, 0.9093, 0.9261, 0.9402, 0.9521, 0.962, 0.9702, 0.9769, 0.9824, 0.9869, 0.9904, 0.9933, 0.9955, 0.9973, 0.9986, 0.9996, 1.0003, 1.0008, 1.0012, 1.0014, 1.0015, 1.0015, 1);transition-delay:.2s}
-.rvl.rv-img{transform:translate3d(0,150px,0) scale(.9);transition-delay:.25s}
-.rvl.in{opacity:1;transform:none}
-@supports not (transition-timing-function:linear(0,1)){.rvl{transition-timing-function:cubic-bezier(.22,1,.36,1)}}
-
 /* bandeau : défilement natif au doigt, barre masquée */
 .reel.nat{overflow-x:auto;overflow-y:hidden;scrollbar-width:none;-webkit-overflow-scrolling:touch;overscroll-behavior-x:contain}
 .reel.nat::-webkit-scrollbar{display:none}
@@ -463,13 +459,13 @@ main,main>section{overflow-x:clip}
 /* masque fluide : le mot glisse dans une fenêtre fixe (déplacement seul, calculé par la carte graphique) */
 .apjs .ap.ap.mk:not(.done){clip-path:none!important;--ap-y:0;overflow:hidden}
 .apjs .ap.mk .mki{display:inline-block;vertical-align:top}
-.apjs .ap.mk:not(.done) .mki{transform:translate3d(0,calc(100% + .7em),0);will-change:transform}
+.apjs .ap.mk:not(.done) .mki{transform:translate3d(0,calc(100% + .7em),0)}
 .apjs .ap.mk.on:not(.done) .mki{transform:translate3d(0,0,0);transition:transform var(--ap-t,1.6s) cubic-bezier(.22,1,.36,1) var(--ap-d,0s)}
 .h1{padding-bottom:.34em;margin-bottom:-.34em}
 
 /* ===== fiche de projet dépliable (comme Promenade) ===== */
-.mr-x{display:grid;grid-template-rows:0fr;opacity:0;transition:grid-template-rows .55s cubic-bezier(.22,1,.36,1),opacity .35s ease}
-.mr-x.open{grid-template-rows:1fr;opacity:1}
+.mr-x{display:grid;grid-template-rows:0fr;transition:grid-template-rows .55s cubic-bezier(.22,1,.36,1)}
+.mr-x.open{grid-template-rows:1fr}
 .mr-in{overflow:hidden;min-height:0}
 .tg{all:unset;box-sizing:border-box;display:inline-flex;align-items:center;gap:10px;cursor:pointer;white-space:nowrap}
 .tg:focus-visible{outline:2px solid var(--ink);outline-offset:4px}
@@ -1069,17 +1065,6 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
 
 <script>document.querySelectorAll('.head .h1').forEach(h=>{ if(!h.querySelector('.mki')) h.innerHTML='<span class="mki">'+h.innerHTML+'</span>'; });</script>
 <script>
-/* textes d'intention : les mots s'allument au défilement, comme sur l'accueil */
-(function(){
-  const els=[...document.querySelectorAll('p.intent-top')]; if(!els.length) return; const words=(window.JKRV=window.JKRV||[])[window.JKRV.push([])-1];
-  els.forEach(el=>{ el.classList.add('rv'); (function wrap(node){[...node.childNodes].forEach(n=>{
-    if(n.nodeType===3){const f=document.createDocumentFragment(); n.textContent.split(/(\s+)/).forEach(t=>{ if(/^\s+$/.test(t)||!t) f.appendChild(document.createTextNode(t)); else {const s=document.createElement('span');s.className='w';s.textContent=t;f.appendChild(s);words.push(s);} }); n.replaceWith(f);}
-    else wrap(n);});})(el); });
-  const up=()=>words.forEach(w=>w.classList.toggle('lit',w.getBoundingClientRect().top<innerHeight*.78));
-  addEventListener('scroll',up,{passive:true}); addEventListener('resize',up); up();
-})();
-</script>
-<script>
 /* ===== apparitions (moteur commun à toutes les pages) =====
    À l'ouverture : les éléments du HÉROS partent selon leurs délais. Plus bas : chaque élément part en entrant à l'écran,
    seulement après le premier défilement. Rejoue à chaque ouverture, au retour par Précédent et quand la page redevient visible. */
@@ -1090,7 +1075,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   const MAP=[  /* sélecteur, effet : tr trame · mk masque · up monte · l depuis la gauche · fl texte ligne par ligne */
     ['.head .h1','mk'],['.contact .h2','l'],
     ['.head .hero-img','up plate'],['.m-one,.trav-imgs figure,.trav-imgs .cac-logo,.m-big,.m-duo figure','up'],
-    ['.head .crumb,.head .lead,.split .tg-h,.trav .tg-h,.mtx .mr-in>p,.story .lab,.story>div,.dark .lab,.etat-t,.etat-txt,.etat-n,.fiche-h,.spec,.ray-txt,.form','fl'],
+    ['.head .crumb,.head .lead,.split .tg-h,.trav .tg-h,.mtx .mr-in,.story .lab,.story>div,.dark .lab,.etat-t,.etat-txt,.etat-n,.fiche-h,.spec,.ray-txt,.form','fl'],
     ['.info .intent-top','fl'],['.ch-lab,.trav-cap,.trav-thanks,.m-cap','fl'],['.ray-imgs figcaption','fl'],
     ['.contact .trame','tr']
   ];
@@ -1115,7 +1100,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   function units(el){ if(el._u) return el._u; const u=[];
     if(el.matches('p')||!el.children.length) words(el,u);
     else [...el.children].forEach(c=>{ if(c.classList.contains('ap')) return;
-      if(c.matches('p')) words(c,u); else if(c.matches('dl')) [...c.children].forEach(d=>{ d.classList.add('ln'); u.push(d); }); else { c.classList.add('ln'); u.push(c); } });
+      if(c.matches('p,dd,li')) words(c,u); else if(c.matches('dl,ul,ol')) [...c.children].forEach(d=>{ if(d.matches('dd,li')) words(d,u); else { d.classList.add('ln'); u.push(d); } }); else { c.classList.add('ln'); u.push(c); } });
     return el._u=u; }
   const gap=el=>el.classList.contains('slow')?SLOW:LINE;
   function lines(el){ let n=-1, top=-1e9; const g=gap(el);
@@ -1135,7 +1120,10 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   const tick=()=>{ if(!pend.length) return; if(gateOpen()){ const p=pend; pend=[]; p.forEach((x,i)=>go(x,i*CASCADE)); } else requestAnimationFrame(tick); };
   const imgWait=el=>{ const im=[...el.querySelectorAll('img')]; if(el.tagName==='IMG') im.push(el); return im.filter(i=>!(i.complete&&i.naturalWidth)); };
   /* une image part seulement quand elle est chargée (2,5 s au plus) : le fondu se voit toujours */
-  const go=(el,d)=>{ if(el.classList.contains('on')||el._w) return; const im=imgWait(el);
+  const go=(el,d)=>{ if(el.classList.contains('on')||el._w) return;
+    /* texte dans une fenêtre en train de s'ouvrir (fiche de projet, texte replié) : il attend la fin réelle de l'ouverture (outils/apparition.mjs) */
+    { const fen=[], ouv=[]; for(let x=el.parentElement;x;x=x.parentElement) if(x.classList.contains('mr-x')) x.getAnimations().forEach(t=>{ if(t.transitionProperty==='grid-template-rows'&&t.playState==='running'){ fen.push(x); ouv.push(t); } });
+      if(ouv.length){ el._w=1; Promise.allSettled(ouv.map(t=>t.finished)).then(()=>{ el._w=0; if(fen.every(x=>x.classList.contains('open'))) go(el,d); }); return; } } const im=imgWait(el);
     if(im.length){ el._w=1; Promise.race([Promise.all(im.map(i=>new Promise(r=>{ if(i.loading==='lazy') i.loading='eager'; i.addEventListener('load',r,{once:true}); i.addEventListener('error',r,{once:true}); if(i.complete&&i.naturalWidth) r(); }))),new Promise(r=>setTimeout(r,2500))])
         .then(()=>{ el._w=0; if(!el.classList.contains('on')) go1(el,0); }); return; }
     go1(el,d); };
@@ -1203,6 +1191,13 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
     H.classList.remove('ready'); H.style.scrollBehavior='auto';
     requestAnimationFrame(()=>{ H.style.scrollBehavior=''; reset(); setTimeout(()=>H.classList.add('ready'),400); });
   });
+  /* fenêtres (fiches de projet, textes repliés) : à chaque ouverture ou fermeture, leur texte est caché tout de suite ;
+     à l'ouverture, il apparaît de nouveau, une fois la fenêtre ouverte (voir go) (outils/apparition.mjs) */
+  document.querySelectorAll('.mr-x').forEach(x=>{ let ouvert=x.classList.contains('open');
+    new MutationObserver(()=>{ const o=x.classList.contains('open'); if(o===ouvert) return; ouvert=o;
+      const txt=els.filter(el=>el.matches('.fl')&&x.contains(el));
+      txt.forEach(el=>{ el._k=(el._k||0)+1; el._w=0; el.classList.remove('on','done'); el.style.removeProperty('--ap-d'); });
+      if(o) requestAnimationFrame(()=>txt.forEach(el=>go(el,0))); }).observe(x,{attributes:true,attributeFilter:['class']}); });
   ready().then(start);
 })();
 </script>
@@ -1517,7 +1512,8 @@ document.querySelectorAll('.tg').forEach(b=>{ const x=document.getElementById(b.
     };
   }
 
-  /* survol : délégué au document (les images des bandeaux et de la Démarche sont écrites par des scripts) */
+  /* survol : délégué au document (les images des bandeaux et de la Démarche sont écrites par des scripts) ;
+     départ : la souris bouge sur l'image ; retour : le curseur quitte la zone */
   var effets = new WeakMap();
   function trouver(t) {
     for (var i = 0; i < CIBLES.length; i++) {
@@ -1532,10 +1528,24 @@ document.querySelectorAll('.tg').forEach(b=>{ const x=document.getElementById(b.
     }
     return null;
   }
-  document.addEventListener('pointerover', function (e) {
+  /* pendant le défilement de la page (glissement doux compris), aucune image ne rétrécit ; à l'arrêt, l'effet attend
+     que la souris bouge. Une image déjà rétrécie reprend sa taille dès que le curseur la quitte, même pendant le défilement.
+     (James, 19 nov. ; remplace le départ au survol « pointerover ») */
+  var defile = false, arret = 0;
+  window.addEventListener('scroll', function () {
+    defile = true; clearTimeout(arret);
+    arret = setTimeout(function () { defile = false; }, 150);   /* arrêt : plus aucun défilement depuis 0,15 s */
+  }, { passive: true });
+  /* « la souris bouge » : sa position dans la fenêtre a vraiment changé. Safari envoie aussi de faux mouvements quand la
+     page défile sous un curseur immobile ; le curseur y garde la même position dans la fenêtre, ils sont donc ignorés. */
+  var cx = null, cy = null;
+  document.addEventListener('pointermove', function (e) {
     if (e.pointerType !== 'mouse') return;
+    var bouge = e.clientX !== cx || e.clientY !== cy;
+    cx = e.clientX; cy = e.clientY;
+    if (!bouge || defile) return;
     var x = trouver(e.target);
-    if (x && !(e.relatedTarget && x.zone.contains(e.relatedTarget))) x.changer(true);
+    if (x) x.changer(true);
   });
   document.addEventListener('pointerout', function (e) {
     if (e.pointerType !== 'mouse') return;

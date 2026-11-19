@@ -134,17 +134,15 @@
   let vus = new Set();
   const visible = (el) => { const r = el.getBoundingClientRect(); return r.bottom > 0 && r.top < innerHeight && r.width > 0; };
 
-  /* contenu remplacé ; enveloppes posées par les scripts (titre masqué .mki, mots .w, unités .ln) refaites */
+  /* contenu remplacé ; enveloppes posées par les scripts (titre masqué .mki, unités .ln) refaites */
   function remplacerContenu(el, src, aFondre) {
     let cible = el;
     const mki = el.children.length === 1 && el.firstElementChild.classList.contains("mki") ? el.firstElementChild : null;
     if (mki) cible = mki;
-    const rv = el.querySelector(".w") ? el : null;
     const vu = vus.has(el);
     cible.innerHTML = src.innerHTML;
     /* apparitions : si l'élément n'est pas encore apparu, ses unités seront recalculées au bon moment */
     const ap = el.closest(".ap"); if (ap && !ap.classList.contains("on")) delete ap._u;
-    if (rv) envelopperMots(el);
     /* mot défilant de l'Accueil : un seul mot visible dans un cadre d'une ligne ; il change d'un bloc, avec un fondu
        de l'ensemble, sans découpage en lignes (sinon une partie du mot seulement s'affiche pendant le fondu) */
     if (el.closest("#roller")) { if (vu && !reduce) el.animate([{ opacity: 0 }, { opacity: 1 }], { duration: 2600, easing: "cubic-bezier(.2,.7,.3,1)" }); return; }
@@ -159,15 +157,6 @@
     if (reduce || !vus.has(el)) { el.remove(); return; }
     el.animate([{ opacity: 1 }, { opacity: 0 }], { duration: 600, easing: "ease" }).onfinish = () => el.remove();
   }
-  /* éclairage des mots (.rv) : mêmes enveloppes « w », remises dans le tableau du script de la page */
-  function envelopperMots(el) {
-    const tableaux = window.JKRV || [];
-    const tab = tableaux.find((t) => t.some((s) => !s.isConnected)) || tableaux[0];
-    if (tab) for (let i = tab.length - 1; i >= 0; i--) if (!tab[i].isConnected) tab.splice(i, 1);
-    (function wrap(node) { [...node.childNodes].forEach((n) => {
-      if (n.nodeType === 3) { const f = document.createDocumentFragment(); n.textContent.split(/(\s+)/).forEach((t) => { if (/^\s+$/.test(t) || !t) f.appendChild(document.createTextNode(t)); else { const s = document.createElement("span"); s.className = "w"; s.textContent = t; f.appendChild(s); if (tab) tab.push(s); } }); n.replaceWith(f); }
-      else wrap(n); }); })(el);
-  }
   /* fondu du clair à la couleur, ligne par ligne (effet fl : 2,6 s, cubic-bezier(.2,.7,.3,1), 0,24 s par ligne) */
   function fondre(els) {
     for (const el of els) {
@@ -177,7 +166,6 @@
           /* dans une grille ou une boîte flexible, chaque élément serait une case : le texte reste d'un seul bloc */
           if (/grid|flex/.test(getComputedStyle(n.parentElement).display)) { const s = document.createElement("span"); s.className = "jkl"; s.textContent = n.data; n.replaceWith(s); unites.push(s); return; }
           const f = document.createDocumentFragment(); n.data.split(/(\s+)/).forEach((t) => { if (!t) return; if (/^\s+$/.test(t)) f.appendChild(document.createTextNode(t)); else { const s = document.createElement("span"); s.className = "jkl"; s.textContent = t; f.appendChild(s); unites.push(s); } }); n.replaceWith(f); }
-        else if (n.nodeType === 1 && n.classList.contains("w")) unites.push(n);
         else if (n.nodeType === 1 && !n.matches("input,select,textarea,img,svg,video,canvas")) wrap(n); }); })(el);
       const gap = el.closest(".slow") ? 0.4 : 0.24;
       let ligne = -1, haut = -1e9;
