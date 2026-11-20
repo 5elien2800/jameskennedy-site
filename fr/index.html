@@ -108,6 +108,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 
 /* ---------- ouverture ---------- */
 .hero{position:relative;padding-top:120px;padding-bottom:clamp(40px,5vw,72px);overflow:hidden;isolation:isolate}
+@media (max-width:760px){.hero{padding-top:104px}}
 .trame{position:absolute;inset:0;width:100%;height:100%;z-index:-1}
 .h1{font-weight:500;letter-spacing:-.065em;line-height:.86;font-size:clamp(64px,13.2vw,158px);margin:0}
 .h1 .line{display:block;overflow:hidden;padding-bottom:.08em}
@@ -117,6 +118,7 @@ button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;paddin
 .roller{display:block;height:1.12em;overflow:hidden;position:relative;font-size:.56em;line-height:1.12;white-space:nowrap;margin-top:.06em}
 .roller span{display:block;transition:transform 1.4s cubic-bezier(.7,0,.2,1)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,4vw,72px);margin-top:clamp(56px,9vw,150px);align-items:start}
+@media (max-width:760px){.hero-grid{margin-top:calc(clamp(56px,9vw,150px) - 8px)}}
 .hero-text{display:grid;gap:clamp(28px,3vw,44px);min-width:0}
 .lede{font-weight:300;font-size:clamp(30px,3.4vw,41px);line-height:1.02;letter-spacing:-.045em;margin:0;text-wrap:balance}
 .go{display:inline-flex;align-items:center;gap:8px;border-bottom:1.5px solid var(--ink);padding-bottom:3px}
