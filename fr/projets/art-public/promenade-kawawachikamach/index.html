@@ -3,8 +3,10 @@
 .go .a,.intro .mail .a,.cta .arr,.send .arr{will-change:transform}
 .vgrid .vsq img,.vgrid .vbot img{cursor:zoom-in}
 .by-img img{height:auto}
+.aw-img{margin:clamp(40px,5vw,72px) 0 0}
+.aw-img img{display:block;width:100%;height:auto}
 /* images pleine largeur : pas de loupe (point 15) */
-:is(.hero-img img,.rt-full img){cursor:auto!important}
+:is(.hero-img img){cursor:auto!important}
 /* effet de rétrécissement au survol (outils/retrecissement.mjs) */
 :is(.vgrid .vsq, .vgrid .vbot,.rt-duo figure,.by-img img){border-radius:2px;background-clip:content-box;transform-origin:50% 50% 0}
 :is(.vgrid .vsq, .vgrid .vbot,.rt-duo figure,.by-img img){overflow:clip}
@@ -420,10 +422,7 @@ section.info+section.vsec{padding-top:clamp(24px,3vw,44px)}
 .rt-big{margin:0;font-weight:400;font-size:clamp(30px,3.4vw,41px);line-height:1.08;letter-spacing:-.045em;color:var(--on);max-width:22em;text-wrap:balance}
 .route figure{margin:0}
 .route figure img{display:block;width:100%;object-fit:cover;cursor:zoom-in}
-.rt-full img{aspect-ratio:2.3}
 .route figcaption{margin-top:14px;color:var(--on-2);font-size:12px;letter-spacing:.08em}
-.rt-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(10px,1.2vw,16px);margin-top:clamp(28px,3.4vw,44px)}
-.rt-duo img{aspect-ratio:1.5}
 .rt-line{list-style:none;margin:clamp(56px,7vw,100px) 0 0;padding:0;display:flex;align-items:center;gap:clamp(12px,1.6vw,22px);color:var(--on-2);font-size:12px;letter-spacing:.1em;text-transform:uppercase}
 .rt-line li{white-space:nowrap}
 .rt-line li:first-child{color:var(--on)}
@@ -454,7 +453,6 @@ section.info+section.vsec{padding-top:clamp(24px,3vw,44px)}
   .cc-q{grid-column:1;margin-top:48px;font-size:80px}
   .cc-quote{grid-column:1;margin-top:8px}
   .rt-head .lab{margin-bottom:14px}
-  .rt-duo{grid-template-columns:minmax(0,1fr)}
   .aw-list{grid-template-columns:repeat(2,minmax(0,1fr));row-gap:36px}
   .rt-line{gap:8px;font-size:10px}
 }
@@ -646,14 +644,12 @@ main,main>section{overflow-x:clip}
 @media (max-width:1100px){.cocr2.dark .lab,.cocr2.dark h2{color:var(--on)!important}}
 /* image du haut : toujours entière, sans recadrage, à toutes les largeurs */
 .hero-img img{aspect-ratio:auto!important;height:auto!important;object-fit:contain!important;display:block}
-/* image de l'atelier : entière, sans recadrage */
-.rt-full img{aspect-ratio:auto!important;height:auto}
 
 /* ===== ordinateur (≥ 1024 px) ===== */
-/* atelier : la petite et la carrée ont la même hauteur */
-.rt-duo{display:flex!important;gap:clamp(8px,1vw,14px)}
-.rt-duo figure{flex:var(--r,1) 1 0;min-width:0;margin:0}
-.rt-duo figure img{width:100%;height:auto!important;aspect-ratio:auto!important;display:block}
+/* atelier : 4 images carrées, entières, deux par rangée (James, 20 nov.) */
+.rt-duo{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:clamp(8px,1vw,14px)}
+.rt-duo figure{min-width:0;margin:0}
+.rt-duo figure img{width:100%;height:auto;display:block}
 /* au-delà : textes à gauche, image à droite alignée sur « transmission » */
 .by-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:clamp(20px,3vw,40px)}
 .by-right .by-img{max-width:340px}
@@ -839,100 +835,102 @@ html body .route .rt-line.go{display:flex!important;border-bottom:0!important;pa
       <li>Montréal</li><li class="seg" aria-hidden="true"></li><li data-i18n="k33">camion</li><li class="seg" aria-hidden="true"></li><li>train</li><li class="seg" aria-hidden="true"></li><li class="end">Kawawachikamach</li>
     </ol>
     </div></div>
-    <figure class="rt-full"><img data-i18n="k34" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-kawawachikamach-production-mural-4-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-kawawachikamach-production-mural-4-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-kawawachikamach-production-mural-4.jpg 1080w" sizes="100vw" data-r="1080 / 660" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-kawawachikamach-production-mural-4.jpg" width="1080" height="660" alt="L'artiste travaille une section de la murale en atelier" loading="lazy"></figure>
     <div class="rt-duo">
-      <figure style="--r:1"><img data-i18n="k35" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-kawawachikamach-female-woodland-caribou-production-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-kawawachikamach-female-woodland-caribou-production-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-kawawachikamach-female-woodland-caribou-production.jpg 1200w" sizes="100vw" data-r="1200 / 1200" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-kawawachikamach-female-woodland-caribou-production.jpg" width="1200" height="1200" alt="Un caribou des bois femelle soulevé en atelier" loading="lazy"></figure>
-      <figure style="--r:1.5924"><img data-i18n="k36" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1-800w.jpg 800w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1-1200w.jpg 1200w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1-1600w.jpg 1600w, /content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1.jpg 2000w" sizes="100vw" data-r="2000 / 1256" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/james-kennedy-community-boardwalk-sculptures-transport1.jpg" width="2000" height="1256" alt="Les sections de la murale et les caribous arrimés sur une remorque pour le transport" loading="lazy"></figure>
+      <figure><img data-i18n="k34" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/01-james-kennedy-community-boardwalk-kawawachikamach-production-mural-1-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/01-james-kennedy-community-boardwalk-kawawachikamach-production-mural-1-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/01-james-kennedy-community-boardwalk-kawawachikamach-production-mural-1.jpg 1200w" sizes="100vw" data-r="1200 / 1200" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/01-james-kennedy-community-boardwalk-kawawachikamach-production-mural-1.jpg" width="1200" height="1200" alt="L'artiste travaille une section de la murale en atelier" loading="lazy"></figure>
+      <figure><img data-i18n="k35" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/02-james-kennedy-community-boardwalk-kawawachikamach-libellule-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/02-james-kennedy-community-boardwalk-kawawachikamach-libellule-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/02-james-kennedy-community-boardwalk-kawawachikamach-libellule.jpg 1200w" sizes="100vw" data-r="1200 / 1200" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/02-james-kennedy-community-boardwalk-kawawachikamach-libellule.jpg" width="1200" height="1200" alt="Une libellule posée sur un caribou de la murale" loading="lazy"></figure>
+      <figure><img data-i18n="k36" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/03-james-kennedy-kawawachikamach-female-woodland-caribou-production-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/03-james-kennedy-kawawachikamach-female-woodland-caribou-production-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/03-james-kennedy-kawawachikamach-female-woodland-caribou-production.jpg 1200w" sizes="100vw" data-r="1200 / 1200" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/03-james-kennedy-kawawachikamach-female-woodland-caribou-production.jpg" width="1200" height="1200" alt="Un caribou des bois femelle soulevé en atelier" loading="lazy"></figure>
+      <figure><img data-i18n="k37" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/04-james-kennedy-community-boardwalk-sculptures-transport-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/04-james-kennedy-community-boardwalk-sculptures-transport-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/04-james-kennedy-community-boardwalk-sculptures-transport.jpg 1200w" sizes="100vw" data-r="1200 / 1200" src="/content/images/projects/public-art/kawawachikamach-boardwalk/from-concept-to-installation/04-james-kennedy-community-boardwalk-sculptures-transport.jpg" width="1200" height="1200" alt="Les sections de la murale et les caribous arrimés sur une remorque pour le transport" loading="lazy"></figure>
     </div>
   </section>
 
-<section data-i18n="k37" data-i18n-m="a" class="cocr2 dark wrap" aria-label="Cocréation">
-    <h2 data-i18n="k38" class="mono lab">une démarche de cocréation</h2>
-    <p data-i18n="k39" class="cc-p">La conception des interventions artistiques s'est inscrite dans une démarche de cocréation avec la communauté naskapie. En février 2024, l'artiste s'est rendu à Kawawachikamach pour rencontrer des membres de la communauté, des représentants du conseil et des enseignantes. Chaque proposition visuelle a ensuite été présentée au conseil de bande et révisée jusqu'à son approbation.</p>
+<section data-i18n="k38" data-i18n-m="a" class="cocr2 dark wrap" aria-label="Cocréation">
+    <h2 data-i18n="k39" class="mono lab">une démarche de cocréation</h2>
+    <p data-i18n="k40" class="cc-p">La conception des interventions artistiques s'est inscrite dans une démarche de cocréation avec la communauté naskapie. En février 2024, l'artiste s'est rendu à Kawawachikamach pour rencontrer des membres de la communauté, des représentants du conseil et des enseignantes. Chaque proposition visuelle a ensuite été présentée au conseil de bande et révisée jusqu'à son approbation.</p>
 
   </section>
 
-  <section data-i18n="k40" data-i18n-m="a" class="reco wrap" aria-label="Reconnaissance">
+  <section data-i18n="k41" data-i18n-m="a" class="reco wrap" aria-label="Reconnaissance">
     <div class="rc-q">
-  <span data-i18n="k41" class="cc-q" aria-hidden="true">«</span>
+  <span data-i18n="k42" class="cc-q" aria-hidden="true">«</span>
     <figure class="cc-quote">
-      <blockquote data-i18n="k42" data-i18n-m="ancre" lang="en"><p data-i18n="k43">Special thanks to CCxA and James Kennedy. Your dedication and hard work were instrumental in bringing this project to life. Your contributions have not only built a boardwalk but have also strengthened the bonds within our community.&nbsp;»</p></blockquote>
-      <p data-i18n="k44" data-i18n-m="x" class="cc-tr" lang="fr">Merci à CCxA et à James Kennedy. Votre dévouement et votre travail acharné ont été essentiels à la réalisation de ce projet. Votre contribution n'a pas seulement bâti une promenade&nbsp;: elle a aussi renforcé les liens au sein de notre communauté.</p>
-      <figcaption data-i18n="k45" class="mono mute">Nation naskapie de Kawawachikamach · <i>A Heartfelt Thank You</i>, 2024</figcaption>
+      <blockquote data-i18n="k43" data-i18n-m="ancre" lang="en"><p data-i18n="k44">Special thanks to CCxA and James Kennedy. Your dedication and hard work were instrumental in bringing this project to life. Your contributions have not only built a boardwalk but have also strengthened the bonds within our community.&nbsp;»</p></blockquote>
+      <p data-i18n="k45" data-i18n-m="x" class="cc-tr" lang="fr">Merci à CCxA et à James Kennedy. Votre dévouement et votre travail acharné ont été essentiels à la réalisation de ce projet. Votre contribution n'a pas seulement bâti une promenade&nbsp;: elle a aussi renforcé les liens au sein de notre communauté.</p>
+      <figcaption data-i18n="k46" class="mono mute">Nation naskapie de Kawawachikamach · <i>A Heartfelt Thank You</i>, 2024</figcaption>
     </figure>
-    <a data-i18n="k46" data-i18n-m="a" class="go mono cc-link" href="https://naskapi.ca/" target="_blank" rel="noopener" aria-label="Site de la Nation naskapie de Kawawachikamach">naskapi.ca <span aria-hidden="true">↗</span></a>
+    <a data-i18n="k47" data-i18n-m="a" class="go mono cc-link" href="https://naskapi.ca/" target="_blank" rel="noopener" aria-label="Site de la Nation naskapie de Kawawachikamach">naskapi.ca <span aria-hidden="true">↗</span></a>
     </div>
   </section>
 
-  <section data-i18n="k47" data-i18n-m="a" class="awards wrap" aria-label="Distinctions">
-    <div class="aw-head mono mute"><span data-i18n="k48">distinctions 2025</span><span data-i18n="k49">première phase de la promenade</span></div>
-    <p data-i18n="k50" class="aw-note">Prix décernés au projet de promenade de CCxA, auquel les œuvres ont contribué.</p>
+  <section data-i18n="k48" data-i18n-m="a" class="awards wrap" aria-label="Distinctions">
+    <div class="aw-head mono mute"><span data-i18n="k49">distinctions 2025</span><span data-i18n="k50">première phase de la promenade</span></div>
+    <p data-i18n="k51" class="aw-note">Prix décernés au projet de promenade de CCxA, auquel les œuvres ont contribué.</p>
     <ul class="aw-list">
-      <li data-i18n="k51"><span class="mono aw-org">Association des architectes paysagistes du Canada</span><b>Prix national d'excellence</b><span class="aw-cat">Paysages publics à moyenne échelle</span></li>
-      <li data-i18n="k52"><span class="mono aw-org">Grands Prix du design</span><b>Prix de l'année</b><span class="aw-cat">Paysage &amp; Territoires</span></li>
-      <li data-i18n="k53"><span class="mono aw-org">Grands Prix du design</span><b>Grand Lauréat</b><span class="aw-cat">Architecture de paysage en milieu rural</span></li>
-      <li data-i18n="k54"><span class="mono aw-org">Grands Prix du design</span><b>Grand Lauréat</b><span class="aw-cat">Paysage + bois</span></li>
+      <li data-i18n="k52"><span class="mono aw-org">Association des architectes paysagistes du Canada</span><b>Prix national d'excellence</b><span class="aw-cat">Paysages publics à moyenne échelle</span></li>
+      <li data-i18n="k53"><span class="mono aw-org">Grands Prix du design</span><b>Prix de l'année</b><span class="aw-cat">Paysage &amp; Territoires</span></li>
+      <li data-i18n="k54"><span class="mono aw-org">Grands Prix du design</span><b>Grand Lauréat</b><span class="aw-cat">Architecture de paysage en milieu rural</span></li>
+      <li data-i18n="k55"><span class="mono aw-org">Grands Prix du design</span><b>Grand Lauréat</b><span class="aw-cat">Paysage + bois</span></li>
     </ul>
+    <figure class="aw-img"><img data-i18n="k56" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/distinction/james-kennedy-community-boardwalk-kawawachikamach-paysage-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/distinction/james-kennedy-community-boardwalk-kawawachikamach-paysage-800w.jpg 800w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/distinction/james-kennedy-community-boardwalk-kawawachikamach-paysage-1200w.jpg 1200w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/distinction/james-kennedy-community-boardwalk-kawawachikamach-paysage-1600w.jpg 1600w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/distinction/james-kennedy-community-boardwalk-kawawachikamach-paysage-2400w.jpg 2400w, /content/images/projects/public-art/kawawachikamach-boardwalk/distinction/james-kennedy-community-boardwalk-kawawachikamach-paysage.jpg 2623w" sizes="100vw" data-r="2623 / 709" src="/content/images/projects/public-art/kawawachikamach-boardwalk/distinction/james-kennedy-community-boardwalk-kawawachikamach-paysage.jpg" width="2623" height="709" alt="La promenade longe le lac, entre la neige et les épinettes" loading="lazy"></figure>
   </section>
 
 
 
-  <section data-i18n="k55" data-i18n-m="a" class="info fiche-end wrap" aria-label="Fiche du projet">
+  <section data-i18n="k57" data-i18n-m="a" class="info fiche-end wrap" aria-label="Fiche du projet">
     <div class="specs">
 
-      <h2 class="lab tg-h fiche-h"><button type="button" class="tg mono fiche-tg" aria-expanded="false" aria-controls="mr-fiche"><span data-i18n="k56" class="tg-l">Fiche de projet</span><span class="mr-i" aria-hidden="true">+</span></button></h2>
+      <h2 class="lab tg-h fiche-h"><button type="button" class="tg mono fiche-tg" aria-expanded="false" aria-controls="mr-fiche"><span data-i18n="k58" class="tg-l">Fiche de projet</span><span class="mr-i" aria-hidden="true">+</span></button></h2>
       <div class="mr-x fiche-all" id="mr-fiche"><div class="mr-in">
-      <h3 class="sp-h"><button data-i18n="k57" type="button" class="sp-btn" aria-expanded="false" aria-controls="mr-f0">Caribous<span class="mr-i" aria-hidden="true">+</span></button></h3>
+      <h3 class="sp-h"><button data-i18n="k59" type="button" class="sp-btn" aria-expanded="false" aria-controls="mr-f0">Caribous<span class="mr-i" aria-hidden="true">+</span></button></h3>
       <div class="mr-x" id="mr-f0"><div class="mr-in"><dl class="spec spec-one mono">
-        <div><dt data-i18n="k58">œuvres</dt><dd data-i18n="k59">3 caribous de la rivière George · 2 caribous des bois femelles · 1 caribou des bois mâle</dd></div>
-        <div><dt data-i18n="k60">matériau</dt><dd data-i18n="k61">Acier corten, 19&nbsp;mm d'épaisseur, oxydation naturelle</dd></div>
-        <div><dt data-i18n="k62">dimensions <span class="ord">(H&nbsp;×&nbsp;L&nbsp;×&nbsp;ép.)</span></dt><dd data-i18n="k63">Caribous de la rivière George&nbsp;: 2&nbsp;168&nbsp;×&nbsp;2&nbsp;168&nbsp;×&nbsp;19&nbsp;mm · 402&nbsp;kg<br>Caribous des bois femelles&nbsp;: 1&nbsp;616&nbsp;×&nbsp;1&nbsp;948&nbsp;×&nbsp;19&nbsp;mm · 371&nbsp;kg<br>Caribou des bois mâle&nbsp;: 1&nbsp;872&nbsp;×&nbsp;2&nbsp;159&nbsp;×&nbsp;19&nbsp;mm · 393&nbsp;kg</dd></div>
-        <div><dt data-i18n="k64">caractéristiques techniques</dt><dd data-i18n="k65">Chaque caribou est boulonné à une palette d'acier sur mesure, qui sert à la manutention, au transport et à l'installation. Œuvre autoportante, sans ancrage au sol&nbsp;: la stabilité est assurée par un lest d'acier intégré à la palette.</dd></div>
+        <div><dt data-i18n="k60">œuvres</dt><dd data-i18n="k61">3 caribous de la rivière George · 2 caribous des bois femelles · 1 caribou des bois mâle</dd></div>
+        <div><dt data-i18n="k62">matériau</dt><dd data-i18n="k63">Acier corten, 19&nbsp;mm d'épaisseur, oxydation naturelle</dd></div>
+        <div><dt data-i18n="k64">dimensions <span class="ord">(H&nbsp;×&nbsp;L&nbsp;×&nbsp;ép.)</span></dt><dd data-i18n="k65">Caribous de la rivière George&nbsp;: 2&nbsp;168&nbsp;×&nbsp;2&nbsp;168&nbsp;×&nbsp;19&nbsp;mm · 402&nbsp;kg<br>Caribous des bois femelles&nbsp;: 1&nbsp;616&nbsp;×&nbsp;1&nbsp;948&nbsp;×&nbsp;19&nbsp;mm · 371&nbsp;kg<br>Caribou des bois mâle&nbsp;: 1&nbsp;872&nbsp;×&nbsp;2&nbsp;159&nbsp;×&nbsp;19&nbsp;mm · 393&nbsp;kg</dd></div>
+        <div><dt data-i18n="k66">caractéristiques techniques</dt><dd data-i18n="k67">Chaque caribou est boulonné à une palette d'acier sur mesure, qui sert à la manutention, au transport et à l'installation. Œuvre autoportante, sans ancrage au sol&nbsp;: la stabilité est assurée par un lest d'acier intégré à la palette.</dd></div>
       </dl></div></div>
-      <h3 class="sp-h"><button data-i18n="k66" type="button" class="sp-btn" aria-expanded="false" aria-controls="mr-f1">Murale<span class="mr-i" aria-hidden="true">+</span></button></h3>
+      <h3 class="sp-h"><button data-i18n="k68" type="button" class="sp-btn" aria-expanded="false" aria-controls="mr-f1">Murale<span class="mr-i" aria-hidden="true">+</span></button></h3>
       <div class="mr-x" id="mr-f1"><div class="mr-in"><dl class="spec spec-one mono">
-        <div><dt data-i18n="k67">œuvre</dt><dd data-i18n="k68">Murale narrative</dd></div>
-        <div><dt data-i18n="k69">matériau</dt><dd data-i18n="k70">Acier corten, 12,7&nbsp;mm d'épaisseur, oxydation naturelle</dd></div>
-        <div><dt data-i18n="k71">dimensions <span class="ord">(H&nbsp;×&nbsp;L)</span></dt><dd data-i18n="k72">1&nbsp;651&nbsp;×&nbsp;10&nbsp;668&nbsp;mm (longueur développée) · courbe de rayon 2&nbsp;972&nbsp;mm · 1&nbsp;774&nbsp;kg</dd></div>
-        <div><dt data-i18n="k73">caractéristiques techniques</dt><dd data-i18n="k74">5 sections de 1&nbsp;651&nbsp;×&nbsp;2&nbsp;133&nbsp;×&nbsp;229&nbsp;mm (H&nbsp;×&nbsp;L&nbsp;×&nbsp;prof.). Assemblage boulonné à l'arrière et ancrage à la structure en bois. Conception et fabrication de palettes métalliques sur mesure assurant la stabilité des sections pendant le travail en atelier, la manutention et le transport.</dd></div>
+        <div><dt data-i18n="k69">œuvre</dt><dd data-i18n="k70">Murale narrative</dd></div>
+        <div><dt data-i18n="k71">matériau</dt><dd data-i18n="k72">Acier corten, 12,7&nbsp;mm d'épaisseur, oxydation naturelle</dd></div>
+        <div><dt data-i18n="k73">dimensions <span class="ord">(H&nbsp;×&nbsp;L)</span></dt><dd data-i18n="k74">1&nbsp;651&nbsp;×&nbsp;10&nbsp;668&nbsp;mm (longueur développée) · courbe de rayon 2&nbsp;972&nbsp;mm · 1&nbsp;774&nbsp;kg</dd></div>
+        <div><dt data-i18n="k75">caractéristiques techniques</dt><dd data-i18n="k76">5 sections de 1&nbsp;651&nbsp;×&nbsp;2&nbsp;133&nbsp;×&nbsp;229&nbsp;mm (H&nbsp;×&nbsp;L&nbsp;×&nbsp;prof.). Assemblage boulonné à l'arrière et ancrage à la structure en bois. Conception et fabrication de palettes métalliques sur mesure assurant la stabilité des sections pendant le travail en atelier, la manutention et le transport.</dd></div>
       </dl></div></div>
-      <h3 class="sp-h"><button data-i18n="k75" type="button" class="sp-btn" aria-expanded="false" aria-controls="mr-f2">Projet<span class="mr-i" aria-hidden="true">+</span></button></h3>
+      <h3 class="sp-h"><button data-i18n="k77" type="button" class="sp-btn" aria-expanded="false" aria-controls="mr-f2">Projet<span class="mr-i" aria-hidden="true">+</span></button></h3>
       <div class="mr-x" id="mr-f2"><div class="mr-in"><dl class="spec spec-one mono">
-        <div><dt data-i18n="k76">année</dt><dd>2024</dd></div>
-        <div><dt data-i18n="k77">lieu</dt><dd data-i18n="k78">Kawawachikamach (Québec)</dd></div>
-        <div><dt data-i18n="k79">projet</dt><dd data-i18n="k80">Promenade communautaire (phase&nbsp;1)</dd></div>
-        <div><dt data-i18n="k81">artiste</dt><dd data-i18n="k82">James Kennedy, en cocréation avec la Nation naskapie</dd></div>
-        <div><dt data-i18n="k83">conception et fabrication</dt><dd>James Kennedy</dd></div>
-        <div><dt data-i18n="k84">architecture de paysage</dt><dd>CCxA</dd></div>
-        <div><dt data-i18n="k85">communauté</dt><dd data-i18n="k86">Nation naskapie de Kawawachikamach</dd></div>
-        <div><dt data-i18n="k87">photos et vidéos</dt><dd>James Kennedy</dd></div>
+        <div><dt data-i18n="k78">année</dt><dd>2024</dd></div>
+        <div><dt data-i18n="k79">lieu</dt><dd data-i18n="k80">Kawawachikamach (Québec)</dd></div>
+        <div><dt data-i18n="k81">projet</dt><dd data-i18n="k82">Promenade communautaire (phase&nbsp;1)</dd></div>
+        <div><dt data-i18n="k83">artiste</dt><dd data-i18n="k84">James Kennedy, en cocréation avec la Nation naskapie</dd></div>
+        <div><dt data-i18n="k85">conception et fabrication</dt><dd>James Kennedy</dd></div>
+        <div><dt data-i18n="k86">architecture de paysage</dt><dd>CCxA</dd></div>
+        <div><dt data-i18n="k87">communauté</dt><dd data-i18n="k88">Nation naskapie de Kawawachikamach</dd></div>
+        <div><dt data-i18n="k89">photos et vidéos</dt><dd>James Kennedy</dd></div>
       </dl></div></div>
       </div></div>
 
     </div>
   </section>
 
-  <section data-i18n="k88" data-i18n-m="a" class="beyond wrap" aria-label="Au-delà de la commande">
-    <h2 class="by-h"><button type="button" class="tg by-tg" aria-expanded="false" aria-controls="mr-by"><span data-i18n="k89" class="tg-l">Au-delà de la commande</span><span class="mr-i" aria-hidden="true">+</span></button></h2>
+  <section data-i18n="k90" data-i18n-m="a" class="beyond wrap" aria-label="Au-delà de la commande">
+    <h2 class="by-h"><button type="button" class="tg by-tg" aria-expanded="false" aria-controls="mr-by"><span data-i18n="k91" class="tg-l">Au-delà de la commande</span><span class="mr-i" aria-hidden="true">+</span></button></h2>
     <div class="by-grid">
       <div class="by-left mr-x" id="mr-by"><div class="mr-in">
-    <article data-i18n="k90" data-i18n-m="a" class="by-row" aria-label="Transmission aux aînés">
-      <h3 class="lab tg-h"><button type="button" class="tg mono" aria-expanded="false" aria-controls="mr-tr"><span data-i18n="k91" class="tg-l">transmission aux aînés</span><span class="mr-i" aria-hidden="true">+</span></button></h3>
+    <article data-i18n="k92" data-i18n-m="a" class="by-row" aria-label="Transmission aux aînés">
+      <h3 class="lab tg-h"><button type="button" class="tg mono" aria-expanded="false" aria-controls="mr-tr"><span data-i18n="k93" class="tg-l">transmission aux aînés</span><span class="mr-i" aria-hidden="true">+</span></button></h3>
       <div class="by-c">
-        <div class="mr-x" id="mr-tr"><div class="mr-in"><p data-i18n="k92">Vingt et une petites sculptures, taillées dans les mêmes plaques que les grands caribous et réalisées bénévolement par l'artiste, ont été offertes aux aînés naskapis lors de leur rassemblement annuel de 2024.</p></div></div>
+        <div class="mr-x" id="mr-tr"><div class="mr-in"><p data-i18n="k94">Vingt et une petites sculptures, taillées dans les mêmes plaques que les grands caribous et réalisées bénévolement par l'artiste, ont été offertes aux aînés naskapis lors de leur rassemblement annuel de 2024.</p></div></div>
         
       </div>
     </article>
-    <article data-i18n="k93" data-i18n-m="a" class="by-row" aria-label="Prolongements">
-      <h3 class="lab tg-h"><button type="button" class="tg mono" aria-expanded="false" aria-controls="mr-pr"><span data-i18n="k94" class="tg-l">prolongements</span><span class="mr-i" aria-hidden="true">+</span></button></h3>
+    <article data-i18n="k95" data-i18n-m="a" class="by-row" aria-label="Prolongements">
+      <h3 class="lab tg-h"><button type="button" class="tg mono" aria-expanded="false" aria-controls="mr-pr"><span data-i18n="k96" class="tg-l">prolongements</span><span class="mr-i" aria-hidden="true">+</span></button></h3>
       <div class="mr-x" id="mr-pr"><div class="mr-in by-c">
         <p class="sub"><i>Caribou</i></p>
-        <p data-i18n="k95">Huit sculptures issues des mêmes plaques, assombries par l'oxydation noire, une technique signature de l'artiste, présente dans ses tableaux d'acier et la série <i>Cœurs</i>.</p>
+        <p data-i18n="k97">Huit sculptures issues des mêmes plaques, assombries par l'oxydation noire, une technique signature de l'artiste, présente dans ses tableaux d'acier et la série <i>Cœurs</i>.</p>
       </div></div>
     </article>
       </div></div>
       <div class="by-right">
-        <figure class="by-img"><img data-i18n="k96" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders.jpg 1200w" sizes="100vw" data-r="1200 / 1200" src="/content/images/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders.jpg" width="1200" height="1200" alt="Petites sculptures de caribous en acier corten offertes aux aînés, tirées des mêmes plaques que les grands caribous" loading="lazy"><figcaption data-i18n="k97" class="mono mute">caribous offerts aux aînés · acier corten · 300&nbsp;×&nbsp;300&nbsp;×&nbsp;100&nbsp;mm · 2024</figcaption></figure>
+        <figure class="by-img"><img data-i18n="k98" data-i18n-m="a" srcset="/content/images-reduites/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders-400w.jpg 400w, /content/images-reduites/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders-800w.jpg 800w, /content/images/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders.jpg 1200w" sizes="100vw" data-r="1200 / 1200" src="/content/images/projects/public-art/kawawachikamach-boardwalk/transmission/james-kennedy-community-boardwalk-kawawachikamach-sculptures-caribous-elders.jpg" width="1200" height="1200" alt="Petites sculptures de caribous en acier corten offertes aux aînés, tirées des mêmes plaques que les grands caribous" loading="lazy"><figcaption data-i18n="k99" class="mono mute">caribous offerts aux aînés · acier corten · 300&nbsp;×&nbsp;300&nbsp;×&nbsp;100&nbsp;mm · 2024</figcaption></figure>
       </div>
     </div>
   </section>
@@ -940,36 +938,36 @@ html body .route .rt-line.go{display:flex!important;border-bottom:0!important;pa
   <section class="contact wrap" id="contact">
   <canvas class="trame" aria-hidden="true"></canvas>
   <div>
-    <h2 data-i18n="k98" class="h2">vous avez un projet&nbsp;?</h2>
+    <h2 data-i18n="k100" class="h2">vous avez un projet&nbsp;?</h2>
     <div class="cgrid">
       <form class="form" id="form" name="contact" method="POST" data-netlify="true" netlify-honeypot="bot-field" novalidate><input type="hidden" name="form-name" value="contact"><input type="hidden" name="page" value="/fr/projets/art-public/promenade-kawawachikamach/"><p hidden><input name="bot-field" tabindex="-1" autocomplete="off" aria-hidden="true"></p>
-        <p data-i18n="k99" class="intro">Une œuvre pour un parc, une place ou un bâtiment public&nbsp;? Écrivez-moi ici ou par <a class="mail" href="mailto:james@jameskennedy.ca" target="_blank" rel="noopener" title="james@jameskennedy.ca">courriel&nbsp;<svg class="a" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.6 2.5h3.9v3.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
-        <label data-i18n="k100" data-i18n-m="t" class="mono" for="f-objet">Objet de votre demande
+        <p data-i18n="k101" class="intro">Une œuvre pour un parc, une place ou un bâtiment public&nbsp;? Écrivez-moi ici ou par <a class="mail" href="mailto:james@jameskennedy.ca" target="_blank" rel="noopener" title="james@jameskennedy.ca">courriel&nbsp;<svg class="a" viewBox="0 0 10 10" aria-hidden="true"><path d="M2.5 7.5 7.5 2.5M3.6 2.5h3.9v3.9" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg></a></p>
+        <label data-i18n="k102" data-i18n-m="t" class="mono" for="f-objet">Objet de votre demande
           <select id="f-objet" name="objet">
-            <option data-i18n="k101" value="" selected>Choisir une option (facultatif)</option>
-            <option data-i18n="k102">Acquisition d'une œuvre</option>
-            <option data-i18n="k103">Commande sur mesure</option>
-            <option data-i18n="k104">Projet d'art public ou architectural</option>
-            <option data-i18n="k105">Exposition ou représentation en galerie</option>
-            <option data-i18n="k106">Visite de l'atelier</option>
-            <option data-i18n="k107">Autre demande</option>
+            <option data-i18n="k103" value="" selected>Choisir une option (facultatif)</option>
+            <option data-i18n="k104">Acquisition d'une œuvre</option>
+            <option data-i18n="k105">Commande sur mesure</option>
+            <option data-i18n="k106">Projet d'art public ou architectural</option>
+            <option data-i18n="k107">Exposition ou représentation en galerie</option>
+            <option data-i18n="k108">Visite de l'atelier</option>
+            <option data-i18n="k109">Autre demande</option>
           </select>
         </label>
         <div class="two">
-          <label data-i18n="k108" data-i18n-m="t" class="mono" for="f-nom">Nom<input id="f-nom" name="nom" autocomplete="name"></label>
-          <label data-i18n="k109" data-i18n-m="t" class="mono" for="f-mail">Courriel<input id="f-mail" name="courriel" type="email" autocomplete="email"></label>
+          <label data-i18n="k110" data-i18n-m="t" class="mono" for="f-nom">Nom<input id="f-nom" name="nom" autocomplete="name"></label>
+          <label data-i18n="k111" data-i18n-m="t" class="mono" for="f-mail">Courriel<input id="f-mail" name="courriel" type="email" autocomplete="email"></label>
         </div>
         <label class="mono" for="f-msg">Message<textarea id="f-msg" name="message"></textarea></label>
         <p class="err" id="err" aria-live="polite"></p>
-        <button data-i18n="k110" type="submit" class="send">Envoyer <span class="arr">→</span></button>
-        <p data-i18n="k111" class="sent" id="sent" hidden>Merci. Votre message a bien été envoyé. Je vous réponds dans les meilleurs délais.</p>
+        <button data-i18n="k112" type="submit" class="send">Envoyer <span class="arr">→</span></button>
+        <p data-i18n="k113" class="sent" id="sent" hidden>Merci. Votre message a bien été envoyé. Je vous réponds dans les meilleurs délais.</p>
       </form>
     </div>
   </div>
   <footer class="foot mono">
     <div>
-      <a data-i18n="k112" href="#" class="mute" data-up>Haut de page ↑</a><br>
-      <a data-i18n="k113" href="/fr/confidentialite/" class="legal">Confidentialité</a>
+      <a data-i18n="k114" href="#" class="mute" data-up>Haut de page ↑</a><br>
+      <a data-i18n="k115" href="/fr/confidentialite/" class="legal">Confidentialité</a>
     </div>
     <div class="r">
       <div class="icons">
@@ -981,15 +979,15 @@ html body .route .rt-line.go{display:flex!important;border-bottom:0!important;pa
   </footer>
   </section>
 </main>
-<div data-i18n="k114" data-i18n-m="a" class="vmodal" id="vmodal" role="dialog" aria-modal="true" aria-label="Vidéo" hidden>
-  <button data-i18n="k115" type="button" class="vclose mono">Fermer ×</button>
+<div data-i18n="k116" data-i18n-m="a" class="vmodal" id="vmodal" role="dialog" aria-modal="true" aria-label="Vidéo" hidden>
+  <button data-i18n="k117" type="button" class="vclose mono">Fermer ×</button>
   <video playsinline preload="none"></video>
 </div>
 
 
 
 
-<div class="lb" id="lb" hidden><img id="lbImg" alt=""><button data-i18n="k116" type="button" class="mono" id="lbClose">Fermer ×</button></div>
+<div class="lb" id="lb" hidden><img id="lbImg" alt=""><button data-i18n="k118" type="button" class="mono" id="lbClose">Fermer ×</button></div>
 
 <script>
 /* la fiche s'ouvre toujours en haut de la page */
@@ -1161,7 +1159,7 @@ document.addEventListener('visibilitychange',()=>{if(document.hidden)shut();});}
   /* ---- réglages de la page ---- */
   const MAP=[  /* sélecteur, effet : tr trame · mk masque · up monte · l depuis la gauche · fl texte ligne par ligne */
     ['.head .h1','mk'],['.contact .h2','l'],
-    ['.head .hero-img','up plate'],['.vgrid figure,.vwide,.rt-full,.rt-duo figure,.by-img','up'],
+    ['.head .hero-img','up plate'],['.vgrid figure,.vwide,.rt-duo figure,.aw-img,.by-img','up'],
     ['.head .crumb,.head .lead,.mandat>div,.vsec .lab,.cocr2 .lab,.cc-p,.cc-quote,.route .lab,.aw-head,.aw-note,.aw-list,.fiche-end .lab,.sp-h,.spec,.by-h,.by-row .lab,.by-row p,.by-row .go,.form','fl'],
     ['.tgp .mr-in>p,.rt-txt','fl'],['.route .rt-line,.rc-q .cc-q','up'],['.cc-link','fl'],
     ['.contact .trame','tr']
